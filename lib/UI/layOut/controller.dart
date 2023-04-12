@@ -7,7 +7,7 @@ import '../Search/search.dart';
 import '../choose_Ai_or_manual_plan/view.dart';
 
 class LayOutController {
-  int selectedIndex = 0;
+  int selectedIndex = 2;
 
   List<Widget> screens = [
     const SearchScreen(),
