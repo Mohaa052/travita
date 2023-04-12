@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 class DioHelper {
   static Dio? dio = Dio(
     BaseOptions(
-      baseUrl: "https://0568-45-247-152-109.ngrok-free.app/api/",
+      baseUrl: "https://0568-45-247-152-109.ngrok-free.app/api/v1/",
       receiveDataWhenStatusError: true,
     ),
   );
@@ -23,8 +23,8 @@ class DioHelper {
   static Future<Response> getData({
     required String url,
     Map<String, dynamic>? query,
-    String lang = "en",
-    String? token,
+    //String lang = "en",
+    //String? token,
   }) async {
     //dio?.options.headers = {
     //"lang": lang,
