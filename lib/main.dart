@@ -36,10 +36,14 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: true,
         home: child,
       ),
       child: LayOutScreen(),
     );
   }
+
+//تعديل احمد جمال فؤاد
+//تعديل احمد جمال فؤاد22
+//تعديل احمد جمال فؤاد33
 }
