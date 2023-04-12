@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
-
-import 'UI/Home/view.dart';
-import 'UI/Splash/splash.dart';
-import 'UI/ai_plan/view.dart';
 import 'UI/layOut/view.dart';
-import 'UI/onBoarding/widgets/onBoardingThree.dart';
-import 'UI/onBoarding/view.dart';
-import 'ex.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +37,4 @@ class MyApp extends StatelessWidget {
     );
   }
 
-//تعديل احمد جمال فؤاد
-//تعديل احمد جمال فؤاد22
-//تعديل احمد جمال فؤاد33
 }
