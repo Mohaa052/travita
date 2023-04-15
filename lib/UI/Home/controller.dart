@@ -17,8 +17,6 @@ class HomeController {
     "image/Vector2.png",
     "image/Vector1.png",
   ];
-
-  late int titleIndex;
   late final List<String> titles = [
     "Restaurants",
     "Hotels",

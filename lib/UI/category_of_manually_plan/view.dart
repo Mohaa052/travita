@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../Component/colors/colors.dart';
 import '../../Component/navigator.dart';
 import '../../Component/widgets/defaultText.dart';
-import '../type_of_place/type_of_place.dart';
+import '../type_of_place/view.dart';
 
 
 class YourPlanScreen extends StatelessWidget {

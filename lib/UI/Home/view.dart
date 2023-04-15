@@ -1,10 +1,10 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
-import 'package:travita/UI/Places_of_type/places_of_type.dart';
+import 'package:travita/UI/Places_of_type/view.dart';
 
 import '../../Component/colors/colors.dart';
+import '../../Component/navigator.dart';
 import '../../Component/widgets/button/default_button.dart';
 import '../../Component/widgets/category/category.dart';
 import 'controller.dart';
@@ -15,8 +15,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           Stack(
@@ -58,13 +57,11 @@ class HomeScreen extends StatelessWidget {
                     controller.vector.length,
                     (index) => InkWell(
                       onTap: () {
-                        controller.titleIndex = index;
-                        Navigator.push(
+                        defaultNavigator(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => PlacesOfType(
-                              controller: controller,
-                            ),
+                          PlacesOfType(
+                            index: index,
+                            category: controller.titles[index],
                           ),
                         );
                       },
@@ -78,41 +75,41 @@ class HomeScreen extends StatelessWidget {
                 ),
 
                 /*SizedBox(
-                  height: 30,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 40,
-                      ),
-                      */ /*SizedBox(
-                        width: MediaQuery.of(context).size.width / 1.6.w,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => InkWell(
-                            onTap: () {
-                              controller.titleIndex = index;
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PlacesOfType(
-                                    controller: controller,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Image.asset(
-                              "${HomeController().vector[index]}",
-                            ),
-                          ),
-                          separatorBuilder: (context, index) => SizedBox(
-                            width: 30,
-                          ),
-                          itemCount: HomeController().vector.length,
-                        ),
-                      ),*/ /*
-                    ],
+              height: 30,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 40,
                   ),
-                ),*/
+                  */ /*SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.6.w,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => InkWell(
+                        onTap: () {
+                          controller.titleIndex = index;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PlacesOfType(
+                                controller: controller,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Image.asset(
+                          "${HomeController().vector[index]}",
+                        ),
+                      ),
+                      separatorBuilder: (context, index) => SizedBox(
+                        width: 30,
+                      ),
+                      itemCount: HomeController().vector.length,
+                    ),
+                  ),*/ /*
+                ],
+              ),
+            ),*/
                 SizedBox(
                   height: 15.h,
                 ),
@@ -168,6 +165,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-    ));
+    );
   }
 }
