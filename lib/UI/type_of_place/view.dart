@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travita/UI/Home/controller.dart';
+import 'package:travita/Component/widgets/category/category_of_type.dart';
 
-import '../../Component/colors/colors.dart';
-import '../../Component/widgets/category/category.dart';
-
-class PlacesOfType extends StatelessWidget {
-  late final HomeController controller;
-
-  PlacesOfType({
-    required this.controller,
-  });
+class TypeOfPlace extends StatelessWidget {
+  const TypeOfPlace({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +21,7 @@ class PlacesOfType extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              controller.titles[controller.titleIndex],
+              "Coffee Shop",
               style: TextStyle(
                 fontSize: 32.sp,
                 fontWeight: FontWeight.w700,
@@ -39,7 +32,6 @@ class PlacesOfType extends StatelessWidget {
             ),
             Expanded(
               child: GridView.builder(
-                  physics: BouncingScrollPhysics(),
                   itemCount: 10,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -47,11 +39,13 @@ class PlacesOfType extends StatelessWidget {
                     crossAxisSpacing: 10.w,
                     childAspectRatio: 2.w / 2.6.h,
                   ),
-                  itemBuilder: (BuildContext context, int index) => Category(
+                  itemBuilder: (BuildContext context, int index) =>
+                      CategoryOfTypeThePlace(
                         image: "image/coffee.png",
                         description:
                             " Sumptuous Ras el-Tin Palace was once a summer escape for Egypt's sultans when the desert heat of Cairo got too much to bear.",
                         nameOfPlace: "Ras el-Tin Palace",
+                        showIcon: false,
                       )),
             ),
           ],

@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../Component/colors/colors.dart';
 import '../../Component/widgets/defaultText.dart';
 import '../choose_Ai_or_manual_plan/widgets/onePlanWidget.dart';
-import '../layOut/controller.dart';
+import '../layOut/cubit/controller.dart';
 
 class AiPlansScreen extends StatefulWidget {
   const AiPlansScreen({Key? key}) : super(key: key);

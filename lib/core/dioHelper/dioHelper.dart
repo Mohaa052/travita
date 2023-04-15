@@ -3,7 +3,8 @@ import 'package:dio/dio.dart';
 class DioHelper {
   static Dio? dio = Dio(
     BaseOptions(
-      baseUrl: "https://0568-45-247-152-109.ngrok-free.app/api/v1/",
+      baseUrl: "https://345b-45-247-235-153.ngrok-free.app/api/v1/",
+      //345b-45-247-235-153.ngrok-free.app/v1/
       receiveDataWhenStatusError: true,
     ),
   );
