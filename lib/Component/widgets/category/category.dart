@@ -9,12 +9,10 @@ class Category extends StatelessWidget {
   late final String? image;
   late final String nameOfPlace;
   late final String description;
-  //late  bool isFavorite;
   Category({
     required this.image,
     required this.nameOfPlace,
     required this.description,
-    //required this.isFavorite,
   });
   @override
   Widget build(BuildContext context) {
@@ -36,31 +34,12 @@ class Category extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: image != null
-                ? Stack(
-                    alignment: Alignment.topRight,
-                    children: [
-                      Image.network(
-                        image!,
-                        fit: BoxFit.cover,
-                      ),
-                      Icon(
-                        Icons.favorite_border,
-                      ),
-                    ],
+                ? Image.network(
+                    image!,
+                    fit: BoxFit.cover,
                   )
-                : Stack(
-                    alignment: Alignment.topRight,
-                    children: [
-                      Image.asset(
-                        "image/coffee.png",
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(7.0.r),
-                        child: Icon(
-                          Icons.favorite,
-                        ),
-                      ),
-                    ],
+                : Image.asset(
+                    "image/coffee.png",
                   ),
           ),
           SizedBox(
@@ -71,6 +50,7 @@ class Category extends StatelessWidget {
             fontWeight: FontWeight.w600,
             fontSize: 16.sp,
             textColor: AppColors.darkBlue,
+            textAlign: TextAlign.left,
           ),
           SizedBox(
             height: 4.h,
@@ -82,6 +62,8 @@ class Category extends StatelessWidget {
             textColor: AppColors.darkGrey,
             maxLines: 3,
             textOverflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.left,
+
           ),
         ],
       ),
