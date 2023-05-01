@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travita/UI/layOut/cubit/states.dart';
-import 'package:travita/core/dioHelper/dioHelper.dart';
 
 import '../../Favourite/favourite.dart';
 import '../../Home/view.dart';
