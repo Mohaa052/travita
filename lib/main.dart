@@ -3,11 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
 import 'package:travita/UI/Home/view.dart';
+import 'package:travita/ex.dart';
 import 'UI/layOut/view.dart';
+import 'core/database/remote/dioHelper/dioHelper.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
+  DioHelper.init();
 
   runApp(const MyApp());
 }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travita/Component/widgets/category/category.dart';
+import 'package:travita/Component/widgets/category/category_of_type.dart';
+import 'package:travita/Component/widgets/category/category_of_type_the_favourit.dart';
+import 'package:travita/UI/Places_of_type/view.dart';
 
 import 'Component/colors/colors.dart';
 import 'Component/widgets/AccountsIcons/accountsIcons.dart';
@@ -135,6 +139,16 @@ class Exxx extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      body: Column(
+        children: [
+          Center(
+              child: Category(
+            image: null,
+            description: "asdlfkls;fdkjlsdfja;sdfjaslkfjlsdkfskla;fsd",
+            nameOfPlace: "ad;l",
+          )),
+        ],
+      ),
     );
   }
 }
@@ -206,7 +220,8 @@ class TestinggTwo extends StatelessWidget {
                             controller: TextEditingController(),
                             type: TextInputType.text,
                             validate: () {
-                              print("------------------------------------------");
+                              print(
+                                  "------------------------------------------");
                             },
                             hintText: "First name",
                             isPassword: false,
@@ -313,7 +328,7 @@ class TestinggTwo extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  LayOutScreen()),
+                                builder: (context) => LayOutScreen()),
                           );
                         }
                       },

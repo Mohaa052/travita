@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:travita/UI/Home/testingModel.dart';
 
-import '../../core/dioHelper/dioHelper.dart';
-
 class HomeController {
   Future<TestingApiModel> getData() async {
     var response = await Dio()
@@ -18,7 +16,7 @@ class HomeController {
     "image/Vector1.png",
   ];
   late final List<String> titles = [
-    "Restaurants",
+    "Attractions",
     "Hotels",
     "Coffee Shops",
     "Restaurants",

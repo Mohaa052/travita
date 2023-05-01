@@ -60,7 +60,6 @@ class HomeScreen extends StatelessWidget {
                         defaultNavigator(
                           context,
                           PlacesOfType(
-                            index: index,
                             category: controller.titles[index],
                           ),
                         );
