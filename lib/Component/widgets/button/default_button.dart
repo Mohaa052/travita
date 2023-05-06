@@ -10,8 +10,8 @@ class DefaultButton extends StatelessWidget {
   Color backgroundColor;
   String text;
   double? fontSize;
-  double? opacity ;
-  double? borderRadius ;
+  double? opacity;
+  double? borderRadius;
   FontWeight? fontWeight;
   Color? textColor;
   DefaultButton({
@@ -25,13 +25,11 @@ class DefaultButton extends StatelessWidget {
     this.borderRadius,
     this.fontWeight,
     this.textColor,
-});
+  });
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap:(){
-
-      },
+      onTap: () {},
       child: Container(
         width: width.w,
         height: height.h,
@@ -40,7 +38,8 @@ class DefaultButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius!),
         ),
         child: Center(
-          child: Text(text,
+          child: Text(
+            text,
             style: TextStyle(
               fontSize: fontSize,
               fontWeight: fontWeight,

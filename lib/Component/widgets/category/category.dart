@@ -6,9 +6,9 @@ import '../../../UI/Details/details.dart';
 import '../defaultText.dart';
 
 class Category extends StatelessWidget {
-  String? image;
-  String nameOfPlace;
-  String description;
+  late final String? image;
+  late final String nameOfPlace;
+  late final String description;
   Category({
     required this.image,
     required this.nameOfPlace,
@@ -30,12 +30,17 @@ class Category extends StatelessWidget {
             width: 175.w,
             height: 130.h,
             clipBehavior: Clip.antiAliasWithSaveLayer,
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(20.r)),
-            child: Image.network(
-              image!,
-              fit: BoxFit.cover,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.r),
             ),
+            child: image != null
+                ? Image.network(
+                    image!,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    "image/coffee.png",
+                  ),
           ),
           SizedBox(
             height: 10.h,
@@ -45,6 +50,7 @@ class Category extends StatelessWidget {
             fontWeight: FontWeight.w600,
             fontSize: 16.sp,
             textColor: AppColors.darkBlue,
+            textAlign: TextAlign.left,
           ),
           SizedBox(
             height: 4.h,
@@ -56,6 +62,8 @@ class Category extends StatelessWidget {
             textColor: AppColors.darkGrey,
             maxLines: 3,
             textOverflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.left,
+
           ),
         ],
       ),

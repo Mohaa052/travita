@@ -1,30 +1,29 @@
 import 'package:dio/dio.dart';
 
 class DioHelper {
-  static Dio? dio = Dio(
-    BaseOptions(
-      baseUrl: "https://0568-45-247-152-109.ngrok-free.app/api/",
-      receiveDataWhenStatusError: true,
-    ),
-  );
+  static Dio? dio;
+
+  //https://f819-2a09-bac5-30c8-16a0-00-241-22.ngrok-free.app/api/v1/
 
   // base url for eCommerce app "postman"
   // https://student.valuxapps.com/api/
 
-  /*static init() {
+  static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: "https://newsapi.org/",
+        baseUrl:
+        "https://d16b-2a09-bac5-30c5-1eb-00-31-fe.ngrok-free.app/api/v1/",
+        //345b-45-247-235-153.ngrok-free.app/v1/
         receiveDataWhenStatusError: true,
       ),
     );
-  }*/
+  }
 
   static Future<Response> getData({
     required String url,
     Map<String, dynamic>? query,
-    String lang = "en",
-    String? token,
+    //String lang = "en",
+    //String? token,
   }) async {
     //dio?.options.headers = {
     //"lang": lang,

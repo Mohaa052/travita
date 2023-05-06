@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
-
-
-import 'UI/Home/view.dart';
-import 'UI/Splash/splash.dart';
-import 'UI/ai_plan/view.dart';
+import 'package:travita/UI/Home/view.dart';
+import 'package:travita/ex.dart';
 import 'UI/layOut/view.dart';
-import 'UI/onBoarding/widgets/onBoardingThree.dart';
-import 'UI/onBoarding/view.dart';
-import 'ex.dart';
-
+import 'core/database/remote/dioHelper/dioHelper.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
+  DioHelper.init();
 
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -37,10 +35,36 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: true,
         home: child,
       ),
-      child: HomeScreen(),
+      child: LayOutScreen(),
     );
+  }
+}
+
+class MyBlocObserver extends BlocObserver {
+  @override
+  void onCreate(BlocBase bloc) {
+    super.onCreate(bloc);
+    print('onCreate -- ${bloc.runtimeType}');
+  }
+
+  @override
+  void onChange(BlocBase bloc, Change change) {
+    super.onChange(bloc, change);
+    print('onChange -- ${bloc.runtimeType}, $change');
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    print('onError -- ${bloc.runtimeType}, $error');
+    super.onError(bloc, error, stackTrace);
+  }
+
+  @override
+  void onClose(BlocBase bloc) {
+    super.onClose(bloc);
+    print('onClose -- ${bloc.runtimeType}');
   }
 }

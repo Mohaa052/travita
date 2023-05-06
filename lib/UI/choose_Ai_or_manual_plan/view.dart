@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 import '../../Component/colors/colors.dart';
 import '../../Component/navigator.dart';
 import '../../Component/widgets/defaultText.dart';
@@ -56,6 +55,7 @@ class ChooseAiOrManualPlanScreen extends StatelessWidget {
               SizedBox(
                 height: 240.h,
                 child: ListView.separated(
+                  physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => OnePlanWidget(),
                   separatorBuilder: (context, index) => SizedBox(
@@ -76,8 +76,7 @@ class ChooseAiOrManualPlanScreen extends StatelessWidget {
                 buttonText: "Go",
                 buttonWidth: 244.w,
                 buttonHeight: 46.h,
-                onPressed: ()
-                {
+                onPressed: () {
                   defaultNavigator(context, AiPlansScreen());
                 },
               ),
@@ -92,10 +91,8 @@ class ChooseAiOrManualPlanScreen extends StatelessWidget {
                 buttonText: "Go",
                 buttonWidth: 244.w,
                 buttonHeight: 46.h,
-                onPressed: ()
-                {
+                onPressed: () {
                   defaultNavigator(context, YourPlanScreen());
-
                 },
               ),
             ],
