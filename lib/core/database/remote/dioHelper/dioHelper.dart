@@ -12,7 +12,7 @@ class DioHelper {
     dio = Dio(
       BaseOptions(
         baseUrl:
-        "https://d16b-2a09-bac5-30c5-1eb-00-31-fe.ngrok-free.app/api/v1/",
+            "https://db8a-2a09-bac5-30cf-16a0-00-241-47.ngrok-free.app/api/v1/",
         //345b-45-247-235-153.ngrok-free.app/v1/
         receiveDataWhenStatusError: true,
       ),
@@ -22,18 +22,7 @@ class DioHelper {
   static Future<Response> getData({
     required String url,
     Map<String, dynamic>? query,
-    //String lang = "en",
-    //String? token,
   }) async {
-    //dio?.options.headers = {
-    //"lang": lang,
-    //"Authorization": token ?? "",
-    //"Content-Type": "application/json",
-    //"Connection": "keep-alive",
-    //"Accept-Encoding": "gzip, deflate, br",
-    //"User-Agent": "PostmanRuntime/7.29.2",
-    //};
-
     return await dio!.get(
       url,
       queryParameters: query,
