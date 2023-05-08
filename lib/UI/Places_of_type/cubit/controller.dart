@@ -17,6 +17,25 @@ class PlacesOfTypeController extends Cubit<PlacesOfTypeStates> {
 
   static PlacesOfTypeController get(context) => BlocProvider.of(context);
 
+  late int subTpeIndex = 0;
+  late final List<String> subTypes = [
+    "Ancient Ruins",
+    "historical",
+    "Shopping Malls",
+    "water & Diving and snorkeling & swim",
+    "Horseback riding tours",
+    "Bike Tours",
+    "boat tours",
+    "day trips",
+  ];
+
+  void changeSubType({
+    required int index,
+  }) {
+    subTpeIndex = index;
+    emit(PlacesOfTypeChangeSubTypeState());
+  }
+
   AttractionsModel? attractionsModel;
   RestaurantsModel? restaurantsModel;
   HotelsModel? hotelsModel;
@@ -24,10 +43,12 @@ class PlacesOfTypeController extends Cubit<PlacesOfTypeStates> {
 
   void getPlacesOfTypeData({
     required String url,
+    Map<String, String>? query,
   }) {
     emit(PlacesOfTypeGetDataLoadingState());
     DioHelper.getData(
       url: url,
+      query: query,
     ).then((value) {
       switch (url) {
         case "attractions":

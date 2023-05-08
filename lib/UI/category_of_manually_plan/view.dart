@@ -8,7 +8,6 @@ import '../../Component/navigator.dart';
 import '../../Component/widgets/defaultText.dart';
 import '../type_of_place/view.dart';
 
-
 class YourPlanScreen extends StatelessWidget {
   const YourPlanScreen({Key? key}) : super(key: key);
 

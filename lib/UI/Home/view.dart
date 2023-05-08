@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {
                         defaultNavigator(
                           context,
-                          PlacesOfType(
+                          PlacesOfTypeScreen(
                             category: controller.titles[index],
                           ),
                         );
