@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travita/UI/Places_of_type/Models/resturantsModel.dart';
+import 'package:travita/UI/Places_of_type/Models/restaurantsModel.dart';
 
 import '../../../Component/widgets/category/category.dart';
 

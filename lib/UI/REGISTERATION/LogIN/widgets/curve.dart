@@ -6,8 +6,8 @@ class LoginCurve extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  CustomPaint(
-      size:  const Size(
+    return CustomPaint(
+      size: const Size(
         double.infinity,
         double.infinity,
       ),

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../Component/widgets/defaultText.dart';
 
 class SubType extends StatelessWidget {
-  Function onTap;
+  void Function() onTap;
   String surveyCategoriesText;
   Color oneCategoryOfSurveyColor;
   Color iconAndTextColor;
