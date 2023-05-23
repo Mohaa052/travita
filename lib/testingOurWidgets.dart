@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/UI/choose_Ai_or_manual_plan/widgets/onePlanWidget.dart';
 import 'package:travita/UI/onBoarding/controller.dart';
 import 'Component/colors/colors.dart';
-import 'Component/widgets/AccountsIcons/accountsIcons.dart';
 import 'Component/widgets/button/DefaultOutlindedButton.dart';
 import 'Component/widgets/button/registeration_button.dart';
 import 'Component/widgets/button/defaultTextButton.dart';

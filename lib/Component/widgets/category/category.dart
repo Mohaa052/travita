@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../colors/colors.dart';
-import '../../../UI/Details/details.dart';
+import '../../../UI/Details/view.dart';
 import '../defaultText.dart';
 
 class Category extends StatelessWidget {
@@ -20,7 +20,12 @@ class Category extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const Details()),
+          MaterialPageRoute(
+              builder: (context) => DetailsScreen(
+                    image: image,
+                    name: nameOfPlace,
+                    description: description,
+                  )),
         );
       },
       child: Column(
@@ -63,7 +68,6 @@ class Category extends StatelessWidget {
             maxLines: 3,
             textOverflow: TextOverflow.ellipsis,
             textAlign: TextAlign.left,
-
           ),
         ],
       ),
