@@ -54,7 +54,6 @@ class SignUpController extends AppController {
     ).then((value) {
       //emit(RegisterSuccessState());
       logIn(
-        context: context,
         email: emailController.text,
         password: passwordController.text,
       );

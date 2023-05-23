@@ -6,6 +6,8 @@ class ChangVisibilityState extends AppStates {}
 
 class LoginLoadingState extends AppStates {}
 
+class LoginGoogleLoadingState extends AppStates {}
+
 class LoginSuccessState extends AppStates {}
 
 class LoginErrorState extends AppStates {}
