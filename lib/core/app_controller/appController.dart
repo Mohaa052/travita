@@ -21,10 +21,9 @@ class AppController extends Cubit<AppStates> {
   void googleLogin({
     required BuildContext context,
   }) {
-    emit(LoginLoadingState());
+    emit(LoginGoogleLoadingState());
     googleSignIn.signIn().then((value) {
       AppConstants.name = value!.displayName!;
-      defaultNavigator(context, LayOutScreen());
       emit(LoginSuccessState());
     }).catchError((error) {
       emit(LoginErrorState());
@@ -32,7 +31,6 @@ class AppController extends Cubit<AppStates> {
   }
 
   void logIn({
-    required BuildContext context,
     required String email,
     required String password,
   }) {
@@ -50,7 +48,6 @@ class AppController extends Cubit<AppStates> {
       AppConstants.name = userModel.user.firstName;
       print(AppConstants.accessToken);
       emit(LoginSuccessState());
-      defaultNavigator(context, LayOutScreen());
     }).catchError((error) {
       print(error.toString());
       emit(LoginErrorState());

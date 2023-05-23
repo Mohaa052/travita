@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Component/colors/colors.dart';
+import '../../../../Component/navigator.dart';
 import '../../../../Component/widgets/button/defaultTextButton.dart';
 import '../../../../Component/widgets/button/registeration_button.dart';
 import '../../../../Component/widgets/textFrmField/dfaultTextFormField.dart';
 import '../../../../core/app_controller/appStates.dart';
+import '../../../layOut/view.dart';
 import '../../LogIN/view.dart';
 import '../../widgets/accountsIcons.dart';
 import '../controller.dart';
@@ -19,7 +21,11 @@ class SignUpFormWithCurve extends StatelessWidget {
     return BlocConsumer<SignUpController, AppStates>(
       buildWhen: (previousState, currentState) =>
           currentState is NotValidState || currentState is RegisterLoadingState,
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is LoginSuccessState) {
+          defaultNavigator(context, LayOutScreen());
+        }
+      },
       builder: (context, state) => SizedBox(
         height: SignUpController.get(context).formWithCurveHeight,
         child: Stack(
@@ -207,7 +213,10 @@ class SignUpFormWithCurve extends StatelessWidget {
                                 false;
                             return "please enter your password";
                           } else if (SignUpController.get(context)
-                                  .isValidPassword(password: SignUpController.get(context).passwordController.text) ==
+                                  .isValidPassword(
+                                      password: SignUpController.get(context)
+                                          .passwordController
+                                          .text) ==
                               false) {
                             SignUpController.get(context).notValidFields[1] =
                                 false;

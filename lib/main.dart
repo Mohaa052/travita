@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppController, AppStates>(
+      buildWhen: (previousState, currentState)=> false,
       listener: (context, state) {},
       builder: (context, state) => ScreenUtilInit(
         designSize: const Size(430, 932),
