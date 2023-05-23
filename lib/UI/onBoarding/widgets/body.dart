@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/UI/onBoarding/widgets/curve.dart';
 
 import '../../../Component/colors/colors.dart';
-import '../../../Component/widgets/AccountsIcons/accountsIcons.dart';
 import '../../../Component/widgets/button/registeration_button.dart';
-import '../../REGISTERATION/LogIN/loginScreen.dart';
-import '../../REGISTERATION/SignUp/signUpScreen.dart';
+import '../../REGISTERATION/LogIN/view.dart';
+import '../../REGISTERATION/SignUp/view.dart';
+import '../../REGISTERATION/widgets/accountsIcons.dart';
 
 class OnBoardingBody extends StatelessWidget {
   @override
@@ -85,7 +85,10 @@ class OnBoardingBody extends StatelessWidget {
                 SizedBox(
                   height: 16.h,
                 ),
-                AccountsIcons("connect"),
+                AccountsIcons(
+                  connect: "connect",
+                  onPressed: () {},
+                ),
                 SizedBox(
                   height: 20.h,
                 ),

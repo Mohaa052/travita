@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
-
-import '../../Component/widgets/AccountsIcons/accountsIcons.dart';
 import '../../Component/widgets/button/registeration_button.dart';
-import '../REGISTERATION/LogIN/loginScreen.dart';
-import '../REGISTERATION/SignUp/signUpScreen.dart';
+import '../REGISTERATION/LogIN/view.dart';
+import '../REGISTERATION/SignUp/view.dart';
+import '../REGISTERATION/widgets/accountsIcons.dart';
 
 class Ask extends StatelessWidget {
   const Ask({Key? key}) : super(key: key);
@@ -103,7 +102,8 @@ class Ask extends StatelessWidget {
                               SizedBox(
                                 height: 20.h,
                               ),
-                              AccountsIcons("connect"),
+                              AccountsIcons(
+                                  connect: "connect", onPressed: () {}),
                             ],
                           ),
                         ),

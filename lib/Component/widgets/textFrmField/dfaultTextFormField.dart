@@ -3,16 +3,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../colors/colors.dart';
 
-class DefaultFormField extends StatefulWidget {
+class DefaultFormField extends StatelessWidget {
   late double width;
   late double height;
   late TextEditingController controller;
   late TextInputType type;
-  late Function validate;
+  final String? Function(String?)? validate;
   late String hintText;
+  bool? obSecure;
   IconData? prefix;
   IconData? suffix;
-  Function? suffixButtonPressed;
+  void Function()? suffixButtonPressed;
   bool isPassword = false;
 
   DefaultFormField({
@@ -24,6 +25,7 @@ class DefaultFormField extends StatefulWidget {
     required this.hintText,
     required this.isPassword,
     this.suffixButtonPressed,
+    this.obSecure,
     this.prefix,
     this.suffix,
 
@@ -31,55 +33,42 @@ class DefaultFormField extends StatefulWidget {
   });
 
   @override
-  State<DefaultFormField> createState() => _DefaultFormFieldState();
-}
-
-class _DefaultFormFieldState extends State<DefaultFormField> {
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: widget.width,
-      height: widget.height,
+      width: width,
+      height: height,
       child: TextFormField(
         style: const TextStyle(color: AppColors.white),
         cursorColor: AppColors.white,
-        keyboardType: widget.type,
-        controller: widget.controller,
-        obscureText: widget.isPassword,
-        validator: (value) {
-          widget.validate();
-          if (value!.isEmpty) {
-            setState(() {
-              widget.height = 80.h;
-            });
-            return "Please enter your ${widget.hintText}";
-          }
-          return null;
-        },
+        keyboardType: type,
+        controller: controller,
+        obscureText: obSecure ?? false,
+        validator: validate,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(left: 10.w, right: 10.w),
-          suffixIcon: widget.isPassword == true
+          contentPadding: EdgeInsets.only(
+            left: 10.w,
+            right: 10.w,
+          ),
+          suffixIcon: isPassword == true
               ? InkWell(
-                  onTap: () {
-                    widget.suffixButtonPressed!();
-                  },
+                  onTap: suffixButtonPressed,
                   child: Icon(
-                    Icons.remove_red_eye_outlined,
+                    suffix,
                     size: 20,
                     color: AppColors.ofBlue,
                   ),
                 )
               : null,
-          // prefix: widget.prefix != null ? Icon(widget.prefix) : null,
+          // prefix: prefix != null ? Icon(prefix) : null,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.r),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: AppColors.white,
             ),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.r),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: AppColors.white,
             ),
           ),

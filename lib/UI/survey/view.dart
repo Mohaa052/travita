@@ -7,8 +7,6 @@ import '../../Component/colors/colors.dart';
 import '../../Component/widgets/defaultText.dart';
 import 'widgets/surveyButton.dart';
 
-
-
 class SurveyScreen extends StatefulWidget {
   const SurveyScreen({Key? key}) : super(key: key);
 

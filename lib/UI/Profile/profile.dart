@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
+import 'package:travita/core/app_constants/constants.dart';
 
 import '../../Component/widgets/button/default_button.dart';
 
@@ -43,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                       height: 20,
                     ),
                     DefaultText(
-                      text: "Ahmed Gamal Fouad ",
+                      text: AppConstants.name,
                       fontWeight: FontWeight.w700,
                       textColor: AppColors.darkBlue,
                       fontSize: 25,

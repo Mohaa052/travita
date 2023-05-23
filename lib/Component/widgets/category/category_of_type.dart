@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
 
 import '../../colors/colors.dart';
-import '../../../UI/Details/details.dart';
+import '../../../UI/Details/view.dart';
 
 class CategoryOfTypeThePlace extends StatefulWidget {
   String image;
@@ -32,7 +32,12 @@ class _CategoryOfTypeThePlaceState extends State<CategoryOfTypeThePlace> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const Details()),
+          MaterialPageRoute(
+              builder: (context) => DetailsScreen(
+                    image: widget.image,
+                    name: widget.nameOfPlace,
+                    description: widget.description,
+                  )),
         );
       },
       child: Column(

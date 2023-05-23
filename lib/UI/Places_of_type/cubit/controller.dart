@@ -5,17 +5,47 @@ import 'package:travita/UI/Places_of_type/cubit/states.dart';
 import 'package:travita/UI/Places_of_type/widgets/attractionsItemsBuilder.dart';
 import 'package:travita/UI/Places_of_type/widgets/hotelsItemBuilder.dart';
 import 'package:travita/UI/Places_of_type/widgets/restaurantsItemsBuilder.dart';
+import 'package:travita/core/app_constants/constants.dart';
 import 'package:travita/core/database/remote/dioHelper/dioHelper.dart';
 
 import '../../../Component/widgets/category/category.dart';
 import '../Models/attractionsModel.dart';
 import '../Models/hotelsModel.dart';
-import '../Models/resturantsModel.dart';
+import '../Models/restaurantsModel.dart';
 
 class PlacesOfTypeController extends Cubit<PlacesOfTypeStates> {
   PlacesOfTypeController() : super(PlacesOfTypeInitialState());
 
   static PlacesOfTypeController get(context) => BlocProvider.of(context);
+
+  late bool isInitial = true;
+
+  late int subTpeIndex = 0;
+  String? category;
+  late final List<String> subTypes = [
+    "Ancient Ruins",
+    "historical",
+    "Shopping Malls",
+    "water & Diving and snorkeling & swim",
+    "Horseback riding tours",
+    "Bike Tours",
+    "boat tours",
+    "day trips",
+  ];
+
+  void changeSubType({
+    required int index,
+    required String category,
+  }) {
+    if (subTpeIndex != index) {
+      subTpeIndex = index;
+      getAttractions(
+        query: {
+          "subtype[li]": subTypes[index],
+        },
+      );
+    }
+  }
 
   AttractionsModel? attractionsModel;
   RestaurantsModel? restaurantsModel;
@@ -23,32 +53,71 @@ class PlacesOfTypeController extends Cubit<PlacesOfTypeStates> {
   var cofeModel;
 
   void getPlacesOfTypeData({
-    required String url,
+    required String endpoint,
+  }) {
+    switch (endpoint) {
+      case "attractions":
+        {
+          getAttractions(
+            query: {
+              "subtype[li]": subTypes[0],
+            },
+          );
+        }
+        break;
+      case "hotels":
+        {
+          getHotels();
+        }
+        break;
+      case "restaurants":
+        {
+          getRestaurant();
+        }
+        break;
+    }
+  }
+
+  void getAttractions({
+    required Map<String, String> query,
   }) {
     emit(PlacesOfTypeGetDataLoadingState());
     DioHelper.getData(
-      url: url,
+      baseUrl: AppConstants.baseUrl,
+      url: "attractions",
+      query: query,
     ).then((value) {
-      switch (url) {
-        case "attractions":
-          {
-            attractionsModel = AttractionsModel.fromJson(value.data);
-          }
-          break;
-        case "hotels":
-          {
-            hotelsModel = HotelsModel.fromJson(value.data);
-          }
-          break;
-        case "restaurants":
-          {
-            restaurantsModel = RestaurantsModel.fromJson(value.data);
-          }
-          break;
-        default:
-          {}
-          break;
-      }
+      attractionsModel = AttractionsModel.fromJson(value.data);
+      emit(PlacesOfTypeGetDataSuccessState());
+    }).catchError((error) {
+      print("The error is -----------> ${error.toString()}");
+      emit(PlacesOfTypeGetDataErrorState());
+    });
+  }
+
+  void getHotels() {
+    emit(PlacesOfTypeGetDataLoadingState());
+
+    DioHelper.getData(
+      url: "hotels",
+      baseUrl: AppConstants.baseUrl,
+    ).then((value) {
+      hotelsModel = HotelsModel.fromJson(value.data);
+      emit(PlacesOfTypeGetDataSuccessState());
+    }).catchError((error) {
+      print("The error is -----------> ${error.toString()}");
+      emit(PlacesOfTypeGetDataErrorState());
+    });
+  }
+
+  void getRestaurant() {
+    emit(PlacesOfTypeGetDataLoadingState());
+
+    DioHelper.getData(
+      baseUrl: AppConstants.baseUrl,
+      url: "restaurants",
+    ).then((value) {
+      restaurantsModel = RestaurantsModel.fromJson(value.data);
       emit(PlacesOfTypeGetDataSuccessState());
     }).catchError((error) {
       print("The error is -----------> ${error.toString()}");

@@ -3,11 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/UI/Places_of_type/cubit/controller.dart';
 import 'package:travita/UI/Places_of_type/cubit/states.dart';
+import 'package:travita/UI/Places_of_type/widgets/subTypes.dart';
+import 'package:travita/ex.dart';
 
-class PlacesOfType extends StatelessWidget {
+import '../../Component/colors/colors.dart';
+import '../survey/widgets/surveyButton.dart';
+
+class PlacesOfTypeScreen extends StatelessWidget {
   late final String category;
 
-  PlacesOfType({
+  PlacesOfTypeScreen({
     required this.category,
   });
 
@@ -16,7 +21,7 @@ class PlacesOfType extends StatelessWidget {
     return BlocProvider<PlacesOfTypeController>(
       create: (context) => PlacesOfTypeController()
         ..getPlacesOfTypeData(
-          url: category.toLowerCase(),
+          endpoint: category.toLowerCase(),
         ),
       child: Scaffold(
         appBar: AppBar(
@@ -31,8 +36,8 @@ class PlacesOfType extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                top: 20.r,
-                left: 10.r,
+                top: 20.h,
+                left: 10.w,
               ),
               child: Text(
                 category,
@@ -42,8 +47,69 @@ class PlacesOfType extends StatelessWidget {
                 ),
               ),
             ),
+            if (category == "Attractions")
+              BlocConsumer<PlacesOfTypeController, PlacesOfTypeStates>(
+                listener: (context, state) {
+                  if (state is PlacesOfTypeInitialState) {
+                    PlacesOfTypeController.get(context).isInitial = true;
+                  } else {
+                    PlacesOfTypeController.get(context).isInitial = false;
+                  }
+                },
+                builder: (context, state) => Padding(
+                  padding: EdgeInsets.only(
+                    left: 8.w,
+                    bottom: 8.h,
+                    top: 8.h,
+                  ),
+                  child: SizedBox(
+                    height: 40.h,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) => SubType(
+                        surveyCategoriesText:
+                            PlacesOfTypeController.get(context).subTypes[index],
+                        onTap: () {
+                          PlacesOfTypeController.get(context).changeSubType(
+                            index: index,
+                            category: category.toLowerCase(),
+                          );
+                        },
+                        iconAndTextColor:
+                            PlacesOfTypeController.get(context).subTpeIndex ==
+                                    index
+                                ? AppColors.white
+                                : AppColors.black,
+                        oneCategoryOfSurveyColor:
+                            PlacesOfTypeController.get(context).subTpeIndex ==
+                                    index
+                                ? AppColors.darkOrange
+                                : AppColors.ofWhite,
+                      ),
+                      separatorBuilder: (context, index) => SizedBox(
+                        width: 5.w,
+                      ),
+                      itemCount:
+                          PlacesOfTypeController.get(context).subTypes.length,
+                    ),
+                  ),
+                ),
+              ),
+            if (category == "Attractions")
+              BlocConsumer<PlacesOfTypeController, PlacesOfTypeStates>(
+                builder: (context, state) {
+                  return state is PlacesOfTypeGetDataLoadingState &&
+                          PlacesOfTypeController.get(context).isInitial == false
+                      ? const LinearProgressIndicator()
+                      : const SizedBox.shrink();
+                },
+                listener: (context, state) {},
+              ),
             Expanded(
               child: BlocConsumer<PlacesOfTypeController, PlacesOfTypeStates>(
+                buildWhen: (previousState, currentState) =>
+                    currentState is PlacesOfTypeGetDataSuccessState,
                 listener: (context, state) {},
                 builder: (context, state) {
                   return state is PlacesOfTypeGetDataSuccessState

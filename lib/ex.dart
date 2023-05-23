@@ -6,13 +6,13 @@ import 'package:travita/Component/widgets/category/category_of_type_the_favourit
 import 'package:travita/UI/Places_of_type/view.dart';
 
 import 'Component/colors/colors.dart';
-import 'Component/widgets/AccountsIcons/accountsIcons.dart';
 import 'Component/widgets/button/DefaultOutlindedButton.dart';
 import 'Component/widgets/button/defaultTextButton.dart';
 import 'Component/widgets/button/registeration_button.dart';
 import 'Component/widgets/textFrmField/dfaultTextFormField.dart';
-import 'UI/REGISTERATION/LogIN/loginScreen.dart';
+import 'UI/REGISTERATION/LogIN/view.dart';
 import 'UI/REGISTERATION/SignUp/widgets/curve.dart';
+import 'UI/REGISTERATION/widgets/accountsIcons.dart';
 import 'UI/layOut/view.dart';
 
 class Ex extends StatelessWidget {
@@ -34,7 +34,7 @@ class Ex extends StatelessWidget {
               height: 50,
               controller: TextEditingController(),
               type: TextInputType.visiblePassword,
-              validate: () {},
+              validate: (value) {},
               hintText: "Password",
               isPassword: true,
               suffix: Icons.visibility_outlined,
@@ -219,7 +219,7 @@ class TestinggTwo extends StatelessWidget {
                             height: 41.h,
                             controller: TextEditingController(),
                             type: TextInputType.text,
-                            validate: () {
+                            validate: (value) {
                               print(
                                   "------------------------------------------");
                             },
@@ -245,7 +245,7 @@ class TestinggTwo extends StatelessWidget {
                             height: 41.h,
                             controller: TextEditingController(),
                             type: TextInputType.text,
-                            validate: () {},
+                            validate: (value) {},
                             hintText: "Last Name",
                             isPassword: false,
                           ),
@@ -270,7 +270,7 @@ class TestinggTwo extends StatelessWidget {
                     height: 41.h,
                     controller: TextEditingController(),
                     type: TextInputType.text,
-                    validate: () {},
+                    validate: (value) {},
                     hintText: "Email Address",
                     //prefix: null,
                     isPassword: false,
@@ -292,7 +292,7 @@ class TestinggTwo extends StatelessWidget {
                     height: 49.h,
                     controller: TextEditingController(),
                     type: TextInputType.visiblePassword,
-                    validate: () {},
+                    validate: (value) {},
                     hintText: "Password",
                     suffix: Icons.visibility_outlined,
                     isPassword: true,
@@ -312,7 +312,7 @@ class TestinggTwo extends StatelessWidget {
                     height: 49.h,
                     controller: TextEditingController(),
                     type: TextInputType.visiblePassword,
-                    validate: () {},
+                    validate: (value) {},
                     hintText: "Password",
                     suffix: Icons.visibility_outlined,
                     isPassword: true,
@@ -344,7 +344,10 @@ class TestinggTwo extends StatelessWidget {
                 height: 8.h,
               ),*/
                   const Spacer(),
-                  AccountsIcons("sign up"),
+                  AccountsIcons(
+                    connect: "sign up",
+                    onPressed: () {},
+                  ),
                   SizedBox(
                     height: 8.h,
                   ),

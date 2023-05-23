@@ -1,18 +1,32 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
-import 'package:travita/UI/Home/view.dart';
-import 'package:travita/ex.dart';
+import 'package:travita/UI/REGISTERATION/LogIN/view.dart';
+import 'package:travita/core/app_controller/appController.dart';
+import 'package:travita/core/app_controller/appStates.dart';
+import 'package:travita/firebase_options.dart';
 import 'UI/layOut/view.dart';
 import 'core/database/remote/dioHelper/dioHelper.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
+  // Disable screen rotation
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
-  runApp(const MyApp());
+  runApp(BlocProvider(
+    create: (context) => AppController(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -20,25 +34,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(430, 932),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) => MaterialApp(
-        theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-            elevation: 0,
-            color: AppColors.darkBlue,
-            titleTextStyle: TextStyle(
-              color: AppColors.darkOrange,
-              fontWeight: FontWeight.bold,
+    return BlocConsumer<AppController, AppStates>(
+      listener: (context, state) {},
+      builder: (context, state) => ScreenUtilInit(
+        designSize: const Size(430, 932),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) => MaterialApp(
+          theme: ThemeData(
+            appBarTheme: const AppBarTheme(
+              elevation: 0,
+              color: AppColors.darkBlue,
+              titleTextStyle: TextStyle(
+                color: AppColors.darkOrange,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
+          debugShowCheckedModeBanner: true,
+          home: child,
         ),
-        debugShowCheckedModeBanner: true,
-        home: child,
+        child: LoginScreen(),
       ),
-      child: LayOutScreen(),
     );
   }
 }
