@@ -45,7 +45,7 @@ class User {
   late final int id;
   late final String lastName;
   late final String firstName;
-  late final String username;
+  late final String? username;
   late final String email;
   late final String? emailVerifiedAt;
   late final String? phone;
