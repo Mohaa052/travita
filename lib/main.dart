@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-          debugShowCheckedModeBanner: true,
+          debugShowCheckedModeBanner: false,
           home: child,
         ),
         child: LoginScreen(),
