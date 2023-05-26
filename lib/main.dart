@@ -8,6 +8,7 @@ import 'package:travita/UI/REGISTERATION/LogIN/view.dart';
 import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
 import 'package:travita/firebase_options.dart';
+import 'UI/REGISTERATION/LogIN/controller.dart';
 import 'UI/layOut/view.dart';
 import 'core/database/remote/dioHelper/dioHelper.dart';
 
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppController, AppStates>(
-      buildWhen: (previousState, currentState)=> false,
+      buildWhen: (previousState, currentState) => false,
       listener: (context, state) {},
       builder: (context, state) => ScreenUtilInit(
         designSize: const Size(430, 932),

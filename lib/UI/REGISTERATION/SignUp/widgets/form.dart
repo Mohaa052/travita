@@ -6,6 +6,7 @@ import '../../../../Component/navigator.dart';
 import '../../../../Component/widgets/button/defaultTextButton.dart';
 import '../../../../Component/widgets/button/registeration_button.dart';
 import '../../../../Component/widgets/textFrmField/dfaultTextFormField.dart';
+import '../../../../core/app_controller/appController.dart';
 import '../../../../core/app_controller/appStates.dart';
 import '../../../layOut/view.dart';
 import '../../LogIN/view.dart';
@@ -23,6 +24,7 @@ class SignUpFormWithCurve extends StatelessWidget {
           currentState is NotValidState || currentState is RegisterLoadingState,
       listener: (context, state) {
         if (state is LoginSuccessState) {
+          AppController.get(context).getFavorite();
           defaultNavigator(context, LayOutScreen());
         }
       },

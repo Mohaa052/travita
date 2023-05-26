@@ -145,7 +145,7 @@ class Exxx extends StatelessWidget {
               child: Category(
             image: null,
             description: "asdlfkls;fdkjlsdfja;sdfjaslkfjlsdkfskla;fsd",
-            nameOfPlace: "ad;l",
+            nameOfPlace: "ad;l", type: '', id: '',
           )),
         ],
       ),

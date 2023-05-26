@@ -23,6 +23,8 @@ class AttractionsItemsBuilder extends StatelessWidget {
         childAspectRatio: 2.w / 2.6.h,
       ),
       itemBuilder: (BuildContext context, int index) => Category(
+        id: attractionsModel.data[index].id.toString(),
+        type: "Attraction",
         image: attractionsModel.data[index].image,
         description: attractionsModel.data[index].description ?? "UnKnown",
         nameOfPlace: attractionsModel.data[index].name,

@@ -27,6 +27,7 @@ class LoginFormWithCurve extends StatelessWidget {
           currentState is! LoginSuccessState,
       listener: (context, state) {
         if (state is LoginSuccessState) {
+          AppController.get(context).getFavorite();
           defaultNavigator(context, LayOutScreen());
         }
       },

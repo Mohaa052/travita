@@ -1,21 +1,23 @@
-abstract class FavoriteStates {}
+import 'package:travita/core/app_controller/appStates.dart';
 
-class FavoritesInitial extends FavoriteStates {}
+import 'package:travita/core/app_controller/appStates.dart';
 
-class GetFavoritesLoading extends FavoriteStates {}
+import 'package:travita/core/app_controller/appStates.dart';
 
-class GetFavoritesError extends FavoriteStates {}
+import 'package:travita/core/app_controller/appStates.dart';
 
-class GetFavoritesSuccess extends FavoriteStates {}
+import 'package:travita/core/app_controller/appStates.dart';
 
-class PutInFavoritesLoading extends FavoriteStates {}
+import 'package:travita/core/app_controller/appStates.dart';
 
-class PutInFavoritesError extends FavoriteStates {}
+import 'package:travita/core/app_controller/appStates.dart';
 
-class PutInFavoritesSuccess extends FavoriteStates {}
+import 'package:travita/core/app_controller/appStates.dart';
 
-class DeleteFromFavoritesLoading extends FavoriteStates {}
+import 'package:travita/core/app_controller/appStates.dart';
 
-class DeleteFromFavoritesError extends FavoriteStates {}
+import 'package:travita/core/app_controller/appStates.dart';
 
-class DeleteFromFavoritesSuccess extends FavoriteStates {}
+import 'package:travita/core/app_controller/appStates.dart';
+
+

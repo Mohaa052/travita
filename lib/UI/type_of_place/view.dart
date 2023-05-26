@@ -32,21 +32,24 @@ class TypeOfPlace extends StatelessWidget {
             ),
             Expanded(
               child: GridView.builder(
-                  itemCount: 10,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 10.h,
-                    crossAxisSpacing: 10.w,
-                    childAspectRatio: 2.w / 2.6.h,
-                  ),
-                  itemBuilder: (BuildContext context, int index) =>
-                      CategoryOfTypeThePlace(
-                        image: "image/coffee.png",
-                        description:
-                            " Sumptuous Ras el-Tin Palace was once a summer escape for Egypt's sultans when the desert heat of Cairo got too much to bear.",
-                        nameOfPlace: "Ras el-Tin Palace",
-                        showIcon: false,
-                      )),
+                itemCount: 10,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10.h,
+                  crossAxisSpacing: 10.w,
+                  childAspectRatio: 2.w / 2.6.h,
+                ),
+                itemBuilder: (BuildContext context, int index) =>
+                    CategoryOfTypeThePlace(
+                  type: "",
+                  id: "",
+                  image: "image/coffee.png",
+                  description:
+                      " Sumptuous Ras el-Tin Palace was once a summer escape for Egypt's sultans when the desert heat of Cairo got too much to bear.",
+                  nameOfPlace: "Ras el-Tin Palace",
+                  showIcon: false,
+                ),
+              ),
             ),
           ],
         ),

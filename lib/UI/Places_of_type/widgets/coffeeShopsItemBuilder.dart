@@ -22,6 +22,8 @@ class CoffeeShopsItemsBuilder extends StatelessWidget {
         childAspectRatio: 2.w / 2.6.h,
       ),
       itemBuilder: (BuildContext context, int index) => Category(
+        id: coffeeShopsModel.data[index].id.toString(),
+        type: "Coffee",
         image: coffeeShopsModel.data[index].image,
         description: coffeeShopsModel.data[index].address ?? "UnKnown",
         nameOfPlace: coffeeShopsModel.data[index].name,

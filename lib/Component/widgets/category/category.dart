@@ -9,10 +9,14 @@ class Category extends StatelessWidget {
   late final String? image;
   late final String nameOfPlace;
   late final String description;
+  late final String type;
+  late final String id;
   Category({
     required this.image,
     required this.nameOfPlace,
     required this.description,
+    required this.type,
+    required this.id,
   });
   @override
   Widget build(BuildContext context) {
@@ -21,11 +25,14 @@ class Category extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => DetailsScreen(
-                    image: image,
-                    name: nameOfPlace,
-                    description: description,
-                  )),
+            builder: (context) => DetailsScreen(
+              type: type,
+              id: id,
+              image: image,
+              name: nameOfPlace,
+              description: description,
+            ),
+          ),
         );
       },
       child: Column(

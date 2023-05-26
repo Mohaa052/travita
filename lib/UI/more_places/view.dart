@@ -108,15 +108,7 @@ class MorePlacesByType extends StatelessWidget {
                   color: AppColors.darkBlue,
                 ),
                 itemCount: 10,
-                itemBuilder: (context, index) => CategoryOfTypeTheFavourite(
-                  image: 'image/casel.png',
-                  description:
-                      "We love Landingfolio! Our designers were using it for their projects ",
-                  nameOfPlace: "Fort Qaitbey",
-                  rate: 4,
-                  /*onTap: (){
-                  },*/
-                ),
+                itemBuilder: (context, index) => SizedBox(),
               ),
             ],
           ),
