@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailsCategory extends StatelessWidget {
-  String image ;
-  String text ;
-  DetailsCategory({required this.image,required this.text});
+  String image;
+  String text;
+  DetailsCategory({required this.image, required this.text});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -14,21 +14,23 @@ class DetailsCategory extends StatelessWidget {
           Container(
             height: 141.h,
             clipBehavior: Clip.antiAliasWithSaveLayer,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.r)),
-            child: Image.asset(image,
-                fit: BoxFit.cover,
+            decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(20.r)),
+            child: Image.asset(
+              image,
+              fit: BoxFit.cover,
             ),
           ),
           SizedBox(
             height: 12.h,
           ),
-          Text(text,
+          Text(
+            text,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-                fontSize: 15.sp,
-                // fontWeight: FontWeight.bold
+              fontSize: 15.sp,
+              // fontWeight: FontWeight.bold
             ),
           ),
         ],

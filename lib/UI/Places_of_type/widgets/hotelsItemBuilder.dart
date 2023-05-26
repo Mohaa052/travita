@@ -23,6 +23,8 @@ class HotelsItemsBuilder extends StatelessWidget {
         childAspectRatio: 2.w / 2.6.h,
       ),
       itemBuilder: (BuildContext context, int index) => Category(
+        id: hotelsModel.data[index].id.toString(),
+        type: "Hotel",
         image: hotelsModel.data[index].image,
         description: hotelsModel.data[index].address,
         nameOfPlace: hotelsModel.data[index].name,

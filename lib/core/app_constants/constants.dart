@@ -3,7 +3,7 @@ class AppConstants {
   static late String accessToken;
 
   static const String baseUrl =
-      "https://9372-102-185-39-39.ngrok-free.app/api/v1/";
+      "https://3e36-102-185-70-61.ngrok-free.app/api/v1/";
   static const String baseUrlAuth =
-      "https://9372-102-185-39-39.ngrok-free.app/api/auth/";
+      "https://3e36-102-185-70-61.ngrok-free.app/api/auth/";
 }

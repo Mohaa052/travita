@@ -6,11 +6,13 @@ class FavoritesModel {
   }
 }
 
-class Items {
+class FavoriteItem {
   late final int id;
   late final String name;
   late final String image;
   late final String address;
+  late final String favoriteType;
+  late bool isFavorite;
   late final int rating;
 /*  late final double latitude;
   late final double longitude;
@@ -26,11 +28,58 @@ class Items {
   late final String updatedAt;
   late final Pivot pivot;*/
 
-  Items.fromJson(Map<String, dynamic> json) {
+  FavoriteItem.fromJsonAttraction(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     image = json['image'];
     address = json['address'];
+    favoriteType = "Attraction";
+    isFavorite = true;
+/*    latitude = json['latitude'];
+    longitude = json['longitude'];
+    phone = json['phone'];
+    email = json['email'];
+    website = json['website'];
+    rating = json['rating'];
+    rankingInCity = json['ranking_in_city'];
+    reviewTags = json['reviewTags'];
+    hotelClass = json['hotelClass'];
+    numberOfReviews = json['numberOfReviews'];
+    priceRange = json['priceRange'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    pivot = Pivot.fromJson(json['pivot']);*/
+  }
+  FavoriteItem.fromJsonHotels(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    image = json['image'];
+    address = json['address'];
+    favoriteType = "Hotel";
+    isFavorite = true;
+
+/*    latitude = json['latitude'];
+    longitude = json['longitude'];
+    phone = json['phone'];
+    email = json['email'];
+    website = json['website'];
+    rating = json['rating'];
+    rankingInCity = json['ranking_in_city'];
+    reviewTags = json['reviewTags'];
+    hotelClass = json['hotelClass'];
+    numberOfReviews = json['numberOfReviews'];
+    priceRange = json['priceRange'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    pivot = Pivot.fromJson(json['pivot']);*/
+  }
+  FavoriteItem.fromJsonRestaurants(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    image = json['image'];
+    address = json['address'];
+    favoriteType = "Restaurant";
+    isFavorite = true;
 /*    latitude = json['latitude'];
     longitude = json['longitude'];
     phone = json['phone'];
@@ -49,21 +98,34 @@ class Items {
 }
 
 class Data {
-  late final List<Items> restaurant;
-  late final List<Items> hotel;
-  late final List<Items> attraction;
+  late List<FavoriteItem> restaurant = [];
+  late List<FavoriteItem> hotel = [];
+  late List<FavoriteItem> attraction = [];
 
-  late final List<Items> allFavorites;
+  late List<FavoriteItem> allFavorites = [];
 
   Data.fromJson(Map<String, dynamic> json) {
-    restaurant =
-        List.from(json['Restaurant']).map((e) => Items.fromJson(e)).toList();
-    hotel = List.from(json['Hotel']).map((e) => Items.fromJson(e)).toList();
-    attraction =
-        List.from(json['Attraction']).map((e) => Items.fromJson(e)).toList();
+////////////////////////////////////////////////////////////////////////////////
+    print("------------------------------------------------> I'm deleting");
+    restaurant.clear();
+    hotel.clear();
+    attraction.clear();
+    allFavorites.clear();
 
-    allFavorites.addAll(restaurant);
-    allFavorites.addAll(hotel);
-    allFavorites.addAll(attraction);
+    print("------------------------------------------------> Deleted");
+////////////////////////////////////////////////////////////////////////////////
+    restaurant = List.from(json['Restaurant'])
+        .map((e) => FavoriteItem.fromJsonRestaurants(e))
+        .toList();
+    hotel = List.from(json['Hotel'])
+        .map((e) => FavoriteItem.fromJsonHotels(e))
+        .toList();
+    attraction = List.from(json['Attraction'])
+        .map((e) => FavoriteItem.fromJsonAttraction(e))
+        .toList();
+////////////////////////////////////////////////////////////////////////////////
+
+    allFavorites = restaurant + hotel + attraction;
+    print("------------------------------------------------> Concatenated");
   }
 }

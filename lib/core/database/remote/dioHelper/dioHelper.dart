@@ -37,14 +37,14 @@ class DioHelper {
   }
 
   static Future<Response> deleteFavorite({
-    required String subType,
+    required String favoriteType,
     required String id,
   }) async {
     dio!.options.baseUrl = AppConstants.baseUrl;
     dio!.options.headers['Authorization'] =
         'Bearer ${AppConstants.accessToken}';
     return await dio!.delete(
-      "favorites/$subType/$id",
+      "favorites/$favoriteType/$id",
     );
   }
 

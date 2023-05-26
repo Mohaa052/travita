@@ -6,7 +6,10 @@ import '../../../Component/colors/colors.dart';
 class Description extends StatelessWidget {
   String placeName;
   String description;
-  Description({required this.placeName,required this.description});
+  Description({
+    required this.placeName,
+    required this.description,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,14 +21,16 @@ class Description extends StatelessWidget {
       height: 135.h,
       decoration: BoxDecoration(
         color: AppColors.white,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
               color: AppColors.grey,
               spreadRadius: 0,
               blurRadius: 10,
-              offset: Offset(0, 5.5,),
-              blurStyle: BlurStyle.normal
-          )
+              offset: Offset(
+                0,
+                5.5,
+              ),
+              blurStyle: BlurStyle.normal)
         ],
         borderRadius: BorderRadius.circular(10.r),
         border: Border.all(
@@ -37,15 +42,14 @@ class Description extends StatelessWidget {
         children: [
           Text(
             placeName,
-            style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: 10.h,
           ),
-          Text(description,
-            style: TextStyle(
+          Text(
+            description,
+            style: const TextStyle(
               color: AppColors.darkBlue,
             ),
           ),
