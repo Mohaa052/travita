@@ -108,7 +108,6 @@ class FavouriteScreen extends StatelessWidget {
                             itemBuilder: (context, index) =>
                                 CategoryOfTypeTheFavourite(
                               index: index,
-                              rate: 4,
                               favoriteItem: AppController.get(context)
                                   .favoritesModel!
                                   .data
@@ -154,7 +153,6 @@ class FavouriteScreen extends StatelessWidget {
                             itemBuilder: (context, index) =>
                                 CategoryOfTypeTheFavourite(
                               index: index,
-                              rate: 4,
                               favoriteItem: AppController.get(context)
                                   .favoritesModel!
                                   .data

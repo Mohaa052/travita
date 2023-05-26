@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/UI/Details/widget/comment.dart';
+import 'package:travita/UI/Favourite/models.dart';
 import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
 
@@ -10,6 +11,8 @@ import 'widget/category_for_you.dart';
 import 'widget/discription.dart';
 
 class DetailsScreen extends StatelessWidget {
+  late final FavoriteItem m;
+  late final List<FavoriteItem> l;
   late final String? image;
   late final String name;
   late final String description;

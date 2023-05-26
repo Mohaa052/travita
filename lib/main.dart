@@ -8,8 +8,6 @@ import 'package:travita/UI/REGISTERATION/LogIN/view.dart';
 import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
 import 'package:travita/firebase_options.dart';
-import 'UI/REGISTERATION/LogIN/controller.dart';
-import 'UI/layOut/view.dart';
 import 'core/database/remote/dioHelper/dioHelper.dart';
 
 Future<void> main() async {

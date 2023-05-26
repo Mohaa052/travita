@@ -33,6 +33,7 @@ class FavoriteItem {
     name = json['name'];
     image = json['image'];
     address = json['address'];
+    rating = json['rating'];
     favoriteType = "Attraction";
     isFavorite = true;
 /*    latitude = json['latitude'];
@@ -55,6 +56,8 @@ class FavoriteItem {
     name = json['name'];
     image = json['image'];
     address = json['address'];
+    rating = json['rating'];
+
     favoriteType = "Hotel";
     isFavorite = true;
 
@@ -78,6 +81,7 @@ class FavoriteItem {
     name = json['name'];
     image = json['image'];
     address = json['address'];
+    rating = json['rating'];
     favoriteType = "Restaurant";
     isFavorite = true;
 /*    latitude = json['latitude'];
