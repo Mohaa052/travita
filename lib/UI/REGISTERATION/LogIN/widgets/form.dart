@@ -7,6 +7,7 @@ import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
 
 import '../../../../Component/colors/colors.dart';
+import '../../../../Component/navigator.dart';
 import '../../../../Component/widgets/button/defaultTextButton.dart';
 import '../../../../Component/widgets/button/registeration_button.dart';
 import '../../../../Component/widgets/textFrmField/dfaultTextFormField.dart';
@@ -22,8 +23,14 @@ class LoginFormWithCurve extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginController, AppStates>(
       buildWhen: (previousState, currentState) =>
-          currentState is! ChangVisibilityState,
-      listener: (context, state) {},
+          currentState is! ChangVisibilityState &&
+          currentState is! LoginSuccessState,
+      listener: (context, state) {
+        if (state is LoginSuccessState) {
+          AppController.get(context).getFavorite();
+          defaultNavigator(context, LayOutScreen());
+        }
+      },
       builder: (context, state) => SizedBox(
         height: 660.h,
         child: Stack(
@@ -186,7 +193,6 @@ class LoginFormWithCurve extends StatelessWidget {
                                     email: LoginController.get(context)
                                         .emailController
                                         .text,
-                                    context: context,
                                   );
                                 } else {
                                   LoginController.get(context)
@@ -209,7 +215,7 @@ class LoginFormWithCurve extends StatelessWidget {
                       onPressed: () {
                         if (state is! RegisterLoadingState &&
                             state is! LoginLoadingState) {
-                          SignUpController.get(context).googleLogin(
+                          LoginController.get(context).googleLogin(
                             context: context,
                           );
                         }

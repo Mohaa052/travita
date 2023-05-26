@@ -12,12 +12,16 @@ class CategoryOfTypeThePlace extends StatefulWidget {
   String nameOfPlace;
   String description;
   bool showIcon;
+  late final String type;
+  late final String id;
 
   CategoryOfTypeThePlace({
     required this.image,
     required this.nameOfPlace,
     required this.description,
     required this.showIcon,
+    required this.type,
+    required this.id,
   });
 
   @override
@@ -34,6 +38,8 @@ class _CategoryOfTypeThePlaceState extends State<CategoryOfTypeThePlace> {
           context,
           MaterialPageRoute(
               builder: (context) => DetailsScreen(
+                    type: widget.type,
+                    id: widget.id,
                     image: widget.image,
                     name: widget.nameOfPlace,
                     description: widget.description,

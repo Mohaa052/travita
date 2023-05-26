@@ -137,6 +137,8 @@ class PlacesOfTypeController extends Cubit<PlacesOfTypeStates> {
           childAspectRatio: 2.w / 2.6.h,
         ),
         itemBuilder: (BuildContext context, int index) => Category(
+              id: "",
+              type: "",
               image: "image/coffee.png",
               description:
                   " Sumptuous Ras el-Tin Palace was once a summer escape for Egypt's sultans when the desert heat of Cairo got too much to bear.",

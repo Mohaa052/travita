@@ -5,6 +5,8 @@ import 'package:travita/Component/navigator.dart';
 import 'package:travita/UI/layOut/view.dart';
 import 'package:travita/core/app_constants/constants.dart';
 
+import '../../UI/Favourite/controller/states.dart';
+import '../../UI/Favourite/models.dart';
 import '../../UI/REGISTERATION/model.dart';
 import '../database/remote/dioHelper/dioHelper.dart';
 import '../database/remote/dioHelper/endpoints.dart';
@@ -21,10 +23,9 @@ class AppController extends Cubit<AppStates> {
   void googleLogin({
     required BuildContext context,
   }) {
-    emit(LoginLoadingState());
+    emit(LoginGoogleLoadingState());
     googleSignIn.signIn().then((value) {
       AppConstants.name = value!.displayName!;
-      defaultNavigator(context, LayOutScreen());
       emit(LoginSuccessState());
     }).catchError((error) {
       emit(LoginErrorState());
@@ -32,7 +33,6 @@ class AppController extends Cubit<AppStates> {
   }
 
   void logIn({
-    required BuildContext context,
     required String email,
     required String password,
   }) {
@@ -50,7 +50,6 @@ class AppController extends Cubit<AppStates> {
       AppConstants.name = userModel.user.firstName;
       print(AppConstants.accessToken);
       emit(LoginSuccessState());
-      defaultNavigator(context, LayOutScreen());
     }).catchError((error) {
       print(error.toString());
       emit(LoginErrorState());
@@ -90,5 +89,94 @@ class AppController extends Cubit<AppStates> {
 
   void formFieldIsNotValid() {
     emit(NotValidState());
+  }
+
+  //////////////////////////////////////////
+  // favorite
+
+  FavoritesModel? favoritesModel;
+
+  void getFavorite() {
+    emit(GetFavoritesLoading());
+
+    DioHelper.getFavoriteData().then((value) {
+      favoritesModel = FavoritesModel.fromJson(value.data);
+
+      emit(GetFavoritesSuccess());
+    }).catchError((error) {
+      print(error.toString());
+      emit(GetFavoritesError());
+    });
+  }
+
+  void putInFavorite({
+    required String type,
+    required String id,
+  }) {
+    emit(PutInFavoritesLoading());
+    if (!checkIfExisted(type: type, id: id)) {
+      DioHelper.postFavorite(data: {
+        "favoritable_id": id,
+        "favoritable_type": type,
+      }).then((value) {
+        emit(PutInFavoritesSuccess());
+        getFavorite();
+      }).catchError((error) {
+        print(error.toString());
+        emit(PutInFavoritesError());
+      });
+    } else {
+      emit(PutInFavoritesAlreadyExisted());
+    }
+  }
+
+  bool checkIfExisted({
+    required String type,
+    required String id,
+  }) {
+    bool isIn = false;
+    if (favoritesModel != null &&
+        favoritesModel!.data.allFavorites.isNotEmpty) {
+      for (FavoriteItem favoriteItem in favoritesModel!.data.allFavorites) {
+        if (favoriteItem.id.toString() == id &&
+            favoriteItem.favoriteType == type) {
+          print(
+              "The length is -----------------------------------> ${favoritesModel!.data.allFavorites.length}");
+          print("-----------------------------------> Existed");
+          isIn = true;
+          break;
+        }
+      }
+    } else {
+      print("-----------------------------------> Not Existed");
+    }
+
+    return isIn;
+  }
+
+  void deleteFromFavorite({
+    required String favoriteType,
+    required String id,
+  }) {
+    emit(DeleteFromFavoritesLoading());
+    DioHelper.deleteFavorite(
+      favoriteType: favoriteType,
+      id: id,
+    ).then((value) {
+      emit(DeleteFromFavoritesSuccess());
+      getFavorite();
+    }).catchError((error) {
+      print(error.toString());
+
+      emit(DeleteFromFavoritesError());
+    });
+  }
+
+  void changeFavoriteIcon({
+    required int index,
+  }) {
+    favoritesModel!.data.allFavorites[index].isFavorite =
+        !favoritesModel!.data.allFavorites[index].isFavorite;
+    emit(ChangeFavoriteIcons());
   }
 }

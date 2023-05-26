@@ -23,6 +23,8 @@ class RestaurantsItemsBuilder extends StatelessWidget {
         childAspectRatio: 2.w / 2.6.h,
       ),
       itemBuilder: (BuildContext context, int index) => Category(
+        id: restaurantsModel.data[index].id.toString(),
+        type: "Restaurant",
         image: restaurantsModel.data[index].image,
         description: restaurantsModel.data[index].address ?? "UnKnown",
         nameOfPlace: restaurantsModel.data[index].name,

@@ -151,6 +151,8 @@ class HomeScreen extends StatelessWidget {
                           childAspectRatio: 2.w / 2.6.h,
                         ),
                         itemBuilder: (context, index) => Category(
+                          id: model.data[index].id.toString(),
+                          type: "home",
                           nameOfPlace: model.data[index].name,
                           image: model.data[index].image,
                           description: model.data[index].address,
