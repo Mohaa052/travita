@@ -5,9 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
 import 'package:travita/UI/REGISTERATION/LogIN/view.dart';
+import 'package:travita/UI/Search/search.dart';
+import 'package:travita/UI/ai_plan/view.dart';
+import 'package:travita/UI/category_of_manually_plan/view.dart';
+import 'package:travita/UI/final_plan/view.dart';
+import 'package:travita/UI/layOut/view.dart';
+import 'package:travita/UI/survey/view.dart';
 import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
 import 'package:travita/firebase_options.dart';
+import 'UI/filtration/view.dart';
 import 'core/database/remote/dioHelper/dioHelper.dart';
 
 Future<void> main() async {
@@ -54,7 +61,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: child,
         ),
-        child: LoginScreen(),
+        child: SurveyScreen(),
       ),
     );
   }

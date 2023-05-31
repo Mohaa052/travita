@@ -1,61 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rate/rate.dart';
+import 'package:travita/Component/colors/colors.dart';
 
 import '../../../Component/widgets/defaultText.dart';
 
 
-class OneCategorieOfSurvey extends StatelessWidget {
-  Function onTap;
-  String surveyCategoriesText;
-  Color oneCategoryOfSurveyColor;
-  Color iconAndTextColor;
+class OneCategoryOfSurvey extends StatelessWidget {
+  late String nameOfCategory;
+  late String image ;
 
-  OneCategorieOfSurvey({
-    required this.onTap,
-    required this.surveyCategoriesText,
-    required this.oneCategoryOfSurveyColor,
-    required this.iconAndTextColor,
-  });
+
+  OneCategoryOfSurvey({required this.nameOfCategory, required this.image});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(22.r),
-      onTap: () {
-        onTap();
-      },
-      child: Container(
-        //width: double.minPositive,
-        //height: 44.h,
-        padding: EdgeInsets.symmetric(
-          horizontal: 20.w,
-          vertical: 7.h,
-        ),
-        decoration: BoxDecoration(
-          color: oneCategoryOfSurveyColor,
-          borderRadius: BorderRadius.circular(22.r),
-        ),
-        child: Row(
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              Icons.add,
-              color: iconAndTextColor,
-              size: 25.r,
-            ),
-            SizedBox(
-              width: 8.w,
-            ),
-            DefaultText(
-              text: surveyCategoriesText,
-              textColor: iconAndTextColor,
-              fontSize: 20.sp,
-              fontWeight: FontWeight.w300,
-            )
-          ],
-        ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+      SizedBox(
+          width: 180.w,
+          height: 167.h,
+          child: Image.network(image),
       ),
+        SizedBox(
+          height: 100.h,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DefaultText(
+                text: nameOfCategory,
+              fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+              Rate(
+                 color: AppColors.darkOrange,
+                iconSize: 30,
+                // readOnly: true,
+                onChange: (val){
+                   print(val);
+                },
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

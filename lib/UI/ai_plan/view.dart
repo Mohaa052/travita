@@ -66,47 +66,6 @@ class _AiPlansScreenState extends State<AiPlansScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        items: [
-          Icon(
-            Icons.search,
-            size: 30.r,
-            color: AppColors.white,
-          ),
-          Icon(
-            Icons.pending_actions_rounded,
-            size: 30.r,
-            color: AppColors.white,
-          ),
-          Icon(
-            Icons.home,
-            size: 30.r,
-            color: AppColors.white,
-          ),
-          Icon(
-            Icons.favorite,
-            size: 30.r,
-            color: AppColors.white,
-          ),
-          Icon(
-            Icons.person,
-            size: 30.r,
-            color: AppColors.white,
-          ),
-        ],
-        onTap: (int index) {
-          setState(() {
-            controller.selectedIndex = index;
-          });
-        },
-        height: 60.h,
-        color: AppColors.darkBlue,
-        buttonBackgroundColor: AppColors.darkOrange,
-        backgroundColor: Colors.transparent,
-        animationCurve: Curves.easeInOut,
-        animationDuration: const Duration(milliseconds: 500),
-        letIndexChange: (index) => true,
-      ),
     );
   }
 }
