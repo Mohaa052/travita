@@ -1,30 +1,105 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travita/UI/choose_Ai_or_manual_plan/widgets/onePlanWidget.dart';
-import 'package:travita/UI/onBoarding/controller.dart';
-import 'Component/colors/colors.dart';
-import 'Component/widgets/button/DefaultOutlindedButton.dart';
-import 'Component/widgets/button/registeration_button.dart';
-import 'Component/widgets/button/defaultTextButton.dart';
-import 'Component/widgets/textFrmField/dfaultTextFormField.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:travita/Component/colors/colors.dart';
+import 'package:travita/Component/navigator.dart';
+import 'package:travita/Component/widgets/category/category.dart';
+import 'package:travita/UI/Details/view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class Testing extends StatelessWidget {
-  var controller = OnBoardingController();
+class MapSample extends StatefulWidget {
+  const MapSample({super.key});
+
+  @override
+  State<MapSample> createState() => MapSampleState();
+}
+
+class MapSampleState extends State<MapSample> {
+  static double lat = 31.260976;
+  static double lang =32.306976;
+
+  /// the lat2 and lang2 will be current location or local location
+  static double lat2 = 31.261053668476137;
+  static double lang2 =32.30693131685257;
+
+  static  CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(lat,lang),
+    zoom: 17.4746,
+  );
+
+  GoogleMapController? gmc;
+  bool showMap = false;
+
+  Set<Marker> firstMarker = {
+    Marker(
+      onTap: (){
+        print("marker 1");
+      },
+      draggable: true,
+      position: LatLng(lat,lang),
+      infoWindow: InfoWindow(title: "1",onTap: (){
+        print("marker infoooo 1 ");
+      }),
+      markerId: MarkerId("1"),
+    ),
+    Marker(
+      onTap: (){
+        print("marker 2");
+      },
+
+      draggable: true,
+      position: LatLng(lat2,lang2),
+      onDragEnd: (LatLng location){
+        print("the long location = ${location.longitude}");
+        print("the lat location = ${location.latitude}");
+      },
+      infoWindow: InfoWindow(title: "1",onTap: (){
+        print("marker infoooo 2 ");
+      }),
+      markerId: MarkerId("2"),
+    ),
+
+  };
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Expanded(
-          child: GridView.builder(
-            itemCount: 10,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 10.h,
-              crossAxisSpacing: 10.w,
-              childAspectRatio: 2.w / 2.6.h,
-            ),
-            itemBuilder: (BuildContext context, int index) => OnePlanWidget(),
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(height: 20,),
+              SizedBox(
+                width: 300,
+                height: 400,
+                child:showMap ? GoogleMap(
+                  markers: firstMarker,
+                  mapType: MapType.normal,
+                  initialCameraPosition: _kGooglePlex,
+                  onMapCreated: (GoogleMapController controller) {
+                    gmc = controller;
+                  },
+                ): Container(),
+              ),
+              ElevatedButton(
+                  onPressed: () async{
+                    setState(() {
+                      showMap = true;
+                    });
+                    LatLng latang = LatLng(lat,lang);
+                    var xy = await gmc!.animateCamera(CameraUpdate.newLatLng(latang));
+                  },
+                  child: Text("move to location ")),
+              ElevatedButton(
+                  onPressed: () async {
+                    LatLng latang = LatLng(21.422390, 39.722958);
+                    var xy = await gmc!.getLatLng(ScreenCoordinate(x: 200, y: 200));
+                    print("$xy");
+                  },
+                  child: Text("get land and lat by xy from map")),
+            ],
           ),
         ),
       ),
@@ -32,132 +107,105 @@ class Testing extends StatelessWidget {
   }
 }
 
-class TestingLoginCurve extends CustomPainter {
+/// key
+/// AIzaSyBloAGsysaE7YchiCy33tn8VUBCpuJ901E
+
+
+class UploadImage extends StatefulWidget {
+  const UploadImage({Key? key}) : super(key: key);
+
   @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint0 = Paint()
-      ..color = AppColors.darkBlue
-      ..style = PaintingStyle.fill;
+  State<UploadImage> createState() => _UploadImageState();
+}
 
-    Path path0 = Path();
-    path0.moveTo(0, 0);
-    path0.quadraticBezierTo(
-      0,
-      size.height * 0.1600000,
-      size.width * 0.2325581,
-      size.height * 0.1613333,
-    );
-    /*path0.cubicTo(
-        size.width * 0.3488372,
-        size.height * 0.1613333,
-        size.width * 0.5813953,
-        size.height * 0.1613333,
-        size.width * 0.6976744,
-        size.height * 0.1613333);*/
 
-    /*path0.quadraticBezierTo(
-      size.width * 0.5,
-      size.height * 0.1600000,
-      size.width * 0.7674419,
-      size.height * 0.1613333,
-    );*/
-
-    path0.lineTo(
-      size.width * 0.7674419,
-      size.height * 0.16113333,
-    );
-
-    path0.quadraticBezierTo(
-      size.width,
-      size.height * 0.1631733,
-      size.width,
-      size.height * 0.32,
-    );
-    path0.lineTo(
-      size.width,
-      size.height,
-    );
-    path0.lineTo(
-      0,
-      size.height,
-    );
-    path0.lineTo(0, 0);
-    path0.close();
-
-    canvas.drawPath(path0, paint0);
+/// camera
+class _UploadImageState extends State<UploadImage> {
+  File? file  ;
+  bool isFile =false;
+  void tokenImageWithCamera()async{
+    XFile ? xFileImage=
+    await ImagePicker().pickImage(source: ImageSource.camera);
+    File image = File(xFileImage!.path);
+    setState(() {
+      file=image ;
+      isFile = true;
+    });
   }
-
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: tokenImageWithCamera,
+          icon: Icon(Icons.camera),
+        ),
+      ),
+      // body:Center(
+      //   child: Column(
+      //     children: [
+      //       isFile ? Image.file(file!,height: 300,):Icon(Icons.error_outline),
+      //       TextButton(onPressed: (){
+      //         showDialog(context: context, builder: (context){
+      //           return SimpleDialog(
+      //             children: [
+      //               TextButton(
+      //                   onPressed:tokenImageWithcamira
+      //                   , child: Text("tack phot with came"))
+      //             ],
+      //           );
+      //         }
+      //         );
+      //       }, child: Text("Pick Image")),
+      //
+      //     ],
+      //   ),
+      // ),
+
+    );
   }
 }
 
-class TestingBoardingCurve extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint0 = Paint()
-      ..color = AppColors.darkBlue
-      ..style = PaintingStyle.fill;
 
-    Path path0 = Path();
-    path0.moveTo(
-      size.width,
-      0,
-    );
-    path0.quadraticBezierTo(
-      size.width,
-      size.height * 0.1600000,
-      size.width * 0.7674419,
-      size.height * 0.1600000,
-    );
 
-    /*path0.quadraticBezierTo(
-      size.width * 0.5,
-      size.height * 0.1600000,
-      size.width * 0.2325582,
-      size.height * 0.1600000,
-    );*/
+class UrlEx extends StatelessWidget {
 
-    path0.lineTo(
-      size.width * 0.2325581,
-      size.height * 0.1613333,
-    );
-
-    /*path0.cubicTo(
-      size.width * 1,
-      size.height * 0.2124632,
-      size.width * 1,
-      size.height * 0.2092842,
-      size.width * 1,
-      size.height * 0.2098105,
-    );*/
-
-    path0.quadraticBezierTo(
-      0,
-      size.height * 0.1600000,
-      0,
-      size.height * 0.32,
-    );
-    path0.lineTo(
-      0,
-      size.height,
-    );
-    path0.lineTo(
-      size.width,
-      size.height,
-    );
-    path0.lineTo(
-      size.width,
-      0,
-    );
-    path0.close();
-
-    canvas.drawPath(path0, paint0);
+  _launchUrl(Uri _url) async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
   }
-
+ String webSite = 'google.com';
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        children: [
+          TextButton(onPressed: (){
+            defaultNavigator(context, DetailsScreen(
+              description: "asdfasdfasdfa",
+              image: 'https://www.adobe.com/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium',
+              name: "dog", type: '', id: '',
+            ));
+          }, child: Text("details")),
+          TextButton(
+              onPressed: () {
+                final Uri _url = Uri.parse(webSite);
+                _launchUrl(_url);
+              },
+              child: Text('website')),
+          Shimmer.fromColors(
+            baseColor: AppColors.ofWhite,
+            highlightColor: AppColors.white,
+            child: Category(
+              image: 'https://www.adobe.com/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium',
+              description: "The description of place loading",
+              nameOfPlace: "The name of place loading", type: '', id: '',
+            )
+          ),
+        ],
+      ),
+    );
   }
 }
