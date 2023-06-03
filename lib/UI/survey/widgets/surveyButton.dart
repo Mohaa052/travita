@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rate/rate.dart';
 import 'package:travita/Component/colors/colors.dart';
-
 import '../../../Component/widgets/defaultText.dart';
 
 
 class OneCategoryOfSurvey extends StatelessWidget {
   late String nameOfCategory;
   late String image ;
-
 
   OneCategoryOfSurvey({required this.nameOfCategory, required this.image});
 
