@@ -50,6 +50,34 @@ class DioHelper {
 
   //////////////////////////////////////////////
 
+  static Future<Response> getSurveyData() async {
+    dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';
+    dio!.options.baseUrl = AppConstants.surveyUrl;
+    return await dio!.get(
+      "survey",
+    );
+  }
+
+  static Future<Response?> sendSurveyRate({
+    required String imageId,
+    required String rate,
+  }) async {
+    dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';
+    dio!.options.baseUrl = AppConstants.surveyUrl;
+
+    return await dio!.post(
+      "survey",
+      data: {
+        "img_id": imageId,
+        "rate": rate,
+      },
+    );
+  }
+
+  //////////////////////////////////////////////
+
   static Future<Response> getData({
     required String baseUrl,
     required String url,

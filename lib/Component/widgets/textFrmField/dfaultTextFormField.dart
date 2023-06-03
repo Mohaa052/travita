@@ -101,17 +101,18 @@ class SearchFormField extends StatefulWidget {
 class _SearchFormFieldState extends State<SearchFormField> {
   @override
   Widget build(BuildContext context) {
-    File? file  ;
-    bool isFile =false;
-    void tokenImageWithCamera()async{
-      XFile ? xFileImage=
-      await ImagePicker().pickImage(source: ImageSource.camera);
+    File? file;
+    bool isFile = false;
+    void tokenImageWithCamera() async {
+      XFile? xFileImage =
+          await ImagePicker().pickImage(source: ImageSource.camera);
       File image = File(xFileImage!.path);
       setState(() {
-        file=image ;
+        file = image;
         isFile = true;
       });
     }
+
     return SizedBox(
       width: widget.width,
       height: widget.height,
@@ -122,9 +123,7 @@ class _SearchFormFieldState extends State<SearchFormField> {
         decoration: InputDecoration(
           prefixIcon: IconButton(
             icon: Icon(Icons.search, color: AppColors.darkOrange),
-            onPressed: () {
-
-            },
+            onPressed: () {},
           ),
           suffixIcon: IconButton(
             icon: Icon(Icons.camera_alt_outlined, color: AppColors.darkOrange),
