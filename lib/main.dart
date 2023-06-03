@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
+import 'package:travita/UI/Home/view.dart';
 import 'package:travita/UI/REGISTERATION/LogIN/view.dart';
 import 'package:travita/UI/Search/search.dart';
 import 'package:travita/UI/ai_plan/view.dart';
