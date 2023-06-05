@@ -5,7 +5,7 @@ import 'package:travita/UI/layOut/cubit/states.dart';
 
 import '../../Home/view.dart';
 import '../../Profile/profile.dart';
-import '../../Search/search.dart';
+import '../../Search/view_search.dart';
 import '../../choose_Ai_or_manual_plan/view.dart';
 
 class LayOutController extends Cubit<LayOutStates> {
