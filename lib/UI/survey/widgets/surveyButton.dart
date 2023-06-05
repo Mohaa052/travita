@@ -12,6 +12,7 @@ class OneCategoryOfSurvey extends StatelessWidget {
   late final String imageId;
   late final int index;
 
+  // OneCategoryOfSurvey({required this.nameOfCategory, required this.image});
   OneCategoryOfSurvey({
     required this.nameOfCategory,
     required this.image,

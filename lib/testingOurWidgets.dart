@@ -10,6 +10,7 @@ import 'package:travita/UI/Details/view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MapSample extends StatefulWidget {
+
   const MapSample({super.key});
 
   @override
@@ -17,15 +18,12 @@ class MapSample extends StatefulWidget {
 }
 
 class MapSampleState extends State<MapSample> {
+
   static double lat = 31.260976;
   static double lang =32.306976;
 
-  /// the lat2 and lang2 will be current location or local location
-  static double lat2 = 31.261053668476137;
-  static double lang2 =32.30693131685257;
-
-  static  CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(lat,lang),
+  CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(lat, lang),
     zoom: 17.4746,
   );
 
@@ -34,33 +32,18 @@ class MapSampleState extends State<MapSample> {
 
   Set<Marker> firstMarker = {
     Marker(
-      onTap: (){
+      onTap: () {
         print("marker 1");
       },
       draggable: true,
-      position: LatLng(lat,lang),
-      infoWindow: InfoWindow(title: "1",onTap: (){
-        print("marker infoooo 1 ");
-      }),
+      position: LatLng(lat, lang),
+      infoWindow: InfoWindow(
+          title: "1",
+          onTap: () {
+            print("marker infoooo 1 ");
+          }),
       markerId: MarkerId("1"),
     ),
-    Marker(
-      onTap: (){
-        print("marker 2");
-      },
-
-      draggable: true,
-      position: LatLng(lat2,lang2),
-      onDragEnd: (LatLng location){
-        print("the long location = ${location.longitude}");
-        print("the lat location = ${location.latitude}");
-      },
-      infoWindow: InfoWindow(title: "1",onTap: (){
-        print("marker infoooo 2 ");
-      }),
-      markerId: MarkerId("2"),
-    ),
-
   };
 
   @override
@@ -70,32 +53,38 @@ class MapSampleState extends State<MapSample> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               SizedBox(
                 width: 300,
                 height: 400,
-                child:showMap ? GoogleMap(
-                  markers: firstMarker,
-                  mapType: MapType.normal,
-                  initialCameraPosition: _kGooglePlex,
-                  onMapCreated: (GoogleMapController controller) {
-                    gmc = controller;
-                  },
-                ): Container(),
+                child: showMap
+                    ? GoogleMap(
+                        markers: firstMarker,
+                        mapType: MapType.normal,
+                        initialCameraPosition: _kGooglePlex,
+                        onMapCreated: (GoogleMapController controller) {
+                          gmc = controller;
+                        },
+                      )
+                    : Container(),
               ),
               ElevatedButton(
-                  onPressed: () async{
+                  onPressed: () async {
                     setState(() {
                       showMap = true;
                     });
-                    LatLng latang = LatLng(lat,lang);
-                    var xy = await gmc!.animateCamera(CameraUpdate.newLatLng(latang));
+                    LatLng latLng = LatLng(lat, lang);
+                    var xy = await gmc!
+                        .animateCamera(CameraUpdate.newLatLng(latLng));
                   },
                   child: Text("move to location ")),
               ElevatedButton(
                   onPressed: () async {
                     LatLng latang = LatLng(21.422390, 39.722958);
-                    var xy = await gmc!.getLatLng(ScreenCoordinate(x: 200, y: 200));
+                    var xy =
+                        await gmc!.getLatLng(ScreenCoordinate(x: 200, y: 200));
                     print("$xy");
                   },
                   child: Text("get land and lat by xy from map")),
@@ -111,6 +100,10 @@ class MapSampleState extends State<MapSample> {
 /// AIzaSyBloAGsysaE7YchiCy33tn8VUBCpuJ901E
 
 
+
+
+/// camera
+
 class UploadImage extends StatefulWidget {
   const UploadImage({Key? key}) : super(key: key);
 
@@ -118,20 +111,19 @@ class UploadImage extends StatefulWidget {
   State<UploadImage> createState() => _UploadImageState();
 }
 
-
-/// camera
 class _UploadImageState extends State<UploadImage> {
-  File? file  ;
-  bool isFile =false;
-  void tokenImageWithCamera()async{
-    XFile ? xFileImage=
-    await ImagePicker().pickImage(source: ImageSource.camera);
+  File? file;
+  bool isFile = false;
+  void tokenImageWithCamera() async {
+    XFile? xFileImage =
+        await ImagePicker().pickImage(source: ImageSource.camera);
     File image = File(xFileImage!.path);
     setState(() {
-      file=image ;
+      file = image;
       isFile = true;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,7 +153,6 @@ class _UploadImageState extends State<UploadImage> {
       //     ],
       //   ),
       // ),
-
     );
   }
 }
@@ -175,34 +166,46 @@ class UrlEx extends StatelessWidget {
       throw Exception('Could not launch $_url');
     }
   }
- String webSite = 'google.com';
+
+  String webSite = 'google.com';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
         children: [
-          TextButton(onPressed: (){
-            defaultNavigator(context, DetailsScreen(
-              description: "asdfasdfasdfa",
-              image: 'https://www.adobe.com/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium',
-              name: "dog", type: '', id: '',
-            ));
-          }, child: Text("details")),
+          TextButton(
+              onPressed: () {
+                defaultNavigator(
+                    context,
+                    DetailsScreen(
+                      description: "asdfasdfasdfa",
+                      image:
+                          'https://www.adobe.com/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium',
+                      name: "dog",
+                      type: '',
+                      id: '',
+                    ));
+              },
+              child: Text("details")),
           TextButton(
               onPressed: () {
                 final Uri _url = Uri.parse(webSite);
                 _launchUrl(_url);
               },
               child: Text('website')),
+
           Shimmer.fromColors(
-            baseColor: AppColors.ofWhite,
-            highlightColor: AppColors.white,
-            child: Category(
-              image: 'https://www.adobe.com/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium',
-              description: "The description of place loading",
-              nameOfPlace: "The name of place loading", type: '', id: '',
-            )
+              baseColor: AppColors.ofWhite,
+              highlightColor: AppColors.white,
+              child: Category(
+                image:
+                    'https://www.adobe.com/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium',
+                description: "The description of place loading",
+                nameOfPlace: "The name of place loading",
+                type: '',
+                id: '',
+              ),
           ),
         ],
       ),

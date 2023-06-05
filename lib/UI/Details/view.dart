@@ -6,6 +6,8 @@ import 'package:travita/UI/Favourite/models.dart';
 import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
 
+import '../../Component/colors/colors.dart';
+import '../../Component/widgets/defaultText.dart';
 import '../Favourite/controller/controller.dart';
 import 'widget/category_for_you.dart';
 import 'widget/discription.dart';
@@ -55,11 +57,8 @@ class DetailsScreen extends StatelessWidget {
                       Align(
                         //alignment: Alignment.topCenter,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(
-                              Icons.arrow_back_ios,
-                            ),
                             Stack(
                               alignment: Alignment.topRight,
                               children: [
@@ -147,7 +146,6 @@ class DetailsScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const Icon(Icons.arrow_forward_ios),
                           ],
                         ),
                       ),
