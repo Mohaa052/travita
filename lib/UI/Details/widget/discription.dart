@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
+import 'package:travita/UI/Details/widget/show_model_sheet/showModelSheets.dart';
 
 import '../../../Component/colors/colors.dart';
 import 'more_details.dart';
@@ -70,14 +71,14 @@ class Description extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: 281.w,
+          left: 290.w,
           bottom: 10.h,
           child: CircleAvatar(
-            radius: 18,
+            radius: 12,
             backgroundColor: AppColors.darkOrange,
             child: CircleAvatar(
               backgroundColor: AppColors.white,
-              radius: 14,
+              radius: 10,
               child: GestureDetector(
                 onTap: () {
                   showDialog(
@@ -93,12 +94,25 @@ class Description extends StatelessWidget {
                 child: Icon(
                   Icons.expand_more,
                   color: AppColors.darkOrange,
-                  size: 30,
+                  size: 20,
                 ),
               ),
             ),
           ),
         ),
+        Positioned(
+            left: 290.w,
+            top: 5.h,
+            child: GestureDetector(
+                onTap: (){
+                  showModalBottomSheet<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const ShowModelSheet();
+                    },
+                  );
+                },
+                child: Icon(Icons.add,color: AppColors.darkOrange,))),
       ],
     );
   }

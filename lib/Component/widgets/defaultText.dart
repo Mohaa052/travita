@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travita/Component/colors/colors.dart';
 
 class DefaultText extends StatelessWidget {
   String text;
@@ -11,6 +12,7 @@ class DefaultText extends StatelessWidget {
   TextOverflow? textOverflow;
   int? maxLines;
   TextAlign? textAlign;
+  TextDecoration ? decoration;
 
   DefaultText({
     required this.text,
@@ -22,6 +24,7 @@ class DefaultText extends StatelessWidget {
     this.maxLines,
     this.textOverflow,
     this.textAlign,
+    this.decoration,
   });
 
   @override
@@ -37,6 +40,9 @@ class DefaultText extends StatelessWidget {
         height: lineHeight,
         overflow: textOverflow,
         fontFamily: fontFamily,
+        decoration: decoration,
+        decorationThickness: 2,
+        decorationColor: AppColors.darkBlue
       ),
     );
   }
