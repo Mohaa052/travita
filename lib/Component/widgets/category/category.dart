@@ -26,8 +26,8 @@ class Category extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => DetailsScreen(
-              type: type,
-              id: id,
+              detailsType: type,
+              detailsId: id,
               image: image,
               name: nameOfPlace,
               description: description,

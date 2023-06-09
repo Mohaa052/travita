@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:travita/Component/navigator.dart';
-import 'package:travita/UI/layOut/view.dart';
 import 'package:travita/core/app_constants/constants.dart';
 
-import '../../UI/Favourite/controller/states.dart';
 import '../../UI/Favourite/models.dart';
 import '../../UI/REGISTERATION/model.dart';
 import '../database/remote/dioHelper/dioHelper.dart';
@@ -114,7 +111,10 @@ class AppController extends Cubit<AppStates> {
     required String id,
   }) {
     emit(PutInFavoritesLoading());
-    if (!checkIfExisted(type: type, id: id)) {
+    if (!checkIfExisted(
+      type: type,
+      id: id,
+    )) {
       DioHelper.postFavorite(data: {
         "favoritable_id": id,
         "favoritable_type": type,
