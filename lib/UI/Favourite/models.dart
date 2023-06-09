@@ -102,23 +102,23 @@ class FavoriteItem {
 }
 
 class Data {
-  late List<FavoriteItem> restaurant = [];
+/*  late List<FavoriteItem> restaurant = [];
   late List<FavoriteItem> hotel = [];
-  late List<FavoriteItem> attraction = [];
+  late List<FavoriteItem> attraction = [];*/
 
   late List<FavoriteItem> allFavorites = [];
 
   Data.fromJson(Map<String, dynamic> json) {
 ////////////////////////////////////////////////////////////////////////////////
     print("------------------------------------------------> I'm deleting");
-    restaurant.clear();
+    /*restaurant.clear();
     hotel.clear();
-    attraction.clear();
+    attraction.clear();*/
     allFavorites.clear();
 
     print("------------------------------------------------> Deleted");
 ////////////////////////////////////////////////////////////////////////////////
-    restaurant = List.from(json['Restaurant'])
+    /*restaurant = List.from(json['Restaurant'])
         .map((e) => FavoriteItem.fromJsonRestaurants(e))
         .toList();
     hotel = List.from(json['Hotel'])
@@ -126,10 +126,18 @@ class Data {
         .toList();
     attraction = List.from(json['Attraction'])
         .map((e) => FavoriteItem.fromJsonAttraction(e))
-        .toList();
+        .toList();*/
 ////////////////////////////////////////////////////////////////////////////////
 
-    allFavorites = restaurant + hotel + attraction;
+    allFavorites = List.from(json['Restaurant'])
+            .map((e) => FavoriteItem.fromJsonRestaurants(e))
+            .toList() +
+        List.from(json['Hotel'])
+            .map((e) => FavoriteItem.fromJsonHotels(e))
+            .toList() +
+        List.from(json['Attraction'])
+            .map((e) => FavoriteItem.fromJsonAttraction(e))
+            .toList();
     print("------------------------------------------------> Concatenated");
   }
 }

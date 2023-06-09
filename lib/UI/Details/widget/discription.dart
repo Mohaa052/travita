@@ -82,14 +82,16 @@ class Description extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   showDialog(
-                      context: context,
-                      builder: (BuildContext context) => SimpleDialog(
-                              backgroundColor: AppColors.white,
-                              children: [
-                                MoreDetails(
-                                  listOfDetails: listOfDetail,
-                                ),
-                              ]));
+                    context: context,
+                    builder: (BuildContext context) => SimpleDialog(
+                      backgroundColor: AppColors.white,
+                      children: [
+                        MoreDetails(
+                          listOfDetails: listOfDetail,
+                        ),
+                      ],
+                    ),
+                  );
                 },
                 child: Icon(
                   Icons.expand_more,
@@ -101,18 +103,23 @@ class Description extends StatelessWidget {
           ),
         ),
         Positioned(
-            left: 290.w,
-            top: 5.h,
-            child: GestureDetector(
-                onTap: (){
-                  showModalBottomSheet<void>(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return const ShowModelSheet();
-                    },
-                  );
+          left: 290.w,
+          top: 5.h,
+          child: GestureDetector(
+            onTap: () {
+              showModalBottomSheet<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return const ShowModelSheet();
                 },
-                child: Icon(Icons.add,color: AppColors.darkOrange,))),
+              );
+            },
+            child: Icon(
+              Icons.add,
+              color: AppColors.darkOrange,
+            ),
+          ),
+        ),
       ],
     );
   }

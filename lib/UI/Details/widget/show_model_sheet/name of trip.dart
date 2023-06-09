@@ -19,7 +19,6 @@ class NameOfTrip extends StatefulWidget {
 class _NameOfTripState extends State<NameOfTrip> {
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -27,14 +26,16 @@ class _NameOfTripState extends State<NameOfTrip> {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child:SimpleTextFormFiled(lable: "Enter name of trip",),
+            child: SimpleTextFormFiled(
+              lable: "Enter name of trip",
+            ),
           ),
           DefaultButton(
             fontWeight: FontWeight.bold,
             fontSize: 18,
             borderRadius: 15,
             opacity: 1,
-            onPressed: (){},
+            onPressed: () {},
             width: 200.w,
             height: 60.h,
             backgroundColor: AppColors.darkOrange,

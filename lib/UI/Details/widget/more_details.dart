@@ -14,27 +14,29 @@ class MoreDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List onTaps =[
-      (){},
-      (){},
-      (){},
-      (){},
-      (){},
-      (){
+    List onTaps = [
+      () {},
+      () {},
+      () {},
+      () {},
+      () {},
+      () {
         defaultNavigator(
-            context,
-            GoogleMapScreen(
-              lt: 31.260976,
-              lg: 32.306976,
-            ));
+          context,
+          GoogleMapScreen(
+            lt: 31.260976,
+            lg: 32.306976,
+          ),
+        );
       },
-      (){
+      () {
         String webSite = 'google.com';
         _launchUrl(Uri _url) async {
           if (!await launchUrl(_url)) {
             throw Exception('Could not launch $_url');
           }
         }
+
         final Uri _url = Uri.parse(webSite);
         _launchUrl(_url);
       },
@@ -84,8 +86,3 @@ class MoreDetails extends StatelessWidget {
     );
   }
 }
-
-
-
-
-

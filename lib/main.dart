@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
+import 'package:travita/UI/Details/view.dart';
 import 'package:travita/UI/Home/view.dart';
 import 'package:travita/UI/REGISTERATION/LogIN/view.dart';
 import 'package:travita/UI/Search/view_search.dart';
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: child,
         ),
-        child: Ex(),
+        child: SearchScreen(),
       ),
     );
   }

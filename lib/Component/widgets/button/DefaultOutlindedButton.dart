@@ -4,24 +4,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
 
-class DefaultOutlindedButton extends StatelessWidget {
-  Function onPressed;
-  double width;
-  double height;
-  Color backgroundColor;
+class DefaultOutlinedButton extends StatelessWidget {
+  late final String text;
+  late final Function onPressed;
+  late final double width;
+  late final double height;
+  late final Color backgroundColor;
 
-  String text;
-  double? fontSize;
-  FontWeight? fontWeight;
-  Color? textColor;
-  double? elevation;
+  late final int? borderRadius;
+  late final double? fontSize;
+  late final FontWeight? fontWeight;
+  late final Color? textColor;
+  late final double? elevation;
 
-  DefaultOutlindedButton({
+  DefaultOutlinedButton({
     required this.onPressed,
     required this.width,
     required this.height,
     required this.backgroundColor,
     required this.text,
+    this.borderRadius = 14,
     this.fontSize,
     this.fontWeight,
     this.textColor,
@@ -42,7 +44,7 @@ class DefaultOutlindedButton extends StatelessWidget {
         fixedSize: Size(width, height),
         backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14.r),
+          borderRadius: BorderRadius.circular(borderRadius!.r),
         ),
         elevation: elevation,
       ),

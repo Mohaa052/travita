@@ -65,7 +65,7 @@ class AiOrManualPlan extends StatelessWidget {
             textColor: AppColors.darkGrey,
             lineHeight: secondTextLineHeight,
           ),
-          DefaultOutlindedButton(
+          DefaultOutlinedButton(
             onPressed: () {
               onPressed();
             },
