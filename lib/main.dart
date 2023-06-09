@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: child,
         ),
-        child: Ex(),
+        child: LayOutScreen(),
       ),
     );
   }
