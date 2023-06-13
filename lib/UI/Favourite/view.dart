@@ -48,15 +48,15 @@ class FavouriteScreen extends StatelessWidget {
               ),
               TabBar(
                 indicatorSize: TabBarIndicatorSize.tab,
-                labelPadding: EdgeInsets.all(8),
+                labelPadding: const EdgeInsets.all(8),
                 // indicatorPadding: EdgeInsetsGeometry.infinity,
-                splashBorderRadius: BorderRadius.all(Radius.circular(10)),
+                splashBorderRadius: const BorderRadius.all(Radius.circular(10)),
                 /*dividerColor: Colors.blue,*/
                 indicatorColor: AppColors.darkOrange,
                 labelColor: AppColors.darkOrange,
                 unselectedLabelColor: AppColors.darkBlue,
                 automaticIndicatorColorAdjustment: false,
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 enableFeedback: true,
                 // indicatorWeight: 4,
                 tabs: [

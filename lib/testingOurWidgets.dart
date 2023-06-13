@@ -168,7 +168,7 @@ class UrlEx extends StatelessWidget {
         children: [
           TextButton(
               onPressed: () {
-                defaultNavigator(
+                /*defaultNavigator(
                     context,
                     DetailsScreen(
                       description: "asdfasdfasdfa",
@@ -177,7 +177,7 @@ class UrlEx extends StatelessWidget {
                       name: "dog",
                       detailsType: '',
                       detailsId: '',
-                    ));
+                    ));*/
               },
               child: Text("details")),
           TextButton(
@@ -186,7 +186,7 @@ class UrlEx extends StatelessWidget {
                 _launchUrl(_url);
               },
               child: Text('website')),
-          Shimmer.fromColors(
+          /*Shimmer.fromColors(
             baseColor: AppColors.ofWhite,
             highlightColor: AppColors.white,
             child: Category(
@@ -197,7 +197,7 @@ class UrlEx extends StatelessWidget {
               type: '',
               id: '',
             ),
-          ),
+          )*/
         ],
       ),
     );

@@ -1,40 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travita/Component/navigator.dart';
 
+import '../../../UI/Places_of_type/Models/restaurantsModel.dart';
 import '../../colors/colors.dart';
-import '../../../UI/Details/view.dart';
 import '../defaultText.dart';
 
 class Category extends StatelessWidget {
-  late final String? image;
-  late final String nameOfPlace;
-  late final String description;
-  late final String type;
-  late final String id;
+  late final DetailsModel detailsModel;
+  late final void Function() onTap;
   Category({
-    required this.image,
-    required this.nameOfPlace,
-    required this.description,
-    required this.type,
-    required this.id,
+    required this.detailsModel,
+    required this.onTap,
   });
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DetailsScreen(
-              detailsType: type,
-              detailsId: id,
-              image: image,
-              name: nameOfPlace,
-              description: description,
-            ),
-          ),
-        );
-      },
+      onTap: onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,9 +27,9 @@ class Category extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.r),
             ),
-            child: image != null
+            child: detailsModel.image != null
                 ? Image.network(
-                    image!,
+                    detailsModel.image!,
                     fit: BoxFit.cover,
                   )
                 : Image.asset(
@@ -58,7 +40,7 @@ class Category extends StatelessWidget {
             height: 10.h,
           ),
           DefaultText(
-            text: nameOfPlace,
+            text: detailsModel.name,
             fontWeight: FontWeight.w600,
             fontSize: 16.sp,
             textColor: AppColors.darkBlue,
@@ -68,7 +50,7 @@ class Category extends StatelessWidget {
             height: 4.h,
           ),
           DefaultText(
-            text: description,
+            text: detailsModel.description ?? detailsModel.address!,
             fontSize: 14.sp,
             fontWeight: FontWeight.w400,
             textColor: AppColors.darkGrey,
