@@ -12,14 +12,14 @@ class Ex extends StatelessWidget {
       body: Center(
         child: TextButton(
           onPressed: () {
-            defaultNavigator(
+            /*defaultNavigator(
                 context,
                 DetailsScreen(
                     image: "https://www.adobe.com/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium",
                     name: "dog",
                     description: 'vvder',
                     detailsType: 'type',
-                    detailsId: 'id'));
+                    detailsId: 'id'))*/;
           },
           child: Text("details"),
         ),

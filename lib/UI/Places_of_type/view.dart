@@ -20,7 +20,7 @@ class PlacesOfTypeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<PlacesOfTypeController>(
       create: (context) => PlacesOfTypeController()
-        ..getPlacesOfTypeData(
+        ..getAllPlaces(
           endpoint: category.toLowerCase(),
         ),
       child: Scaffold(
@@ -115,9 +115,8 @@ class PlacesOfTypeScreen extends StatelessWidget {
                   return state is PlacesOfTypeGetDataSuccessState
                       ? Padding(
                           padding: EdgeInsets.all(20.r),
-                          child: PlacesOfTypeController.get(context).buildItems(
-                            category: category.toLowerCase(),
-                          ),
+                          child:
+                              PlacesOfTypeController.get(context).buildItems(),
                         )
                       : const Center(
                           child: CircularProgressIndicator(),
