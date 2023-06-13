@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rate/rate.dart';
 import 'package:travita/Component/colors/colors.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
+import 'package:travita/UI/information%20for%20the%20plan/Widget/location_button.dart';
 
 class CategoryOfOnePlaceInFinalPlan extends StatelessWidget {
   const CategoryOfOnePlaceInFinalPlan({Key? key}) : super(key: key);
@@ -11,10 +12,21 @@ class CategoryOfOnePlaceInFinalPlan extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(
-          width: 179.w,
-          height: 167.h,
-          child: Image.network('https://www.adobe.com/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium'),
+        Column(
+          children: [
+            SizedBox(
+              width: 179.w,
+              height: 167.h,
+              child: Image.network('https://www.adobe.com/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium'),
+            ),
+           LocationButton(
+             width: 189.w,
+             height: 32.h,
+             icon: Icons.restaurant,
+             text: "Nearest restaurant",
+             fontSize: 16.sp,
+           ),
+          ],
         ),
         SizedBox(width: 27.w,),
         SizedBox(
@@ -55,7 +67,7 @@ class CategoryOfOnePlaceInFinalPlan extends StatelessWidget {
               )
             ],
           ),
-        )
+        ),
       ],
     );
   }

@@ -10,7 +10,6 @@ import 'package:travita/UI/Details/view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MapSample extends StatefulWidget {
-
   const MapSample({super.key});
 
   @override
@@ -18,9 +17,8 @@ class MapSample extends StatefulWidget {
 }
 
 class MapSampleState extends State<MapSample> {
-
   static double lat = 31.260976;
-  static double lang =32.306976;
+  static double lang = 32.306976;
 
   CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(lat, lang),
@@ -99,9 +97,6 @@ class MapSampleState extends State<MapSample> {
 /// key
 /// AIzaSyBloAGsysaE7YchiCy33tn8VUBCpuJ901E
 
-
-
-
 /// camera
 
 class UploadImage extends StatefulWidget {
@@ -157,10 +152,7 @@ class _UploadImageState extends State<UploadImage> {
   }
 }
 
-
-
 class UrlEx extends StatelessWidget {
-
   _launchUrl(Uri _url) async {
     if (!await launchUrl(_url)) {
       throw Exception('Could not launch $_url');
@@ -183,8 +175,8 @@ class UrlEx extends StatelessWidget {
                       image:
                           'https://www.adobe.com/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium',
                       name: "dog",
-                      type: '',
-                      id: '',
+                      detailsType: '',
+                      detailsId: '',
                     ));
               },
               child: Text("details")),
@@ -194,18 +186,17 @@ class UrlEx extends StatelessWidget {
                 _launchUrl(_url);
               },
               child: Text('website')),
-
           Shimmer.fromColors(
-              baseColor: AppColors.ofWhite,
-              highlightColor: AppColors.white,
-              child: Category(
-                image:
-                    'https://www.adobe.com/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium',
-                description: "The description of place loading",
-                nameOfPlace: "The name of place loading",
-                type: '',
-                id: '',
-              ),
+            baseColor: AppColors.ofWhite,
+            highlightColor: AppColors.white,
+            child: Category(
+              image:
+                  'https://www.adobe.com/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium',
+              description: "The description of place loading",
+              nameOfPlace: "The name of place loading",
+              type: '',
+              id: '',
+            ),
           ),
         ],
       ),

@@ -28,8 +28,8 @@ class CategoryOfTypeTheFavourite extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => DetailsScreen(
-              type: favoriteItem.favoriteType,
-              id: favoriteItem.id.toString(),
+              detailsType: favoriteItem.favoriteType,
+              detailsId: favoriteItem.id.toString(),
               image: favoriteItem.image,
               name: favoriteItem.name,
               description: favoriteItem.address,

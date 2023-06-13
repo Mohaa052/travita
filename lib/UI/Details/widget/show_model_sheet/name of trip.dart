@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:travita/Component/colors/colors.dart';
 import 'package:travita/Component/widgets/textFrmField/dfaultTextFormField.dart';
 import 'package:travita/Component/widgets/textFrmField/simple%20textFiels.dart';
+import 'package:travita/UI/information%20for%20the%20plan/Widget/location_button.dart';
 
 import '../../../../Component/widgets/button/default_button.dart';
 
@@ -19,7 +20,6 @@ class NameOfTrip extends StatefulWidget {
 class _NameOfTripState extends State<NameOfTrip> {
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -27,14 +27,25 @@ class _NameOfTripState extends State<NameOfTrip> {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child:SimpleTextFormFiled(lable: "Enter name of trip",),
+            child: SimpleTextFormFiled(
+              icon: null,
+              type: "Name the trip",
+            ),
           ),
+          // LocationButton(
+          //   icon: null,
+          //   text: "Create a trip",
+          //   width: 170.w,
+          //   height: 60.h,
+          //   fontSize: 20.sp,
+          //
+          // ),
           DefaultButton(
             fontWeight: FontWeight.bold,
-            fontSize: 18,
-            borderRadius: 15,
+            fontSize: 18.sp,
+            borderRadius: 10,
             opacity: 1,
-            onPressed: (){},
+            onPressed: () {},
             width: 200.w,
             height: 60.h,
             backgroundColor: AppColors.darkOrange,

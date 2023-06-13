@@ -15,6 +15,7 @@ class ShowModelSheet extends StatefulWidget {
 }
 
 class _ShowModelSheetState extends State<ShowModelSheet> {
+  bool isChecked =false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,8 +41,7 @@ class _ShowModelSheetState extends State<ShowModelSheet> {
                         separatorBuilder: (context, index) => SizedBox(height: 0.h),
                         itemCount: 3,
                         itemBuilder: (context, index) =>
-                            // Text("data"),
-                         CheckBoxItem(),
+                          CheckBoxItem(),
                       ),
                     ],
                   ),
@@ -61,15 +61,6 @@ class _ShowModelSheetState extends State<ShowModelSheet> {
                           return const NameOfTrip();
                         },
                       );
-                      // showDialog(
-                      //   context: context,
-                      //   builder: (BuildContext context) => const SimpleDialog(
-                      //     backgroundColor: AppColors.white,
-                      //     children: [
-                      //       NameOfTrip(),
-                      //     ],
-                      //   ),
-                      // );
                     }, child: DefaultText(
                     text: "Create a trip",
                     textColor: AppColors.darkOrange,
@@ -97,3 +88,49 @@ class _ShowModelSheetState extends State<ShowModelSheet> {
     );
   }
 }
+// class CheckBoxI extends StatefulWidget {
+//   const CheckBoxI({Key? key}) : super(key: key);
+//
+//   @override
+//   State<CheckBoxI> createState() => _CheckBoxIState();
+// }
+//
+// class _CheckBoxIState extends State<CheckBoxI> {
+//   bool isChecked =false;
+//   @override
+//   Widget build(BuildContext context) {
+//     return CheckboxListTile(
+//       value: isChecked,
+//       onChanged: (bool? newValue) {
+//         setState(() {
+//           isChecked = newValue!;
+//         });
+//       },
+//       activeColor: AppColors.darkOrange,
+//       checkColor: AppColors.white,
+//
+//       side: MaterialStateBorderSide
+//           .resolveWith(
+//             (states) => BorderSide(
+//             width: 1.4,
+//             color: AppColors.darkBlue
+//         ),
+//       ),
+//       secondary: SizedBox(
+//           width: 40,
+//           height: 50,
+//           child: Image.asset("image/fav.jpg")),
+//       title: DefaultText(
+//         text: 'Cairo',
+//         textColor: AppColors.darkBlue,
+//         fontWeight: FontWeight.bold,
+//         textAlign: TextAlign.start,
+//       ),
+//       subtitle:  DefaultText(
+//         text: '3 Saved',
+//         textColor: AppColors.darkBlue,
+//         textAlign: TextAlign.start,
+//       ),
+//     );
+//   }
+// }
