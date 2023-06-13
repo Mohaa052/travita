@@ -2,22 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/UI/Places_of_type/cubit/states.dart';
-import 'package:travita/UI/Places_of_type/widgets/attractionsItemsBuilder.dart';
-import 'package:travita/UI/Places_of_type/widgets/hotelsItemBuilder.dart';
-import 'package:travita/UI/Places_of_type/widgets/restaurantsItemsBuilder.dart';
-import 'package:travita/core/app_constants/constants.dart';
-import 'package:travita/core/database/remote/dioHelper/dioHelper.dart';
 
-import '../../../Component/widgets/category/category.dart';
-import '../Models/attractionsModel.dart';
-import '../Models/hotelsModel.dart';
+import '../../../core/app_constants/constants.dart';
+import '../../../core/database/remote/dioHelper/dioHelper.dart';
 import '../Models/restaurantsModel.dart';
+import '../widgets/attractionsItemsBuilder.dart';
 
 class PlacesOfTypeController extends Cubit<PlacesOfTypeStates> {
   PlacesOfTypeController() : super(PlacesOfTypeInitialState());
 
   static PlacesOfTypeController get(context) => BlocProvider.of(context);
-
   late bool isInitial = true;
 
   late int subTpeIndex = 0;
@@ -47,12 +41,12 @@ class PlacesOfTypeController extends Cubit<PlacesOfTypeStates> {
     }
   }
 
-  AttractionsModel? attractionsModel;
-  RestaurantsModel? restaurantsModel;
-  HotelsModel? hotelsModel;
+  PlacesModel? placesModel;
+  /*PlacesModel? restaurantsModel;
+  HotelsModel? hotelsModel;*/
   var cofeModel;
 
-  void getPlacesOfTypeData({
+  void getAllPlaces({
     required String endpoint,
   }) {
     switch (endpoint) {
@@ -70,7 +64,7 @@ class PlacesOfTypeController extends Cubit<PlacesOfTypeStates> {
           getHotels();
         }
         break;
-      case "restaurants":
+      default:
         {
           getRestaurant();
         }
@@ -87,7 +81,22 @@ class PlacesOfTypeController extends Cubit<PlacesOfTypeStates> {
       url: "attractions",
       query: query,
     ).then((value) {
-      attractionsModel = AttractionsModel.fromJson(value.data);
+      placesModel = PlacesModel.fromJsonAttraction(value.data);
+      emit(PlacesOfTypeGetDataSuccessState());
+    }).catchError((error) {
+      print("The error is -----------> ${error.toString()}");
+      emit(PlacesOfTypeGetDataErrorState());
+    });
+  }
+
+  void getRestaurant() {
+    emit(PlacesOfTypeGetDataLoadingState());
+
+    DioHelper.getData(
+      url: "restaurants",
+      baseUrl: AppConstants.baseUrl,
+    ).then((value) {
+      placesModel = PlacesModel.fromJsonRestaurants(value.data);
       emit(PlacesOfTypeGetDataSuccessState());
     }).catchError((error) {
       print("The error is -----------> ${error.toString()}");
@@ -102,7 +111,7 @@ class PlacesOfTypeController extends Cubit<PlacesOfTypeStates> {
       url: "hotels",
       baseUrl: AppConstants.baseUrl,
     ).then((value) {
-      hotelsModel = HotelsModel.fromJson(value.data);
+      placesModel = PlacesModel.fromJsonHotels(value.data);
       emit(PlacesOfTypeGetDataSuccessState());
     }).catchError((error) {
       print("The error is -----------> ${error.toString()}");
@@ -110,69 +119,24 @@ class PlacesOfTypeController extends Cubit<PlacesOfTypeStates> {
     });
   }
 
-  void getRestaurant() {
+  /*void getRestaurant() {
     emit(PlacesOfTypeGetDataLoadingState());
 
     DioHelper.getData(
       baseUrl: AppConstants.baseUrl,
       url: "restaurants",
     ).then((value) {
-      restaurantsModel = RestaurantsModel.fromJson(value.data);
+      restaurantsModel = PlacesModel.fromJson(value.data);
       emit(PlacesOfTypeGetDataSuccessState());
     }).catchError((error) {
       print("The error is -----------> ${error.toString()}");
       emit(PlacesOfTypeGetDataErrorState());
     });
-  }
+  }*/
 
-  Widget buildItems({
-    required String category,
-  }) {
-    Widget gridView = GridView.builder(
-        itemCount: 10,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 10.h,
-          crossAxisSpacing: 10.w,
-          childAspectRatio: 2.w / 2.6.h,
-        ),
-        itemBuilder: (BuildContext context, int index) => Category(
-              id: "",
-              type: "",
-              image: "image/coffee.png",
-              description:
-                  " Sumptuous Ras el-Tin Palace was once a summer escape for Egypt's sultans when the desert heat of Cairo got too much to bear.",
-              nameOfPlace: "Ras el-Tin Palace",
-            ));
-
-    switch (category) {
-      case "attractions":
-        {
-          gridView = AttractionsItemsBuilder(
-            attractionsModel: attractionsModel!,
-          );
-        }
-        break;
-      case "hotels":
-        {
-          gridView = HotelsItemsBuilder(
-            hotelsModel: hotelsModel!,
-          );
-        }
-        break;
-      case "restaurants":
-        {
-          gridView = RestaurantsItemsBuilder(
-            restaurantsModel: restaurantsModel!,
-          );
-        }
-        break;
-      default:
-        {}
-        break;
-    }
-    return gridView;
-  }
+  Widget buildItems() => AttractionsItemsBuilder(
+        placesModel: placesModel!,
+      );
 
   // Category buildCategory({
   //   required String category,

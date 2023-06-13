@@ -45,3 +45,5 @@ class DeleteFromFavoritesError extends AppStates {}
 class DeleteFromFavoritesSuccess extends AppStates {}
 
 class ChangeFavoriteIcons extends AppStates {}
+
+class DetailsNewItem extends AppStates {}

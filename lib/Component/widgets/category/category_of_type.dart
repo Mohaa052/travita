@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
 
@@ -38,8 +38,8 @@ class _CategoryOfTypeThePlaceState extends State<CategoryOfTypeThePlace> {
           context,
           MaterialPageRoute(
               builder: (context) => DetailsScreen(
-                    type: widget.type,
-                    id: widget.id,
+                    detailsType: widget.type,
+                    detailsId: widget.id,
                     image: widget.image,
                     name: widget.nameOfPlace,
                     description: widget.description,
@@ -179,4 +179,4 @@ class _CategoryOfTypeThePlaceState extends State<CategoryOfTypeThePlace> {
       ),
     );
   }
-}
+}*/

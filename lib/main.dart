@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
 import 'package:travita/UI/REGISTERATION/LogIN/view.dart';
+import 'package:travita/UI/layOut/view.dart';
 import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
 import 'package:travita/firebase_options.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-          debugShowCheckedModeBanner: true,
+          debugShowCheckedModeBanner: false,
           home: child,
         ),
         child: LoginScreen(),
