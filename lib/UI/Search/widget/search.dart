@@ -1,7 +1,6 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 import 'package:travita/UI/Search/controller/controller.dart';
 
 import '../../../Component/colors/colors.dart';
@@ -36,7 +35,7 @@ class SearchFormField extends StatelessWidget {
           suffixIcon: IconButton(
             icon: Icon(Icons.camera_alt_outlined, color: AppColors.darkOrange),
             onPressed: () {
-              SearchController.get(context).getSearchImage();
+              SearchControllerr.get(context).getSearchImage();
             },
           ),
           hintText: hintText,

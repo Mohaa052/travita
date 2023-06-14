@@ -3,6 +3,7 @@ class Assets {
   Assets._();
 
   static const String imageAdd = 'image/add.png';
+  static const String imageAddToPlan = 'image/addToPlan.png';
   static const String imageAlex = 'image/alex.png';
   static const String imageAppBarLogo = 'image/appBarLogo.png';
   static const String imageCasel = 'image/casel.png';

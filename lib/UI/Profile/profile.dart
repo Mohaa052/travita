@@ -24,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
         titleSpacing: 0,
         title: Image.asset(
           "image/appBarLogo.png",
-          width: 100,
+          width: 100.w,
         ),
       ),
       body: SingleChildScrollView(

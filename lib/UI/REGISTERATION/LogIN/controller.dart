@@ -1,17 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travita/Component/navigator.dart';
-import 'package:travita/UI/Home/view.dart';
-import 'package:travita/UI/layOut/cubit/states.dart';
-import 'package:travita/UI/layOut/view.dart';
-import 'package:travita/core/app_constants/constants.dart';
-import 'package:travita/core/database/remote/dioHelper/endpoints.dart';
-
 import '../../../core/app_controller/appController.dart';
-import '../../../core/app_controller/appStates.dart';
-import '../../../core/database/remote/dioHelper/dioHelper.dart';
-import '../model.dart';
+
 
 class LoginController extends AppController {
   static LoginController get(context) => BlocProvider.of(context);

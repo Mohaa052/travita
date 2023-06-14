@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travita/UI/information%20for%20the%20plan/view_information.dart';
 
 import '../../Component/colors/colors.dart';
 import '../../Component/navigator.dart';
 import '../../Component/widgets/defaultText.dart';
-import '../ai_plan/view.dart';
 import '../category_of_manually_plan/view.dart';
 import 'widgets/onePlanWidget.dart';
 import 'widgets/aiOrManualPlanWidget.dart';
@@ -55,9 +55,9 @@ class ChooseAiOrManualPlanScreen extends StatelessWidget {
               SizedBox(
                 height: 240.h,
                 child: ListView.separated(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => OnePlanWidget(),
+                  itemBuilder: (context, index) => const OnePlanWidget(),
                   separatorBuilder: (context, index) => SizedBox(
                     width: 20.w,
                   ),
@@ -77,7 +77,7 @@ class ChooseAiOrManualPlanScreen extends StatelessWidget {
                 buttonWidth: 244.w,
                 buttonHeight: 46.h,
                 onPressed: () {
-                  defaultNavigator(context, AiPlansScreen());
+                  defaultNavigator(context, const InformationThePlan());
                 },
               ),
               SizedBox(
@@ -92,7 +92,7 @@ class ChooseAiOrManualPlanScreen extends StatelessWidget {
                 buttonWidth: 244.w,
                 buttonHeight: 46.h,
                 onPressed: () {
-                  defaultNavigator(context, YourPlanScreen());
+                  defaultNavigator(context, const YourPlanScreen());
                 },
               ),
             ],
