@@ -25,6 +25,8 @@ class CategoryOfOnePlaceInFinalPlan extends StatelessWidget {
              icon: Icons.restaurant,
              text: "Nearest restaurant",
              fontSize: 16.sp,
+             color: AppColors.ofWhite,
+             onTap: (){},
            ),
           ],
         ),

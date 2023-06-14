@@ -6,7 +6,6 @@ import 'package:travita/UI/more_places/view.dart';
 import '../../Component/colors/colors.dart';
 import '../../Component/navigator.dart';
 import '../../Component/widgets/defaultText.dart';
-import '../type_of_place/view.dart';
 
 class YourPlanScreen extends StatelessWidget {
   const YourPlanScreen({Key? key}) : super(key: key);
@@ -51,7 +50,7 @@ class YourPlanScreen extends StatelessWidget {
                 height: 24.h,
               ),
               ListView.separated(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 separatorBuilder: (context, index) => SizedBox(
                   height: 25.h,
@@ -60,16 +59,11 @@ class YourPlanScreen extends StatelessWidget {
                 itemBuilder: (context, index) => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        defaultNavigator(context, MorePlacesByType());
-                      },
-                      child: DefaultText(
-                        text: "Attraction activities",
-                        fontSize: 25.sp,
-                        fontWeight: FontWeight.w600,
-                        textColor: AppColors.darkBlue,
-                      ),
+                    DefaultText(
+                      text: "Attraction activities",
+                      fontSize: 25.sp,
+                      fontWeight: FontWeight.w600,
+                      textColor: AppColors.darkBlue,
                     ),
                     SizedBox(
                       height: 10.h,
@@ -78,11 +72,10 @@ class YourPlanScreen extends StatelessWidget {
                       height: 185.h,
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
-                        separatorBuilder: (context, index) => SizedBox(
-                          width: 20,
-                        ),
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(width: 20),
                         itemCount: 4,
-                        itemBuilder: (context, index) => Container(
+                        itemBuilder: (context, index) => SizedBox(
                             width: 275.w,
                             height: 183.h,
                             child: Stack(
@@ -104,6 +97,22 @@ class YourPlanScreen extends StatelessWidget {
                               ],
                             )),
                       ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            defaultNavigator(context, const MorePlacesByType());
+                          },
+                          child: DefaultText(
+                            text: 'View more',
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w600,
+                            textColor: AppColors.darkOrange,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

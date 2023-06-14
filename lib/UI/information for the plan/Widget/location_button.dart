@@ -16,20 +16,23 @@ class LocationButton extends StatelessWidget {
   double? width;
   double? height;
   double? fontSize;
+  Color ? color=Colors.transparent;
+  Function? onTap;
   LocationButton({super.key,
     this.icon,
     this.text,
     this.width,
     this.height,
-    this.fontSize
+    this.fontSize,
+    this.color,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("object");
-        defaultNavigator(context, const DetermineTheStartPosition());
+        onTap!();
       },
       child: Container(
           width: width,
@@ -37,7 +40,7 @@ class LocationButton extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(),
             borderRadius: BorderRadius.circular(10),
-            color: AppColors.white,
+            color:color,
           ),
           child: Row(
             children: [

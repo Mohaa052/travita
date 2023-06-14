@@ -93,49 +93,46 @@ class MapSampleState extends State<MapSamplee> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: 300,
-                height: 400,
-                child: showMap
-                    ? GoogleMap(
-                        markers: firstMarker,
-                        mapType: MapType.normal,
-                        initialCameraPosition: _kGooglePlex,
-                        onMapCreated: (GoogleMapController controller) {
-                          gmc = controller;
-                        },
-                      )
-                    : Container(),
-              ),
-              ElevatedButton(
-                  onPressed: () async {
-                    setState(() {
-                      showMap = true;
-                    });
-                    LatLng latang = LatLng(lat, lang);
-                    var xy = await gmc!
-                        .animateCamera(CameraUpdate.newLatLng(latang));
-                  },
-                  child: Text("move to location ")),
-              ElevatedButton(
-                  onPressed: () async {
-                    LatLng latang = LatLng(21.422390, 39.722958);
-                    var xy =
-                        await gmc!.getLatLng(ScreenCoordinate(x: 200, y: 200));
-                    print("$xy");
-                  },
-                  child: Text("get land and lat by xy from map")),
-            ],
+        body: SafeArea(
+            child: Center(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 20,
           ),
-        ),
+          SizedBox(
+            width: 300,
+            height: 400,
+            child: showMap
+                ? GoogleMap(
+                    markers: firstMarker,
+                    mapType: MapType.normal,
+                    initialCameraPosition: _kGooglePlex,
+                    onMapCreated: (GoogleMapController controller) {
+                      gmc = controller;
+                    },
+                  )
+                : Container(),
+          ),
+          ElevatedButton(
+              onPressed: () async {
+                setState(() {
+                  showMap = true;
+                });
+                LatLng latang = LatLng(lat, lang);
+                var xy =
+                    await gmc!.animateCamera(CameraUpdate.newLatLng(latang));
+              },
+              child: Text("move to location ")),
+          ElevatedButton(
+              onPressed: () async {
+                LatLng latang = LatLng(21.422390, 39.722958);
+                var xy = await gmc!.getLatLng(ScreenCoordinate(x: 200, y: 200));
+                print("$xy");
+              },
+              child: Text("get land and lat by xy from map")),
+        ],
       ),
-    );
+    )));
   }
 }

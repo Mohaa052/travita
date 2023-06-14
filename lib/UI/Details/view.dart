@@ -4,30 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/app_controller/appController.dart';
 import '../../core/app_controller/appStates.dart';
-import 'controller/controller.dart';
-import 'controller/states.dart';
-import 'model.dart';
 import 'widget/category_for_you.dart';
-import 'widget/comment.dart';
 import 'widget/discription.dart';
 
 class DetailsScreen extends StatelessWidget {
-  late DetailsModel detailsModel;
-  late final List<DetailsModel> itemsModels;
-  late final String? image;
-  late final String name;
-  late final String description;
-  late String detailsType;
-  late String detailsId;
-  //late bool isFavorite;
-
-  DetailsScreen({
+  const DetailsScreen({
     super.key,
-    required this.image,
-    required this.name,
-    required this.description,
-    required this.detailsType,
-    required this.detailsId,
   });
 
   @override
@@ -40,208 +22,247 @@ class DetailsScreen extends StatelessWidget {
           width: 100,
         ),
       ),
-      body: BlocProvider<DetailsController>(
-        create: (context) => DetailsController()
-          ..checkIfDetailsExisted(
-            detailsType: detailsType,
-            detailsId: detailsId,
-          ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(10.r),
-              child: BlocConsumer<DetailsController, AppStates>(
-                buildWhen: (currentState, previousState) =>
-                    currentState is DetailsNewItem,
-                listener: (context, state) {},
-                builder: (context, state) => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 2,
-                      child: Stack(
-                        alignment: Alignment.bottomCenter,
-                        children: [
-                          Align(
-                            //alignment: Alignment.topCenter,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Stack(
-                                  alignment: Alignment.topRight,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(10.r),
+            child: FutureBuilder(
+              future: AppController.get(context).checkIfDetailsExisted(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  // The play() method has finished executing
+                  return BlocConsumer<AppController, AppStates>(
+                    buildWhen: (currentState, previousState) =>
+                        currentState is DetailsNewItem,
+                    listener: (context, state) {},
+                    builder: (context, state) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height / 2,
+                          child: Stack(
+                            alignment: Alignment.bottomCenter,
+                            children: [
+                              Align(
+                                //alignment: Alignment.topCenter,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width /
-                                          1.3,
-                                      height:
-                                          MediaQuery.of(context).size.height /
+                                    Stack(
+                                      alignment: Alignment.topRight,
+                                      children: [
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              1.3,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
                                               2.2,
-                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(20.r),
-                                      ),
-                                      child: detailsModel.image == null
-                                          ? Image.asset(
-                                              "image/appBarLogo.png",
-                                              fit: BoxFit.cover,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  4,
-                                            )
-                                          : Image.network(
-                                              detailsModel.image,
-                                              fit: BoxFit.cover,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  4,
-                                            ),
-                                    ),
-                                    BlocConsumer<AppController, AppStates>(
-                                      buildWhen: (previousState,
-                                              currentState) =>
-                                          currentState
-                                              is! GetFavoritesLoading &&
-                                          currentState
-                                              is! GetFavoritesSuccess &&
-                                          currentState is! GetFavoritesError,
-                                      listener: (context, state) {
-                                        if (state is PutInFavoritesError) {
-                                          DetailsController.get(context)
-                                              .isFavorite = false;
-                                        }
-                                        if (state is DeleteFromFavoritesError) {
-                                          DetailsController.get(context)
-                                              .isFavorite = true;
-                                        }
-                                      },
-                                      builder: (context, state) {
-                                        if (!DetailsController.get(context)
-                                            .isFavorite) {
-                                          return IconButton(
-                                            onPressed: () {
-                                              if (state
-                                                      is! PutInFavoritesLoading &&
-                                                  state
-                                                      is! DeleteFromFavoritesLoading) {
-                                                DetailsController.get(context)
-                                                        .isFavorite =
-                                                    !DetailsController.get(
-                                                            context)
-                                                        .isFavorite;
-                                                AppController.get(context)
-                                                    .putInFavorite(
-                                                  type: detailsType,
-                                                  id: detailsId,
-                                                );
-                                              }
-                                            },
-                                            icon: const Icon(
-                                              Icons.favorite_outline_outlined,
-                                              color: Colors.red,
-                                            ),
-                                          );
-                                        } else {
-                                          return IconButton(
-                                            onPressed: () {
-                                              if (state
-                                                      is! PutInFavoritesLoading &&
-                                                  state
-                                                      is! DeleteFromFavoritesLoading) {
-                                                DetailsController.get(context)
-                                                    .isFavorite = false;
-                                                AppController.get(context)
-                                                    .deleteFromFavorite(
-                                                  favoriteType: detailsType,
-                                                  id: detailsId,
-                                                );
-                                              }
-                                            },
-                                            icon: const Icon(
-                                              Icons.favorite,
-                                              color: Colors.red,
-                                            ),
-                                          );
-                                        }
-                                      },
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20.r),
+                                          ),
+                                          child: AppController.get(context)
+                                                      .detailsModel!
+                                                      .image ==
+                                                  null
+                                              ? Image.asset(
+                                                  "image/appBarLogo.png",
+                                                  fit: BoxFit.cover,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      4,
+                                                )
+                                              : Image.network(
+                                                  AppController.get(context)
+                                                      .detailsModel!
+                                                      .image!,
+                                                  fit: BoxFit.cover,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      4,
+                                                ),
+                                        ),
+                                        BlocConsumer<AppController, AppStates>(
+                                          buildWhen: (previousState,
+                                                  currentState) =>
+                                              currentState
+                                                  is! GetFavoritesLoading &&
+                                              currentState
+                                                  is! GetFavoritesSuccess &&
+                                              currentState
+                                                  is! GetFavoritesError,
+                                          listener: (context, state) {
+                                            if (state is PutInFavoritesError) {
+                                              AppController.get(context)
+                                                  .isFavorite = false;
+                                            }
+                                            if (state
+                                                is DeleteFromFavoritesError) {
+                                              AppController.get(context)
+                                                  .isFavorite = true;
+                                            }
+                                          },
+                                          builder: (context, state) {
+                                            if (!AppController.get(context)
+                                                .isFavorite) {
+                                              return IconButton(
+                                                onPressed: () {
+                                                  if (state
+                                                          is! PutInFavoritesLoading &&
+                                                      state
+                                                          is! DeleteFromFavoritesLoading) {
+                                                    AppController.get(context)
+                                                            .isFavorite =
+                                                        !AppController.get(
+                                                                context)
+                                                            .isFavorite;
+                                                    AppController.get(context)
+                                                        .putInFavorite(
+                                                      type: AppController.get(
+                                                              context)
+                                                          .detailsModel!
+                                                          .favoriteType,
+                                                      id: AppController.get(
+                                                              context)
+                                                          .detailsModel!
+                                                          .id
+                                                          .toString(),
+                                                    );
+                                                  }
+                                                },
+                                                icon: const Icon(
+                                                  Icons
+                                                      .favorite_outline_outlined,
+                                                  color: Colors.red,
+                                                ),
+                                              );
+                                            } else {
+                                              return IconButton(
+                                                onPressed: () {
+                                                  if (state
+                                                          is! PutInFavoritesLoading &&
+                                                      state
+                                                          is! DeleteFromFavoritesLoading) {
+                                                    AppController.get(context)
+                                                        .isFavorite = false;
+                                                    AppController.get(context)
+                                                        .deleteFromFavorite(
+                                                      favoriteType:
+                                                          AppController.get(
+                                                                  context)
+                                                              .detailsModel!
+                                                              .favoriteType,
+                                                      id: AppController.get(
+                                                              context)
+                                                          .detailsModel!
+                                                          .id
+                                                          .toString(),
+                                                    );
+                                                  }
+                                                },
+                                                icon: const Icon(
+                                                  Icons.favorite,
+                                                  color: Colors.red,
+                                                ),
+                                              );
+                                            }
+                                          },
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              ],
+                              ),
+                              Description(
+                                placeName: AppController.get(context)
+                                    .detailsModel!
+                                    .name,
+                                description: AppController.get(context)
+                                        .detailsModel!
+                                        .description ??
+                                    AppController.get(context)
+                                        .detailsModel!
+                                        .address!,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Text(
+                          "Just for you",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.sp,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        SizedBox(
+                          height: 210.h,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            separatorBuilder: (context, index) => SizedBox(
+                              width: 10.w,
+                            ),
+                            itemCount: 5,
+                            itemBuilder: (context, index) => DetailsCategory(
+                              onTap: () {
+                                AppController.get(context).newDetails(
+                                  index: index,
+                                );
+                              },
+                              text: AppController.get(context)
+                                  .detailsModels![index]
+                                  .name,
+                              image: AppController.get(context)
+                                  .detailsModels![index]
+                                  .image!,
                             ),
                           ),
-                          Description(
-                            placeName: detailsModel.name,
-                            description: detailsModel.website,
+                        ),
+                        Text(
+                          "Comments ",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18.sp),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        /*ListView.separated(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          separatorBuilder: (BuildContext context, int index) =>
+                              SizedBox(
+                            height: 15.h,
                           ),
-                        ],
-                      ),
+                          itemCount: 10,
+                          itemBuilder: (BuildContext context, int index) =>
+                              Comment(
+                            image: "image/fav.jpg",
+                            name: "Ahmed",
+                            comment:
+                                "This palce is one of the most beautiful places in the world",
+                          ),
+                        ),*/
+                      ],
                     ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Text(
-                      "Just for you",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.sp,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    SizedBox(
-                      height: 210.h,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        separatorBuilder: (context, index) => SizedBox(
-                          width: 10.w,
-                        ),
-                        itemCount: 5,
-                        itemBuilder: (context, index) => DetailsCategory(
-                          onTap: () {
-                            detailsModel = itemsModels[index];
-                            detailsType = itemsModels[index].favoriteType;
-                            detailsId = itemsModels[index].id.toString();
-                            DetailsController.get(context).newDetails(
-                              detailsId: detailsId,
-                              detailsType: detailsType,
-                            );
-                          },
-                          text: itemsModels[index].name,
-                          image: itemsModels[index].image,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Comments ",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18.sp),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    ListView.separated(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(
-                        height: 15.h,
-                      ),
-                      itemCount: 10,
-                      itemBuilder: (BuildContext context, int index) => Comment(
-                        image: "image/fav.jpg",
-                        name: "Ahmed",
-                        comment:
-                            "This palce is one of the most beautiful places in the world",
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                  );
+                } else {
+                  // Show a loading indicator while the play() method is executing
+                  return const CircularProgressIndicator();
+                }
+              },
             ),
           ),
         ),

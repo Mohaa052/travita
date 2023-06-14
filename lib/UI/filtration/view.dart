@@ -5,8 +5,8 @@ import 'package:travita/Component/widgets/defaultText.dart';
 
 import '../../Component/widgets/button/default_button.dart';
 
-class Filtration extends StatelessWidget {
-  const Filtration({Key? key}) : super(key: key);
+class FiltrationScreen extends StatelessWidget {
+  const FiltrationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
