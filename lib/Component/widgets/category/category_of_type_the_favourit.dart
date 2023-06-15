@@ -14,18 +14,21 @@ import '../defaultText.dart';
 class CategoryOfTypeTheFavourite extends StatelessWidget {
   late final DetailsModel favoriteItem;
   late final int index;
+  late final void Function() onPressed;
   late bool isHurtShown = true;
 
   CategoryOfTypeTheFavourite({
     super.key,
     required this.favoriteItem,
     required this.index,
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: () {
+        onPressed();
         defaultNavigator(context, const DetailsScreen());
       },
       icon: Container(

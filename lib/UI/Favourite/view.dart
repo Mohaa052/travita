@@ -107,6 +107,10 @@ class FavouriteScreen extends StatelessWidget {
                             physics: const BouncingScrollPhysics(),
                             itemBuilder: (context, index) =>
                                 CategoryOfTypeTheFavourite(
+                              onPressed: () {
+                                AppController.get(context).detailsModels =
+                                    AppController.get(context).detailsModels;
+                              },
                               index: index,
                               favoriteItem: AppController.get(context)
                                   .favoritesModel!
@@ -152,6 +156,7 @@ class FavouriteScreen extends StatelessWidget {
                             physics: const BouncingScrollPhysics(),
                             itemBuilder: (context, index) =>
                                 CategoryOfTypeTheFavourite(
+                              onPressed: () {},
                               index: index,
                               favoriteItem: AppController.get(context)
                                   .favoritesModel!
