@@ -45,6 +45,7 @@ class FinalPlanScreen extends StatelessWidget {
                     "Based on your interests and budget, we offer you this plan, knowing that you can modify them ",
                 fontWeight: FontWeight.w300,
                 fontSize: 12.sp,
+                textColor: AppColors.darkBlue,
               ),
               /// plan
               ListView.separated(

@@ -6,9 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:travita/UI/Search/controller/states.dart';
 
-class SearchController extends Cubit<SearchStates> {
-  SearchController() : super(SearchInitial());
-  static SearchController get(context) => BlocProvider.of(context);
+class SearchControllerr extends Cubit<SearchStates> {
+  SearchControllerr() : super(SearchInitial());
+  static SearchControllerr get(context) => BlocProvider.of(context);
   late final FirebaseStorage fireStorage = FirebaseStorage.instance;
   late final TextEditingController searchController = TextEditingController();
 

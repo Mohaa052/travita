@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,14 +18,14 @@ class SearchImage extends StatelessWidget {
           height: 10.h,
         ),
         Image.file(
-          SearchController.get(context).searchImage!,
+          SearchControllerr.get(context).searchImage!,
           width: double.infinity,
           height: MediaQuery.of(context).size.height / 3,
           fit: BoxFit.contain,
         ),
         DefaultOutlinedButton(
           onPressed: () {
-            SearchController.get(context).upLoadImage();
+            SearchControllerr.get(context).upLoadImage();
           },
           text: "Search",
           borderRadius: 30,

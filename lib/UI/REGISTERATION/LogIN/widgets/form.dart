@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/UI/REGISTERATION/LogIN/controller.dart';
-import 'package:travita/UI/REGISTERATION/SignUp/controller.dart';
 import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
-
 import '../../../../Component/colors/colors.dart';
 import '../../../../Component/navigator.dart';
 import '../../../../Component/widgets/button/defaultTextButton.dart';

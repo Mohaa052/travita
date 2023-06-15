@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../Component/colors/colors.dart';
 import '../../../../Component/widgets/defaultText.dart';
 
@@ -12,52 +10,51 @@ class CheckBoxItem extends StatefulWidget {
 }
 
 class _CheckBoxItemState extends State<CheckBoxItem> {
+  bool isChecked =false;
   @override
   Widget build(BuildContext context) {
-    bool isChecked = false;
     return Column(
       children: [
         CheckboxListTile(
-          // enabled: true,
-          activeColor:
-          AppColors.darkOrange,
-          checkColor: AppColors.white,
           value: isChecked,
-          onChanged: (value) {
+          onChanged: (bool? newValue) {
             setState(() {
-              isChecked = value!;
+              isChecked = newValue!;
             });
           },
+          activeColor: AppColors.darkBlue,
+          checkColor: AppColors.white,
+
           side: MaterialStateBorderSide
               .resolveWith(
-                (states) => BorderSide(
+                (states) => const BorderSide(
                 width: 1.4,
                 color: AppColors.darkBlue
-                ),
+            ),
           ),
           secondary: SizedBox(
               width: 40,
               height: 50,
-              child: Image.asset(
-                  "image/fav.jpg"),
-            ),
+              child: Image.asset("image/fav.jpg")),
           title: DefaultText(
             text: 'Cairo',
             textColor: AppColors.darkBlue,
             fontWeight: FontWeight.bold,
+            textAlign: TextAlign.start,
           ),
-          subtitle: DefaultText(
+          subtitle:  DefaultText(
             text: '3 Saved',
             textColor: AppColors.darkBlue,
+            textAlign: TextAlign.start,
           ),
         ),
         const Divider(
-          color:AppColors.zety,
           height: 0,
-          thickness: .2,
-          endIndent: 20,
+          thickness: .8,
           indent: 20,
-        )
+           endIndent: 20,
+          color: AppColors.darkGrey,
+        ),
       ],
     );
   }

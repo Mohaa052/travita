@@ -4,8 +4,9 @@ import 'package:travita/Component/colors/colors.dart';
 import 'package:travita/Component/navigator.dart';
 import 'package:travita/Component/widgets/button/default_button.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
-
-import '../../Component/widgets/category/category_of_type_the_favourit.dart';
+import 'package:travita/UI/final_plan/widgets/category%20of%20plan.dart';
+import 'package:travita/UI/information%20for%20the%20plan/Widget/location_button.dart';
+import 'package:travita/UI/more_places/widget/one%20place%20in%20more%20places.dart';
 import '../filtration/view.dart';
 
 class MorePlacesByType extends StatelessWidget {
@@ -23,65 +24,33 @@ class MorePlacesByType extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 32, left: 15),
+          padding: const EdgeInsets.only(top: 15, left: 15,right: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  DefaultButton(
-                    onPressed: () {},
-                    width: 122.w,
-                    height: 56.h,
-                    backgroundColor: AppColors.white,
-                    text: "Map",
-                    textColor: AppColors.black,
+                  DefaultText(
+                    text: "Hotels",
+                    textColor: AppColors.darkBlue,
+                    fontSize: 32.sp,
                     fontWeight: FontWeight.w600,
-                    fontSize: 25.sp,
-                    opacity: 1,
-                    borderRadius: 20,
-                    //borderColor: AppColors.black,
                   ),
-                  DefaultButton(
-                    onPressed: () {},
-                    width: 169.w,
-                    height: 56.h,
-                    backgroundColor: AppColors.white,
-                    text: "Apr 12 -> 16",
-                    textColor: AppColors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20.sp,
-                    opacity: 1,
-                    borderRadius: 20,
-                    //borderColor: AppColors.black,
-                  ),
-                  DefaultButton(
-                    onPressed: () {
-                      defaultNavigator(context, Filtration());
-                    },
-                    width: 91.w,
-                    height: 56.h,
-                    backgroundColor: AppColors.white,
-                    text: "2",
-                    textColor: AppColors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20.sp,
-                    opacity: 1,
-                    borderRadius: 20,
-                    //borderColor: AppColors.black,
-                  ),
+
+                  // LocationButton(
+                  //   height: 56.h,
+                  //   width: 163.w,
+                  //   fontSize: 25.sp,
+                  //   text: "Filters",
+                  //   icon: Icons.filter,
+                  //   onTap: (){
+                  //     defaultNavigator(context, const FiltrationScreen());
+                  //   },
+                  // ),
                 ],
               ),
-              SizedBox(
-                height: 30.h,
-              ),
-              DefaultText(
-                text: "Hotels",
-                textColor: AppColors.darkBlue,
-                fontSize: 32.sp,
-                fontWeight: FontWeight.w600,
-              ),
+              SizedBox(height: 5.h,),
               DefaultText(
                 text: "500 of 600 places are avaliable, sorted by best value",
                 fontSize: 16.sp,
@@ -101,14 +70,19 @@ class MorePlacesByType extends StatelessWidget {
               ),
               ListView.separated(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                separatorBuilder: (context, index) => Divider(
-                  height: 15,
-                  thickness: .6,
-                  color: AppColors.darkBlue,
+                physics: const NeverScrollableScrollPhysics(),
+                separatorBuilder: (context, index) => const Column(
+                  children: [
+                    OnePlaceInMorePlace(),
+                    Divider(
+                      height: 0,
+                      color: AppColors.darkBlue,
+                      thickness: .5,
+                    ),
+                  ],
                 ),
                 itemCount: 10,
-                itemBuilder: (context, index) => SizedBox(),
+                itemBuilder: (context, index) =>  SizedBox(height: 10.h,),
               ),
             ],
           ),

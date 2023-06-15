@@ -1,14 +1,14 @@
+
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travita/Component/widgets/button/DefaultOutlindedButton.dart';
-import 'package:travita/UI/Search/controller/controller.dart';
-import 'package:travita/UI/Search/controller/states.dart';
 import 'package:travita/UI/Search/widget/Image.dart';
 import 'package:travita/UI/Search/widget/search.dart';
-import 'package:travita/core/app_controller/appController.dart';
 
-import '../../Component/colors/colors.dart';
+import 'controller/controller.dart';
+import 'controller/states.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({
@@ -16,9 +16,9 @@ class SearchScreen extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SearchController(),
-      child: BlocConsumer<SearchController, SearchStates>(
+    return BlocProvider<SearchControllerr>(
+      create: (context) => SearchControllerr(),
+      child: BlocConsumer<SearchControllerr, SearchStates>(
         listener: (context, state) {},
         builder: (context, state) => Scaffold(
           body: Center(
@@ -30,12 +30,12 @@ class SearchScreen extends StatelessWidget {
                 SearchFormField(
                   width: 395.w,
                   height: 55.h,
-                  controller: SearchController.get(context).searchController,
+                  controller: SearchControllerr.get(context).searchController,
                   hintText: "Search",
                 ),
                 if(state is UpLoadPhotoLoading)
                   const LinearProgressIndicator(),
-                if (SearchController.get(context).searchImage != null)
+                if (SearchControllerr.get(context).searchImage != null)
                   SearchImage(),
                 SizedBox(
                   height: 30.h,

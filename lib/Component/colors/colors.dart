@@ -12,3 +12,4 @@ class AppColors {
  static const Color darkGrey = Color(0xFF6C7072);
  static const Color zety = Color(0xFF37474F);
 }
+
