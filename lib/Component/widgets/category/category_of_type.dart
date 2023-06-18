@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
 
 import '../../colors/colors.dart';
-import '../../../UI/Details/view.dart';
+import '../../../UI/Details/view_final_AI_plan.dart';
 
 class CategoryOfTypeThePlace extends StatefulWidget {
   String image;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/UI/information%20for%20the%20plan/view_information.dart';
+import 'package:travita/save_plans/widget/chose_your_plan.dart';
 
 import '../../Component/colors/colors.dart';
 import '../../Component/navigator.dart';
@@ -43,27 +44,49 @@ class ChooseAiOrManualPlanScreen extends StatelessWidget {
               SizedBox(
                 height: 33.h,
               ),
-              DefaultText(
-                text: "Highly recommended plan",
-                textColor: AppColors.blue,
-                fontWeight: FontWeight.w600,
-                fontSize: 20.sp,
-              ),
+
+          DefaultText(
+              text: "Your Plans",
+              textColor: AppColors.blue,
+              fontWeight: FontWeight.w600,
+              fontSize: 20.sp,
+            ),
+
               SizedBox(
                 height: 24.h,
               ),
               SizedBox(
                 height: 240.h,
-                child: ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => const OnePlanWidget(),
-                  separatorBuilder: (context, index) => SizedBox(
-                    width: 20.w,
-                  ),
-                  itemCount: 4,
-                ),
+                child:  Row(
+                  children: [
+                    const SavedAiPlan(),
+                    SizedBox(width: 10.w,),
+                    const SavedManualPlan(),
+                  ],
+                )
               ),
+
+              // DefaultText(
+              //   text: "Highly recommended plan",
+              //   textColor: AppColors.blue,
+              //   fontWeight: FontWeight.w600,
+              //   fontSize: 20.sp,
+              // ),
+              // SizedBox(
+              //   height: 24.h,
+              // ),
+              // SizedBox(
+              //   height: 240.h,
+              //   child: ListView.separated(
+              //     physics: const BouncingScrollPhysics(),
+              //     scrollDirection: Axis.horizontal,
+              //     itemBuilder: (context, index) => const OnePlanWidget(),
+              //     separatorBuilder: (context, index) => SizedBox(
+              //       width: 20.w,
+              //     ),
+              //     itemCount: 4,
+              //   ),
+              // ),
               SizedBox(
                 height: 14.h,
               ),

@@ -31,9 +31,7 @@ class FavouriteScreen extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 10.w,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -43,9 +41,7 @@ class FavouriteScreen extends StatelessWidget {
                 textColor: AppColors.darkBlue,
                 fontSize: 32.sp,
               ),
-              SizedBox(
-                height: 20.h,
-              ),
+              SizedBox(height: 20.h),
               TabBar(
                 indicatorSize: TabBarIndicatorSize.tab,
                 labelPadding: const EdgeInsets.all(8),

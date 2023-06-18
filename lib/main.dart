@@ -9,7 +9,7 @@ import 'package:travita/UI/Search/view_search.dart';
 import 'package:travita/UI/Splash/splash.dart';
 import 'package:travita/UI/ai_plan/view.dart';
 import 'package:travita/UI/category_of_manually_plan/view.dart';
-import 'package:travita/UI/final_plan/view.dart';
+import 'package:travita/UI/final_plan/view_final_AI_plan.dart';
 import 'package:travita/UI/information%20for%20the%20plan/view_information.dart';
 import 'package:travita/UI/layOut/view.dart';
 import 'package:travita/UI/survey/view.dart';
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: child,
         ),
-        child: const InformationThePlan(),
+        child: LayOutScreen(),
       ),
     );
   }

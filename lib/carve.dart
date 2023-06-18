@@ -22,7 +22,7 @@ bool isChecked = false;
           SizedBox(height: 400,
           child: ListView.separated(
             separatorBuilder: (context,index)=>SizedBox(height: 10,),
-            itemBuilder: (context,index)=>const CheckBoxItem(),
+            itemBuilder: (context,index)=> CheckBoxItem(),
             itemCount: 3,
           ),
           ),

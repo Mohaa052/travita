@@ -3,7 +3,9 @@ import '../../../../Component/colors/colors.dart';
 import '../../../../Component/widgets/defaultText.dart';
 
 class CheckBoxItem extends StatefulWidget {
-  const CheckBoxItem({Key? key}) : super(key: key);
+   String? nameTheTrip;
+   CheckBoxItem({super.key, this.nameTheTrip});
+
 
   @override
   State<CheckBoxItem> createState() => _CheckBoxItemState();
@@ -37,7 +39,7 @@ class _CheckBoxItemState extends State<CheckBoxItem> {
               height: 50,
               child: Image.asset("image/fav.jpg")),
           title: DefaultText(
-            text: 'Cairo',
+            text: "cairo",
             textColor: AppColors.darkBlue,
             fontWeight: FontWeight.bold,
             textAlign: TextAlign.start,

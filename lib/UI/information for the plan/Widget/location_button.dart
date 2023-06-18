@@ -16,8 +16,10 @@ class LocationButton extends StatelessWidget {
   double? width;
   double? height;
   double? fontSize;
+  double? iconSize=25;
   Color ? color=Colors.transparent;
   Function? onTap;
+  bool? isBorder =true ;
   LocationButton({super.key,
     this.icon,
     this.text,
@@ -26,6 +28,8 @@ class LocationButton extends StatelessWidget {
     this.fontSize,
     this.color,
     this.onTap,
+    this.iconSize,
+    this.isBorder,
   });
 
   @override
@@ -47,7 +51,7 @@ class LocationButton extends StatelessWidget {
               SizedBox(
                 width: 10.w,
               ),
-              Icon(icon),
+              Icon(icon,size: iconSize,color: AppColors.darkBlue,),
               SizedBox(
                 width: 13.w,
               ),
@@ -55,6 +59,7 @@ class LocationButton extends StatelessWidget {
                 text: text!,
                 fontWeight: FontWeight.w600,
                 fontSize: fontSize!,
+                textColor: AppColors.darkBlue,
               ),
             ],
           )),

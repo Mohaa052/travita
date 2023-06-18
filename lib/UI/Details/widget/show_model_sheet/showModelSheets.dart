@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travita/Component/navigator.dart';
 import 'package:travita/Component/widgets/button/default_button.dart';
 import 'package:travita/UI/Details/widget/show_model_sheet/check_box_item.dart';
 import '../../../../Component/colors/colors.dart';
 import '../../../../Component/widgets/defaultText.dart';
+import '../../../../ex.dart';
 import 'name of trip.dart';
 
 
 class ShowModelSheet extends StatefulWidget {
-  const ShowModelSheet({Key? key}) : super(key: key);
+  // String? nameTheTrip ;
+  const ShowModelSheet({super.key,
+    // this.nameTheTrip
+  });
 
   @override
   State<ShowModelSheet> createState() => _ShowModelSheetState();
@@ -16,6 +21,7 @@ class ShowModelSheet extends StatefulWidget {
 
 class _ShowModelSheetState extends State<ShowModelSheet> {
   bool isChecked =false;
+  List checkBox =[];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,7 +47,7 @@ class _ShowModelSheetState extends State<ShowModelSheet> {
                         separatorBuilder: (context, index) => SizedBox(height: 0.h),
                         itemCount: 3,
                         itemBuilder: (context, index) =>
-                          CheckBoxItem(),
+                           CheckBoxItem(),
                       ),
                     ],
                   ),
@@ -53,6 +59,7 @@ class _ShowModelSheetState extends State<ShowModelSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  /// Create a trip
                   GestureDetector(
                     onTap: (){
                       showModalBottomSheet<void>(
@@ -61,19 +68,24 @@ class _ShowModelSheetState extends State<ShowModelSheet> {
                           return const NameOfTrip();
                         },
                       );
-                    }, child: DefaultText(
+                    },
+                    child: DefaultText(
                     text: "Create a trip",
                     textColor: AppColors.darkOrange,
                     fontWeight: FontWeight.bold,
                     decoration: TextDecoration.underline,
                   ),
                   ),
+                 /// Done
                  DefaultButton(
                    fontWeight: FontWeight.bold,
                      fontSize: 18,
                      borderRadius: 10,
                      opacity: 1,
-                     onPressed: (){},
+                     onPressed: (){
+                     print("object");
+                     defaultNavigator(context, const Ex());
+                     },
                      width: 100,
                    height: 36,
                    backgroundColor: AppColors.darkBlue,
