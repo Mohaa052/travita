@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
-import 'package:travita/UI/final_plan/widgets/category%20of%20plan.dart';
+import 'package:travita/UI/final_plan/widgets/category_of_Aiplan.dart';
 
-class FinalPlanScreen extends StatelessWidget {
-  const FinalPlanScreen({Key? key}) : super(key: key);
+import '../../Component/navigator.dart';
+import '../../Component/widgets/button/default_button.dart';
+
+class FinalAilPlanScreen extends StatelessWidget {
+  const FinalAilPlanScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,27 +52,43 @@ class FinalPlanScreen extends StatelessWidget {
               ),
               /// plan
               ListView.separated(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
+                separatorBuilder: (context, index) => SizedBox(height: 20.h),
+                itemCount: 3,
                 itemBuilder: (context, index) => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     DefaultText(
                       text: 'Day $index',
                       fontWeight: FontWeight.w600,
-                      fontSize: 18.sp,
+                      fontSize: 32.sp,
                       textColor: AppColors.darkBlue,
                     ),
-                    const CategoryOfOnePlaceInFinalPlan(),
+                    const CategoryOfOnePlaceInFinalAIPlan(),
                     const Divider(
                       color: AppColors.darkBlue,
                       thickness: .5,
                     )
                   ],
                 ),
-                separatorBuilder: (context, index) => SizedBox(height: 20.h),
-                itemCount: 6,
+
               ),
+              DefaultButton(
+                onPressed: () {
+                  // defaultNavigator(context, const FinalPlanScreen());
+                },
+                width: 185.w,
+                height: 47.h,
+                backgroundColor: AppColors.darkOrange,
+                text: "Save Plane",
+                borderRadius: 5,
+                fontSize: 20.sp,
+                textColor: AppColors.white,
+                fontWeight: FontWeight.w600,
+                opacity: 1,
+              ),
+              const SizedBox(height: 10,),
             ],
           ),
         ),

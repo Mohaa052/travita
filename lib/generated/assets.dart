@@ -8,6 +8,7 @@ class Assets {
   static const String imageAppBarLogo = 'image/appBarLogo.png';
   static const String imageCasel = 'image/casel.png';
   static const String imageCoffee = 'image/coffee.png';
+  static const String imageDelete = 'image/delete.png';
   static const String imageFacebook = 'image/facebook.png';
   static const String imageFav = 'image/fav.jpg';
   static const String imageFav2 = 'image/fav2.jpg';

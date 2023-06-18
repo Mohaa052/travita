@@ -6,7 +6,7 @@ class DefaultTextButton extends StatelessWidget {
   Color? textColor;
   late Function onPressed;
 
-  DefaultTextButton({
+  DefaultTextButton({super.key,
     required this.text,
     this.textColor,
     required this.onPressed,

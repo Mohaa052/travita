@@ -4,7 +4,6 @@ import 'package:travita/Component/colors/colors.dart';
 import 'package:travita/Component/navigator.dart';
 import 'package:travita/Component/widgets/button/default_button.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
-import 'package:travita/UI/final_plan/widgets/category%20of%20plan.dart';
 import 'package:travita/UI/information%20for%20the%20plan/Widget/location_button.dart';
 import 'package:travita/UI/more_places/widget/one%20place%20in%20more%20places.dart';
 import '../filtration/view.dart';
@@ -71,6 +70,8 @@ class MorePlacesByType extends StatelessWidget {
               ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
+                itemCount: 10,
+                itemBuilder: (context, index) =>  SizedBox(height: 10.h,),
                 separatorBuilder: (context, index) => const Column(
                   children: [
                     OnePlaceInMorePlace(),
@@ -81,8 +82,7 @@ class MorePlacesByType extends StatelessWidget {
                     ),
                   ],
                 ),
-                itemCount: 10,
-                itemBuilder: (context, index) =>  SizedBox(height: 10.h,),
+
               ),
             ],
           ),
