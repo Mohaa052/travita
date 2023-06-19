@@ -71,8 +71,8 @@ class MorePlacesByType extends StatelessWidget {
               ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                separatorBuilder: (context, index) => const Column(
-                  children: [
+                separatorBuilder: (context, index) =>  Column(
+                  children: const [
                     OnePlaceInMorePlace(),
                     Divider(
                       height: 0,

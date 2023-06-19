@@ -40,60 +40,62 @@ class InformationThePlan extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         child: Padding(
           padding: const EdgeInsets.only(left: 32, right: 32, top: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                children: [
-                  DefaultText(
-                    text: "Survey",
-                    fontSize: 25.sp,
-                    fontWeight: FontWeight.w700,
-                    textColor: AppColors.darkBlue,
-                  ),
-                  SizedBox(
-                    height: 11.h,
-                  ),
-                  DefaultText(
-                    text:
-                        " Please, fill in these required information to get the plan that best suits you.",
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w300,
-                    textColor: AppColors.darkGrey,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 40.h,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 1.8,
-                child: ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 3,
-                  separatorBuilder: (context, index) => SizedBox(
-                    height: 38.h,
-                  ),
-                  itemBuilder: (context, index) => SimpleTextFormFiled(
-                    icon: listOfIconInformation[index],
-                    type: listOfInformation[index],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  children: [
+                    DefaultText(
+                      text: "Survey",
+                      fontSize: 25.sp,
+                      fontWeight: FontWeight.w700,
+                      textColor: AppColors.darkBlue,
+                    ),
+                    SizedBox(
+                      height: 11.h,
+                    ),
+                    DefaultText(
+                      text:
+                          " Please, fill in these required information to get the plan that best suits you.",
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w300,
+                      textColor: AppColors.darkGrey,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 40.h,
+                ),
+                SizedBox(
+                  height: 430.h,
+                  child: ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 3,
+                    separatorBuilder: (context, index) => SizedBox(
+                      height: 38.h,
+                    ),
+                    itemBuilder: (context, index) => SimpleTextFormFiled(
+                      icon: listOfIconInformation[index],
+                      type: listOfInformation[index],
+                    ),
                   ),
                 ),
-              ),
-              LocationButton(
-                width: 180.w,
-                height: 60.h,
-                icon: Icons.location_pin,
-                text: "Location",
-                fontSize: 25.sp,
-                onTap: () {
-                  defaultNavigator(context, const DetermineTheStartPosition());
-                },
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  DefaultButton(
+                LocationButton(
+                  width: 180.w,
+                  height: 60.h,
+                  icon: Icons.location_pin,
+                  text: "Location",
+                  fontSize: 25.sp,
+                  onTap: () {
+                    defaultNavigator(
+                        context, const DetermineTheStartPosition());
+                  },
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    DefaultButton(
                       onPressed: () {
                         print("object");
                         defaultNavigator(context, FinalPlanScreen());
@@ -102,14 +104,16 @@ class InformationThePlan extends StatelessWidget {
                       height: 50.h,
                       backgroundColor: AppColors.darkOrange,
                       text: "Done",
-                    borderRadius: 10,
-                    fontSize: 18.sp,
-                    textColor: AppColors.white,fontWeight: FontWeight.w600,
-                    opacity: 1,
-                  ),
-                ],
-              ),
-            ],
+                      borderRadius: 10,
+                      fontSize: 18.sp,
+                      textColor: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                      opacity: 1,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

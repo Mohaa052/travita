@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: child,
         ),
-        child: const InformationThePlan(),
+        child: const LoginScreen(),
       ),
     );
   }

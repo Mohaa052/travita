@@ -39,6 +39,7 @@ class FinalPlanScreen extends StatelessWidget {
               SizedBox(
                 height: 16.h,
               ),
+
               /// text
               DefaultText(
                 text:
@@ -47,6 +48,7 @@ class FinalPlanScreen extends StatelessWidget {
                 fontSize: 12.sp,
                 textColor: AppColors.darkBlue,
               ),
+
               /// plan
               ListView.separated(
                 physics: NeverScrollableScrollPhysics(),
