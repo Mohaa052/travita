@@ -6,7 +6,6 @@ import '../../../../Component/colors/colors.dart';
 import '../../../../Component/widgets/defaultText.dart';
 import 'name of trip.dart';
 
-
 class ShowModelSheet extends StatefulWidget {
   const ShowModelSheet({Key? key}) : super(key: key);
 
@@ -15,7 +14,7 @@ class ShowModelSheet extends StatefulWidget {
 }
 
 class _ShowModelSheetState extends State<ShowModelSheet> {
-  bool isChecked =false;
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,13 +34,12 @@ class _ShowModelSheetState extends State<ShowModelSheet> {
                   child: Column(
                     children: [
                       ListView.separated(
-                        physics:
-                        const NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        separatorBuilder: (context, index) => SizedBox(height: 0.h),
+                        separatorBuilder: (context, index) =>
+                            SizedBox(height: 0.h),
                         itemCount: 3,
-                        itemBuilder: (context, index) =>
-                          CheckBoxItem(),
+                        itemBuilder: (context, index) => CheckBoxItem(),
                       ),
                     ],
                   ),
@@ -54,31 +52,32 @@ class _ShowModelSheetState extends State<ShowModelSheet> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       showModalBottomSheet<void>(
                         context: context,
                         builder: (BuildContext context) {
                           return const NameOfTrip();
                         },
                       );
-                    }, child: DefaultText(
-                    text: "Create a trip",
-                    textColor: AppColors.darkOrange,
+                    },
+                    child: DefaultText(
+                      text: "Create a trip",
+                      textColor: AppColors.darkOrange,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  DefaultButton(
                     fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
+                    fontSize: 18,
+                    borderRadius: 10,
+                    opacity: 1,
+                    onPressed: () {},
+                    width: 100,
+                    height: 36,
+                    backgroundColor: AppColors.darkBlue,
+                    text: "Done",
                   ),
-                  ),
-                 DefaultButton(
-                   fontWeight: FontWeight.bold,
-                     fontSize: 18,
-                     borderRadius: 10,
-                     opacity: 1,
-                     onPressed: (){},
-                     width: 100,
-                   height: 36,
-                   backgroundColor: AppColors.darkBlue,
-                   text: "Done",
-                 ),
                 ],
               ),
             )

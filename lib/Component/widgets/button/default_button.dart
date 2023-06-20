@@ -4,16 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../colors/colors.dart';
 
 class DefaultButton extends StatelessWidget {
-  Function? onPressed;
-  double width;
-  double height;
-  Color backgroundColor;
-  String text;
-  double? fontSize;
-  double? opacity;
-  double? borderRadius;
-  FontWeight? fontWeight;
-  Color? textColor;
+  late final Function() onPressed;
+  late final double width;
+  late final double height;
+  late final Color backgroundColor;
+  late final String text;
+  late final double? fontSize;
+  late final double? opacity;
+  late final double? borderRadius;
+  late final FontWeight? fontWeight;
+  late final Color? textColor;
   DefaultButton({
     required this.onPressed,
     required this.width,
@@ -29,9 +29,7 @@ class DefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        onPressed!();
-      },
+      onTap: onPressed,
       child: Container(
         width: width.w,
         height: height.h,

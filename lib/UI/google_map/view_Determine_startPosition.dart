@@ -1,6 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:travita/core/app_controller/appController.dart';
+
+import '../information for the plan/controller/controller.dart';
 
 class DetermineTheStartPosition extends StatefulWidget {
   const DetermineTheStartPosition({super.key});
@@ -10,8 +12,9 @@ class DetermineTheStartPosition extends StatefulWidget {
 }
 
 class MapSampleState extends State<DetermineTheStartPosition> {
-static double? longitude ;
-static double? latitude ;
+  static double? longitude;
+  static double? latitude;
+
   /// the lat2 and lang2 will be current location or local location
   static double lat = 31.261053668476137;
   static double lang = 32.30693131685257;
@@ -31,8 +34,8 @@ static double? latitude ;
       draggable: true,
       position: LatLng(lat, lang),
       onDragEnd: (LatLng location) {
-          longitude= location.longitude;
-          latitude =location.latitude;
+        longitude = location.longitude;
+        latitude = location.latitude;
       },
       markerId: MarkerId("2"),
     ),
@@ -41,32 +44,31 @@ static double? latitude ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 1.3,
-                  child: GoogleMap(
-                    markers: firstMarker,
-                    mapType: MapType.normal,
-                    initialCameraPosition: _kGooglePlex,
-                    onMapCreated: (GoogleMapController controller) {
-                      gmc = controller;
-                    },
-                  )),
-              TextButton(
-                  onPressed: () {
-                    print("object");
-                    print("the latitude =$latitude");
-                    print("the longitude =$longitude");
-                  },
-                child: Text("Done"),
-              ),
-            ],
-          ),
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            GoogleMap(
+              markers: firstMarker,
+              mapType: MapType.normal,
+              initialCameraPosition: _kGooglePlex,
+              onMapCreated: (GoogleMapController controller) {
+                gmc = controller;
+              },
+            ),
+            TextButton(
+              onPressed: () {
+                print("object");
+                AppController.get(context).longitude = longitude!;
+                AppController.get(context).latitude = latitude!;
+                print("the latitude =$latitude");
+                print("the longitude =$longitude");
+
+                Navigator.pop(context);
+              },
+              child: Text("Done"),
+            ),
+          ],
         ),
       ),
     );

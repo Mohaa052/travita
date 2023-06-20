@@ -198,4 +198,9 @@ class AppController extends Cubit<AppStates> {
       id: detailsModel!.id.toString(),
     );
   }
+  ////////////
+  // AIPlane
+
+  late double longitude;
+  late double latitude;
 }

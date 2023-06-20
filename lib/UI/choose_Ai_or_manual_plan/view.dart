@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/UI/information%20for%20the%20plan/view_information.dart';
+import 'package:travita/UI/make_your_plan_screens/make_your_plan/view.dart';
 
 import '../../Component/colors/colors.dart';
 import '../../Component/navigator.dart';
 import '../../Component/widgets/defaultText.dart';
-import '../category_of_manually_plan/view.dart';
 import 'widgets/onePlanWidget.dart';
 import 'widgets/aiOrManualPlanWidget.dart';
 
@@ -92,7 +92,7 @@ class ChooseAiOrManualPlanScreen extends StatelessWidget {
                 buttonWidth: 244.w,
                 buttonHeight: 46.h,
                 onPressed: () {
-                  defaultNavigator(context, const YourPlanScreen());
+                  defaultNavigator(context, const MakeYourPlanScreen());
                 },
               ),
             ],

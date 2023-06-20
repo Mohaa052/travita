@@ -6,12 +6,17 @@ import '../../colors/colors.dart';
 import 'dfaultTextFormField.dart';
 
 class SimpleTextFormFiled extends StatelessWidget {
-  IconData? icon;
-  String? type;
-  SimpleTextFormFiled({
+  final TextEditingController controller;
+  final String? Function(String?)? validate;
+  //
+  final IconData? icon;
+  final String? type;
+  const SimpleTextFormFiled({
     super.key,
-    this.icon,
-    this.type,
+    required this.icon,
+    required this.type,
+    required this.controller,
+    required this.validate,
   });
 
   @override
@@ -38,7 +43,21 @@ class SimpleTextFormFiled extends StatelessWidget {
         SizedBox(
           height: 16.h,
         ),
-        TextFormField(
+        DefaultFormField(
+          borderColor: AppColors.blue,
+          width: double.infinity,
+          height: 50.h,
+          controller: controller,
+          type: TextInputType.text,
+          validate: validate,
+          textColor: AppColors.blue,
+          cursorColor: AppColors.blue,
+          isPassword: false,
+        ),
+        SizedBox(
+          height: 38.h,
+        ),
+        /*TextFormField(
           decoration: InputDecoration(
             constraints: const BoxConstraints(maxHeight: 50, minHeight: 10),
             enabledBorder: OutlineInputBorder(
@@ -47,7 +66,7 @@ class SimpleTextFormFiled extends StatelessWidget {
             ),
             border: const OutlineInputBorder(),
           ),
-        ),
+        ),*/
       ],
     );
   }

@@ -9,3 +9,5 @@ const String REGISTER = "register";
 const String LOGOUT = "logout";
 
 const String LOGIN = "login";
+
+const String TRIP = "trip";

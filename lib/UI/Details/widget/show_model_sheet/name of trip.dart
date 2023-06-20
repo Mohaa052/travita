@@ -25,13 +25,13 @@ class _NameOfTripState extends State<NameOfTrip> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Padding(
+          /*Padding(
             padding: const EdgeInsets.all(8.0),
             child: SimpleTextFormFiled(
               icon: null,
               type: "Name the trip",
             ),
-          ),
+          ),*/
           // LocationButton(
           //   icon: null,
           //   text: "Create a trip",

@@ -4,23 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
-import 'package:travita/UI/REGISTERATION/LogIN/view.dart';
-import 'package:travita/UI/Search/view_search.dart';
-import 'package:travita/UI/Splash/splash.dart';
-import 'package:travita/UI/ai_plan/view.dart';
-import 'package:travita/UI/category_of_manually_plan/view.dart';
-import 'package:travita/UI/final_plan/view.dart';
-import 'package:travita/UI/information%20for%20the%20plan/view_information.dart';
-import 'package:travita/UI/layOut/view.dart';
-import 'package:travita/UI/survey/view.dart';
-import 'package:travita/carve.dart';
 import 'package:travita/UI/layOut/view.dart';
 import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
 import 'package:travita/firebase_options.dart';
-import 'UI/more_places/view.dart';
+import 'UI/information for the plan/view_information.dart';
+import 'UI/make_your_plan_screens/make_your_plan/view.dart';
+import 'core/bloc_observer/my_bloc_observer.dart';
 import 'core/database/remote/dioHelper/dioHelper.dart';
-import 'ex.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,34 +57,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: child,
         ),
-        child: const LoginScreen(),
+        child: LayOutScreen(),
       ),
     );
-  }
-}
-
-class MyBlocObserver extends BlocObserver {
-  @override
-  void onCreate(BlocBase bloc) {
-    super.onCreate(bloc);
-    print('onCreate -- ${bloc.runtimeType}');
-  }
-
-  @override
-  void onChange(BlocBase bloc, Change change) {
-    super.onChange(bloc, change);
-    print('onChange -- ${bloc.runtimeType}, $change');
-  }
-
-  @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    print('onError -- ${bloc.runtimeType}, $error');
-    super.onError(bloc, error, stackTrace);
-  }
-
-  @override
-  void onClose(BlocBase bloc) {
-    super.onClose(bloc);
-    print('onClose -- ${bloc.runtimeType}');
   }
 }
