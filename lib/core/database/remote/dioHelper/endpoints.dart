@@ -11,3 +11,8 @@ const String LOGOUT = "logout";
 const String LOGIN = "login";
 
 const String TRIP = "trip";
+const String TRIP_PLACES = "trip-places";
+
+const String SEARCH_RESULT = "search-result";
+
+const String SEARCH_IMAGE = "search-image";

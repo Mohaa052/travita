@@ -31,8 +31,8 @@ class DefaultButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        width: width.w,
-        height: height.h,
+        width: width,
+        height: height,
         decoration: BoxDecoration(
           color: backgroundColor.withOpacity(opacity!),
           borderRadius: BorderRadius.circular(borderRadius!),

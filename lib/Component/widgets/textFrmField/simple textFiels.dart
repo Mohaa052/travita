@@ -8,6 +8,7 @@ import 'dfaultTextFormField.dart';
 class SimpleTextFormFiled extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validate;
+  final Color borderColor;
   //
   final IconData? icon;
   final String? type;
@@ -17,6 +18,7 @@ class SimpleTextFormFiled extends StatelessWidget {
     required this.type,
     required this.controller,
     required this.validate,
+    this.borderColor = AppColors.blue,
   });
 
   @override
@@ -44,7 +46,7 @@ class SimpleTextFormFiled extends StatelessWidget {
           height: 16.h,
         ),
         DefaultFormField(
-          borderColor: AppColors.blue,
+          borderColor: borderColor,
           width: double.infinity,
           height: 50.h,
           controller: controller,

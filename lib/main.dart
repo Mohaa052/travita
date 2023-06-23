@@ -4,12 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
-import 'package:travita/UI/layOut/view.dart';
+import 'package:travita/screens/AI_plan_survey/view.dart';
+import 'package:travita/screens/REGISTERATION/LogIN/view.dart';
+import 'package:travita/screens/layOut/view.dart';
+import 'package:travita/screens/make_your_plan_screens/make_your_plan/view.dart';
 import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
 import 'package:travita/firebase_options.dart';
-import 'UI/information for the plan/view_information.dart';
-import 'UI/make_your_plan_screens/make_your_plan/view.dart';
 import 'core/bloc_observer/my_bloc_observer.dart';
 import 'core/database/remote/dioHelper/dioHelper.dart';
 
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: child,
         ),
-        child: LayOutScreen(),
+        child: LoginScreen(),
       ),
     );
   }

@@ -95,8 +95,8 @@ class DioHelper {
   }
 
   static Future<Response?> putPlacesInTrip({
-    required String tripId,
-    required String placeId,
+    required int tripId,
+    required int placeId,
     required String placeType,
     required String endPoint,
   }) async {
@@ -105,7 +105,7 @@ class DioHelper {
     dio!.options.baseUrl = AppConstants.baseUrl;
 
     return await dio!.post(
-      "survey",
+      endPoint,
       data: {
         "trip_id": tripId,
         "trippable_type": placeType,
@@ -114,13 +114,44 @@ class DioHelper {
     );
   }
 
-  static Future<Response?> getTrips({required String endPoint}) async {
+  static Future<Response?> getTrips({
+    required String endPoint,
+  }) async {
     dio!.options.headers['Authorization'] =
         'Bearer ${AppConstants.accessToken}';
     dio!.options.baseUrl = AppConstants.baseUrl;
 
     return await dio!.get(
       endPoint,
+    );
+  }
+
+  //////////////////////////////////////////////
+  static Future<Response?> uploadSearchImageLink({
+    required String imageLink,
+    required String endpoint,
+  }) async {
+    dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';
+    dio!.options.baseUrl = AppConstants.baseUrl;
+
+    return await dio!.post(
+      data: {
+        "image": imageLink,
+      },
+      endpoint,
+    );
+  }
+
+  static Future<Response?> getSearchResult({
+    required String endpoint,
+  }) async {
+    dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';
+    dio!.options.baseUrl = AppConstants.baseUrl;
+
+    return await dio!.get(
+      endpoint,
     );
   }
   //////////////////////////////////////////////

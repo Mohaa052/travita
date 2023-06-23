@@ -27,5 +27,4 @@ class Assets {
   static const String imageVector2 = 'image/Vector2.png';
   static const String imageVector3 = 'image/Vector3.png';
   static const String imageVector4 = 'image/Vector4.png';
-
 }
