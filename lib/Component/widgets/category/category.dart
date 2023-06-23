@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/navigator.dart';
 
-import '../../../UI/Places_of_type/Models/restaurantsModel.dart';
+import '../../../screens/Places_of_type/Models/restaurantsModel.dart';
 import '../../colors/colors.dart';
 import '../defaultText.dart';
 

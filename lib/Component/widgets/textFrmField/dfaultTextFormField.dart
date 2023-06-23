@@ -1,20 +1,22 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../colors/colors.dart';
 
 class DefaultFormField extends StatelessWidget {
-  late double width;
+  late final double width;
   late double height;
-  late TextEditingController controller;
-  late TextInputType type;
+  late final TextEditingController controller;
+  late final TextInputType type;
   final String? Function(String?)? validate;
-  late String hintText;
+  final String? hintText;
   bool? obSecure;
   IconData? prefix;
   IconData? suffix;
   void Function()? suffixButtonPressed;
-  bool isPassword = false;
+  bool isPassword;
+  late final Color borderColor;
+  late final Color cursorColor;
+  late final Color textColor;
 
   DefaultFormField({
     required this.width,
@@ -22,13 +24,15 @@ class DefaultFormField extends StatelessWidget {
     required this.controller,
     required this.type,
     required this.validate,
-    required this.hintText,
-    required this.isPassword,
+    this.hintText,
+    this.isPassword = false,
     this.suffixButtonPressed,
     this.obSecure,
     this.prefix,
     this.suffix,
-
+    this.borderColor = AppColors.white,
+    this.textColor = AppColors.white,
+    this.cursorColor = AppColors.white,
     //this.onSubmit,
   });
 
@@ -38,8 +42,10 @@ class DefaultFormField extends StatelessWidget {
       width: width,
       height: height,
       child: TextFormField(
-        style: const TextStyle(color: AppColors.white),
-        cursorColor: AppColors.white,
+        style: TextStyle(
+          color: textColor,
+        ),
+        cursorColor: cursorColor,
         keyboardType: type,
         controller: controller,
         obscureText: obSecure ?? false,
@@ -62,14 +68,14 @@ class DefaultFormField extends StatelessWidget {
           // prefix: prefix != null ? Icon(prefix) : null,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.r),
-            borderSide: const BorderSide(
-              color: AppColors.white,
+            borderSide: BorderSide(
+              color: borderColor,
             ),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.r),
-            borderSide: const BorderSide(
-              color: AppColors.white,
+            borderSide: BorderSide(
+              color: borderColor,
             ),
           ),
         ),
@@ -77,4 +83,3 @@ class DefaultFormField extends StatelessWidget {
     );
   }
 }
-

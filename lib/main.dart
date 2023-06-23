@@ -4,11 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
-import 'package:travita/UI/REGISTERATION/LogIN/view.dart';
-import 'package:travita/UI/layOut/view.dart';
+import 'package:travita/screens/AI_plan_survey/view.dart';
+import 'package:travita/screens/REGISTERATION/LogIN/view.dart';
+import 'package:travita/screens/layOut/view.dart';
+import 'package:travita/screens/make_your_plan_screens/make_your_plan/view.dart';
 import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
 import 'package:travita/firebase_options.dart';
+import 'core/bloc_observer/my_bloc_observer.dart';
 import 'core/database/remote/dioHelper/dioHelper.dart';
 
 Future<void> main() async {
@@ -58,31 +61,5 @@ class MyApp extends StatelessWidget {
         child: LoginScreen(),
       ),
     );
-  }
-}
-
-class MyBlocObserver extends BlocObserver {
-  @override
-  void onCreate(BlocBase bloc) {
-    super.onCreate(bloc);
-    print('onCreate -- ${bloc.runtimeType}');
-  }
-
-  @override
-  void onChange(BlocBase bloc, Change change) {
-    super.onChange(bloc, change);
-    print('onChange -- ${bloc.runtimeType}, $change');
-  }
-
-  @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    print('onError -- ${bloc.runtimeType}, $error');
-    super.onError(bloc, error, stackTrace);
-  }
-
-  @override
-  void onClose(BlocBase bloc) {
-    super.onClose(bloc);
-    print('onClose -- ${bloc.runtimeType}');
   }
 }

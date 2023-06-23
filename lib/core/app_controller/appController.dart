@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:travita/core/app_constants/constants.dart';
 
-import '../../UI/Favourite/models.dart';
-import '../../UI/Places_of_type/Models/restaurantsModel.dart';
-import '../../UI/REGISTERATION/model.dart';
+import '../../screens/Favourite/models.dart';
+import '../../screens/Places_of_type/Models/restaurantsModel.dart';
+import '../../screens/REGISTERATION/model.dart';
 import '../database/remote/dioHelper/dioHelper.dart';
 import '../database/remote/dioHelper/endpoints.dart';
 import 'appStates.dart';
@@ -182,14 +182,23 @@ class AppController extends Cubit<AppStates> {
 
   DetailsModel? detailsModel;
   List<DetailsModel>? detailsModels;
-  bool isFavorite = false;
+  bool? isFavorite = false;
 
   void newDetails({
     required int index,
   }) {
-    detailsModel = detailsModels![index];
-    checkIfDetailsExisted();
+    isFavorite = null;
     emit(DetailsNewItem());
+    detailsModel = detailsModels![index];
+    check();
+    emit(DetailsNewItem());
+  }
+
+  void check() {
+    isFavorite = checkIfExisted(
+      type: detailsModel!.favoriteType,
+      id: detailsModel!.id.toString(),
+    );
   }
 
   Future<void> checkIfDetailsExisted() async {
@@ -198,4 +207,9 @@ class AppController extends Cubit<AppStates> {
       id: detailsModel!.id.toString(),
     );
   }
+  ////////////
+  // AIPlane
+
+  late double longitude;
+  late double latitude;
 }

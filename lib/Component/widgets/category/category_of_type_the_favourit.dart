@@ -3,29 +3,32 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rate/rate.dart';
 import 'package:travita/Component/navigator.dart';
-import 'package:travita/UI/Places_of_type/Models/restaurantsModel.dart';
 import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
 
+import '../../../screens/Details/view.dart';
+import '../../../screens/Places_of_type/Models/restaurantsModel.dart';
 import '../../colors/colors.dart';
-import '../../../UI/Details/view.dart';
 import '../defaultText.dart';
 
 class CategoryOfTypeTheFavourite extends StatelessWidget {
   late final DetailsModel favoriteItem;
   late final int index;
+  late final void Function() onPressed;
   late bool isHurtShown = true;
 
   CategoryOfTypeTheFavourite({
     super.key,
     required this.favoriteItem,
     required this.index,
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: () {
+        onPressed();
         defaultNavigator(context, const DetailsScreen());
       },
       icon: Container(

@@ -78,6 +78,84 @@ class DioHelper {
 
   //////////////////////////////////////////////
 
+  static Future<Response?> createManualTrip({
+    required String tripName,
+    required String endPoint,
+  }) async {
+    dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';
+    dio!.options.baseUrl = AppConstants.baseUrl;
+
+    return await dio!.post(
+      endPoint,
+      data: {
+        "name": tripName,
+      },
+    );
+  }
+
+  static Future<Response?> putPlacesInTrip({
+    required int tripId,
+    required int placeId,
+    required String placeType,
+    required String endPoint,
+  }) async {
+    dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';
+    dio!.options.baseUrl = AppConstants.baseUrl;
+
+    return await dio!.post(
+      endPoint,
+      data: {
+        "trip_id": tripId,
+        "trippable_type": placeType,
+        "trippable_id": placeId,
+      },
+    );
+  }
+
+  static Future<Response?> getTrips({
+    required String endPoint,
+  }) async {
+    dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';
+    dio!.options.baseUrl = AppConstants.baseUrl;
+
+    return await dio!.get(
+      endPoint,
+    );
+  }
+
+  //////////////////////////////////////////////
+  static Future<Response?> uploadSearchImageLink({
+    required String imageLink,
+    required String endpoint,
+  }) async {
+    dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';
+    dio!.options.baseUrl = AppConstants.baseUrl;
+
+    return await dio!.post(
+      data: {
+        "image": imageLink,
+      },
+      endpoint,
+    );
+  }
+
+  static Future<Response?> getSearchResult({
+    required String endpoint,
+  }) async {
+    dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';
+    dio!.options.baseUrl = AppConstants.baseUrl;
+
+    return await dio!.get(
+      endpoint,
+    );
+  }
+  //////////////////////////////////////////////
+
   static Future<Response> getData({
     required String baseUrl,
     required String url,
