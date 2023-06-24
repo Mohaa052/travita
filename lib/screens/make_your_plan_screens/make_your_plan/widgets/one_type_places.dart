@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
+import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/screens/make_your_plan_screens/make_your_plan/widgets/view_more_button.dart';
 
 import '../../../../Component/colors/colors.dart';
@@ -54,6 +55,10 @@ class AttractionsWidget extends StatelessWidget {
               ),
               ViewMoreButtonWidget(
                 onTap: () {
+                  /////////////////////////////// making the DetailsModelsssssssssss in the appController
+                  AppController.get(context).detailsModels =
+                      MakeYourPlanController.get(context).attractions!.data;
+                  //////////////////////////////
                   defaultNavigator(
                     context,
                     MorePlacesScreen(
@@ -116,6 +121,10 @@ class HotelsWidget extends StatelessWidget {
               ),
               ViewMoreButtonWidget(
                 onTap: () {
+                  /////////////////////////////// making the DetailsModelsssssssssss in the appController
+                  AppController.get(context).detailsModels =
+                      MakeYourPlanController.get(context).hotels!.data;
+                  //////////////////////////////
                   defaultNavigator(
                       context,
                       MorePlacesScreen(
@@ -183,6 +192,10 @@ class RestaurantsWidget extends StatelessWidget {
         ),
         ViewMoreButtonWidget(
           onTap: () {
+            /////////////////////////////// making the DetailsModelsssssssssss in the appController
+            AppController.get(context).detailsModels =
+                MakeYourPlanController.get(context).restaurant!.data;
+            //////////////////////////////
             defaultNavigator(
                 context,
                 MorePlacesScreen(
