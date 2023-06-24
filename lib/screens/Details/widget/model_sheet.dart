@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
 import 'package:travita/core/app_controller/appController.dart';
-import 'package:travita/screens/Places_of_type/Models/restaurantsModel.dart';
 
 import '../../../Component/widgets/defaultText.dart';
 

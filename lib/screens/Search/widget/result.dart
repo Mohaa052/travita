@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/screens/Search/controller/controller.dart';
+import 'package:travita/screens/Search/widget/search_result_place.dart';
 
 import '../../../Component/navigator.dart';
 import '../../../Component/widgets/category/category.dart';
@@ -15,17 +16,18 @@ class SearchResultWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: GridView.builder(
+      child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemCount: SearchImageController.get(context).searchResult!.data.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        /*gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 10.h,
           crossAxisSpacing: 10.w,
           childAspectRatio: 2.w / 2.6.h,
-        ),
-        itemBuilder: (BuildContext context, int index) => Category(
-          onTap: () {
+        ),*/
+        itemBuilder: (BuildContext context, int index) =>
+            SearchResultPlaceWidget(
+          /*onPressed: () {
             AppController.get(context).detailsModel =
                 SearchImageController.get(context).searchResult!.data[index];
             AppController.get(context).detailsModels =
@@ -34,9 +36,8 @@ class SearchResultWidget extends StatelessWidget {
               context,
               const DetailsScreen(),
             );
-          },
-          detailsModel:
-              SearchImageController.get(context).searchResult!.data[index],
+          },*/
+          place: SearchImageController.get(context).searchResult!.data[index],
         ),
       ),
     );

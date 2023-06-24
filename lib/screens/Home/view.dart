@@ -6,12 +6,13 @@ import 'package:travita/screens/Places_of_type/view.dart';
 import '../../Component/colors/colors.dart';
 import '../../Component/navigator.dart';
 import '../../Component/widgets/button/default_button.dart';
-import '../../Component/widgets/category/category.dart';
 import 'controller.dart';
 import 'testingModel.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeController controller = HomeController();
+
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
