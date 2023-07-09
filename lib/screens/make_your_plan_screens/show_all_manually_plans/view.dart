@@ -2,28 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
+import 'package:travita/Component/navigator.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
-import 'package:travita/screens/make_your_plan_screens/more_places/controller/controller.dart';
-import 'package:travita/screens/make_your_plan_screens/show_manually_plan/widgets/place_manual.dart';
+import 'package:travita/screens/make_your_plan_screens/show_all_manually_plans/widgets/trip.dart';
 
-import '../../../Component/widgets/category/category_of_type_the_favourit.dart';
+import '../more_places/controller/controller.dart';
 import '../more_places/controller/states.dart';
-import '../show_all_manually_plans/widgets/trip.dart';
-import 'controller/controller.dart';
-import 'controller/states.dart';
+import '../show_manually_plan/view.dart';
 
-class ShowManuallyPlan extends StatelessWidget {
-  late final int tripId;
-
-  ShowManuallyPlan({required this.tripId});
+class ShowAllManualPlansScreen extends StatelessWidget {
+  const ShowAllManualPlansScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ShowManualPlanController>(
-      create: (context) => ShowManualPlanController()
-        ..getTripPlaces(
-          tripId: tripId,
-        ),
+    return BlocProvider(
+      create: (context) => MorePlacesController()..getAllTrips(),
       child: Scaffold(
         appBar: AppBar(
           titleSpacing: 0,
@@ -46,7 +39,7 @@ class ShowManuallyPlan extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DefaultText(
-                text: 'Your Trip',
+                text: 'Your Trips',
                 textColor: AppColors.darkBlue,
                 fontSize: 32.sp,
                 fontWeight: FontWeight.w700,
@@ -54,10 +47,10 @@ class ShowManuallyPlan extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              BlocConsumer<ShowManualPlanController, ShowTripStates>(
+              BlocConsumer<MorePlacesController, MorePlaces>(
                 listener: (context, state) {},
                 builder: (context, state) {
-                  if (state is GetTripSuccess) {
+                  if (state is GetTripsSuccess) {
                     return Expanded(
                       child: ListView.separated(
                         separatorBuilder: (context, index) => Divider(
@@ -67,19 +60,17 @@ class ShowManuallyPlan extends StatelessWidget {
                           endIndent: 20.w,
                           color: AppColors.darkGrey,
                         ),
-                        itemCount: ShowManualPlanController.get(context)
-                            .places
-                            .data
-                            .allFavorites
-                            .length,
-                        itemBuilder: (context, index) => PlaceManualWidget(
-                            place: ShowManualPlanController.get(context)
-                                .places
-                                .data
-                                .allFavorites[index]),
+                        itemCount: MorePlacesController.get(context)
+                            .tripsModel!
+                            .trips.length,
+                        itemBuilder: (context, index) => OneManuallyPlanWidget(
+                          trip: MorePlacesController.get(context)
+                              .tripsModel!
+                              .trips[index],
+                        ),
                       ),
                     );
-                  } else if (state is GetTripError) {
+                  } else if (state is GetTripsError) {
                     return Expanded(
                         child: Center(
                       child: DefaultText(text: "Oops !"),
@@ -99,12 +90,3 @@ class ShowManuallyPlan extends StatelessWidget {
     );
   }
 }
-//Expanded(
-//                         child: Center(
-//                       child: CircularProgressIndicator(),
-//                     ))
-/////////////////////////
-//Expanded(
-//                         child: Center(
-//                       child: DefaultText(text: "Oops !"),
-//                     ))

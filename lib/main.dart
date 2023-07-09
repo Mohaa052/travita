@@ -5,12 +5,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
 import 'package:travita/screens/AI_plan_survey/view.dart';
+import 'package:travita/screens/Profile/profile.dart';
 import 'package:travita/screens/REGISTERATION/LogIN/view.dart';
+import 'package:travita/screens/REGISTERATION/SignUp/view.dart';
+import 'package:travita/screens/Search/SearcHTest.dart';
+import 'package:travita/screens/Search/view_search.dart';
+import 'package:travita/screens/Splash/splash.dart';
 import 'package:travita/screens/layOut/view.dart';
 import 'package:travita/screens/make_your_plan_screens/make_your_plan/view.dart';
 import 'package:travita/core/app_controller/appController.dart';
 import 'package:travita/core/app_controller/appStates.dart';
 import 'package:travita/firebase_options.dart';
+import 'package:travita/screens/make_your_plan_screens/show_all_manually_plans/view.dart';
+import 'package:travita/screens/show_AI_plan/testAIPlan.dart';
+import 'package:travita/screens/show_AI_plan/view.dart';
+import 'package:travita/screens/survey/view.dart';
 import 'core/bloc_observer/my_bloc_observer.dart';
 import 'core/database/remote/dioHelper/dioHelper.dart';
 
@@ -58,7 +67,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: child,
         ),
-        child: LoginScreen(),
+        child: LayOutScreen(),
       ),
     );
   }

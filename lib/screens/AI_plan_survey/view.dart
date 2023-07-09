@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
+import 'package:travita/Component/navigate_and_finish.dart';
 import 'package:travita/Component/widgets/button/DefaultOutlindedButton.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
 import 'package:travita/screens/AI_plan_survey/Widget/location_button.dart';
 import 'package:travita/screens/AI_plan_survey/controller/states.dart';
-import 'package:travita/core/app_controller/appController.dart';
 
 import '../google_map/view_Determine_startPosition.dart';
+import '../show_AI_plan/view.dart';
 import 'Widget/form.dart';
 import 'controller/controller.dart';
 
@@ -26,7 +27,11 @@ class AIPlanSurveyScreen extends StatelessWidget {
             currentState is DetermineStatePosition ||
             currentState is AIPlanInitial,
         ////////////////////////
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is CreateAIPlanLoading) {
+            navigateAndFinish(context: context, newScreen: ShowAIPlanScreen());
+          }
+        },
         builder: (context, state) {
           if (state is DetermineStatePosition) {
             return const DetermineTheStartPositionScreen();
@@ -100,24 +105,33 @@ class AIPlanSurveyScreen extends StatelessWidget {
                       ),
                       Align(
                         alignment: Alignment.centerRight,
-                        child: DefaultOutlinedButton(
-                          onPressed: () {
-                            AIPlanSurveyController.get(context).createAiPlan(
-                              latitude: AppController.get(context).latitude,
-                              longitude: AppController.get(context).longitude,
-                              context: context,
-                            ); //print("object");
-                            //defaultNavigator(context, const FinalPlanScreen());
-                          },
-                          width: 120.w,
-                          height: 50.h,
-                          backgroundColor: AppColors.darkOrange,
-                          text: "Done",
-                          textColor: AppColors.white,
-                          borderRadius: 10,
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        child: state is CreateAIPlanLoading
+                            ? const Center(
+                                child: CircularProgressIndicator(),
+                              )
+                            : DefaultOutlinedButton(
+                                onPressed: () {
+                                  AIPlanSurveyController.get(context)
+                                      .createAiPlan(
+                                    latitude:
+                                        AIPlanSurveyController.get(context)
+                                            .latitude,
+                                    longitude:
+                                        AIPlanSurveyController.get(context)
+                                            .longitude,
+                                    context: context,
+                                  ); //print("object");
+                                  //defaultNavigator(context, const FinalPlanScreen());
+                                },
+                                width: 120.w,
+                                height: 50.h,
+                                backgroundColor: AppColors.darkOrange,
+                                text: "Done",
+                                textColor: AppColors.white,
+                                borderRadius: 10,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
                       ),
                     ],
                   ),

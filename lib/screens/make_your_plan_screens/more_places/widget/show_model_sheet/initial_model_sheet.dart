@@ -53,12 +53,10 @@ class InitialModelSheetWidget extends StatelessWidget {
                 onPressed: () {
                   MorePlacesController.get(context)
                       .putPlaceInMoreThanOneTrip(
-                    placeType: placeDetails.favoriteType,
-                    placeId: placeDetails.id,
-                  )
-                      .then((value) {
-                    MorePlacesController.get(context).ensureAllIsAdded();
-                  });
+                        placeType: placeDetails.favoriteType!,
+                        placeId: placeDetails.id!,
+                      )
+                      .then((value) {});
                 },
                 width: 100.w,
                 height: 36.h,

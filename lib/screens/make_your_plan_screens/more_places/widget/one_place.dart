@@ -32,7 +32,7 @@ class OnePlaceInMorePlaceWidget extends StatelessWidget {
             place.image!,
             height: 166.h,
             width: 183.w,
-            fit: BoxFit.contain,
+            fit: BoxFit.cover,
           ),
           label: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/colors/colors.dart';
+import 'package:travita/Component/navigate_and_finish.dart';
+import 'package:travita/Component/navigator.dart';
+import 'package:travita/Component/widgets/button/DefaultOutlindedButton.dart';
 import 'package:travita/Component/widgets/defaultText.dart';
 import 'package:travita/core/app_constants/constants.dart';
+import 'package:travita/screens/REGISTERATION/LogIN/view.dart';
+import 'package:travita/screens/make_your_plan_screens/show_all_manually_plans/view.dart';
 
 import '../../Component/widgets/button/default_button.dart';
 
@@ -14,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
           ),
           onPressed: () {
@@ -36,11 +41,11 @@ class ProfileScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       backgroundImage: AssetImage("image/fav.jpg"),
                       radius: 60,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     DefaultText(
@@ -51,16 +56,6 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 6.h,
-                    ),
-                    SizedBox(
-                      width: 306.w,
-                      child: DefaultText(
-                        text:
-                            "I am mane lover to travel,traking and tack photo ",
-                        fontWeight: FontWeight.w600,
-                        textColor: AppColors.ofBlue,
-                        fontSize: 16,
-                      ),
                     ),
                     Divider(
                       color: AppColors.zety,
@@ -83,12 +78,12 @@ class ProfileScreen extends StatelessWidget {
                       fontSize: 25,
                       fontWeight: FontWeight.w600,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Row(
                       children: [
-                        Container(
+                        SizedBox(
                           width: 66,
                           height: 66,
                           child: Image.asset(
@@ -96,7 +91,7 @@ class ProfileScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Column(
@@ -118,7 +113,7 @@ class ProfileScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     DefaultText(
@@ -127,7 +122,7 @@ class ProfileScreen extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     SizedBox(
@@ -143,46 +138,79 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Column(
                 children: [
                   DefaultButton(
-                      onPressed: () {},
-                      width: 258,
-                      height: 40,
-                      backgroundColor: AppColors.darkOrange,
-                      text: " Write a review",
+                    onPressed: () {},
+                    width: 258,
+                    height: 40,
+                    backgroundColor: AppColors.darkOrange,
+                    text: " Write a review",
                     textColor: AppColors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     borderRadius: 10,
                     opacity: 1,
                   ),
-                  Divider(color: AppColors.zety, thickness: 1.2.h,),
+                  Divider(
+                    color: AppColors.zety,
+                    thickness: 1.2.h,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      DefaultText(text: "Account info",
-                      fontWeight: FontWeight.w600,
+                      DefaultText(
+                        text: "Account info",
+                        fontWeight: FontWeight.w600,
                         textColor: AppColors.darkBlue,
                         fontSize: 20,
                       ),
                       Image.asset('image/add.png'),
                     ],
                   ),
-                  Divider(color: AppColors.zety, thickness: 1.2.h,),
-                  Row(
-                    children: [
-                      DefaultText(
-                        text: ' Your trips ',
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20,
-                      ),
-                    ],
+                  Divider(
+                    color: AppColors.zety,
+                    thickness: 1.2.h,
                   ),
-                  Divider(color: AppColors.zety, thickness: 1.2.h,),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: TextButton(
+                        onPressed: () {
+                          defaultNavigator(
+                              context, const ShowAllManualPlansScreen());
+                        },
+                        child: DefaultText(
+                          text: 'Your trips',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+                          textColor: AppColors.darkBlue,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Divider(
+                    color: AppColors.zety,
+                    thickness: 1.2.h,
+                  ),
                 ],
               ),
+              DefaultOutlinedButton(
+                onPressed: () {
+                  navigateAndFinish(
+                      context: context, newScreen: const LoginScreen());
+                },
+                width: 100,
+                height: 50,
+                backgroundColor: AppColors.darkOrange,
+                text: "Log Out",
+                textColor: AppColors.white,
+              )
             ],
           ),
         ),

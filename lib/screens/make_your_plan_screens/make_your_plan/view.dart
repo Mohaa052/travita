@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travita/Component/navigator.dart';
+import 'package:travita/screens/make_your_plan_screens/make_your_plan/controller/states.dart';
 import 'package:travita/screens/make_your_plan_screens/make_your_plan/widgets/one_type_places.dart';
 
 import '../../../Component/colors/colors.dart';
@@ -33,6 +34,7 @@ class MakeYourPlanScreen extends StatelessWidget {
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
                 DefaultText(
                   text: "Make your own plan",
@@ -54,24 +56,36 @@ class MakeYourPlanScreen extends StatelessWidget {
                 SizedBox(
                   height: 24.h,
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 3.6,
-                  child: const AttractionsWidget(
-                    placeType: "Attractions",
-                  ),
+                BlocConsumer<MakeYourPlanController, MakeYourPlanStates>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    if (MakeYourPlanController.get(context).attractions !=
+                            null &&
+                        MakeYourPlanController.get(context).hotels != null &&
+                        MakeYourPlanController.get(context).restaurant !=
+                            null) {
+                      return Column(children: const [
+                        AttractionsWidget(
+                          placeType: "Attractions",
+                        ),
+                        HotelsWidget(
+                          placeType: "Hotels",
+                        ),
+                        RestaurantsWidget(
+                          placeType: "Restaurants",
+                        ),
+                      ]);
+                    } else {
+                      return SizedBox(
+                        height: MediaQuery.of(context).size.height / 1.4,
+                        child: const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
+                  },
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 3.6,
-                  child: const HotelsWidget(
-                    placeType: "Hotels",
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 3.6,
-                  child: const RestaurantsWidget(
-                    placeType: "Restaurants",
-                  ),
-                ),
+
                 /*ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,

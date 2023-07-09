@@ -68,6 +68,7 @@ class Description extends StatelessWidget {
               DefaultText(
                 text: description,
                 textColor: AppColors.darkBlue,
+                textOverflow: TextOverflow.ellipsis,
               ),
             ],
           ),
@@ -96,9 +97,8 @@ class Description extends StatelessWidget {
                   );*/
                   showModalBottomSheet<void>(
                     context: context,
-                    builder: (BuildContext context) => DetailsModelSheetWidget(
-                        //detailsModel: detailsModel,
-                        ),
+                    builder: (BuildContext context) =>
+                        const MoreDetailsWidget(),
                   );
                 },
                 child: const Icon(
@@ -110,7 +110,7 @@ class Description extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
+        /*Positioned(
           left: 290.w,
           top: 5.h,
           child: GestureDetector(
@@ -127,7 +127,7 @@ class Description extends StatelessWidget {
               color: AppColors.darkOrange,
             ),
           ),
-        ),
+        ),*/
       ],
     );
   }

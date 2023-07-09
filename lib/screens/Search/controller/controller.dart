@@ -18,11 +18,12 @@ class SearchImageController extends Cubit<SearchStates> {
   String? imageUrl;
   File? searchImage;
   PlacesModel? searchResult;
+  List<List<List<Map<String, dynamic>?>>>? searchResultList;
 
   Future<void> getSearchImage() async {
     //emit(GetProfileImageLocalLoadingState());
     final pickedImage = await ImagePicker().pickImage(
-      source: ImageSource.camera,
+      source: ImageSource.gallery,
     );
 
     if (pickedImage != null) {
@@ -80,7 +81,9 @@ class SearchImageController extends Cubit<SearchStates> {
   void getSearchResult() {
     emit(GetSearchResultLoading());
     DioHelper.getSearchResult(endpoint: SEARCH_RESULT).then((value) {
-      searchResult = PlacesModel.fromJsonSearchResult(value!.data);
+      print("Status Code is ----------->${value!.statusCode}");
+      searchResult = PlacesModel.fromJsonSearchResult(value.data);
+      print("The id is -------------> ${searchResult!.data[0].name}");
       emit(GetSearchResultSuccess());
     }).catchError((error) {
       print("GetSearchResultError is ---------------->${error.toString()}");

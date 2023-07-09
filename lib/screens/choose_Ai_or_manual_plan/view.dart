@@ -95,6 +95,9 @@ class ChooseAiOrManualPlanScreen extends StatelessWidget {
                   defaultNavigator(context, const MakeYourPlanScreen());
                 },
               ),
+              SizedBox(
+                height: 16.h,
+              ),
             ],
           ),
         ),

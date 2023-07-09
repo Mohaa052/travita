@@ -18,7 +18,7 @@ class AttractionsItemsBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       physics: const BouncingScrollPhysics(),
-      itemCount: placesModel.data.length,
+      itemCount: placesModel.data!.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 10.h,
@@ -27,14 +27,14 @@ class AttractionsItemsBuilder extends StatelessWidget {
       ),
       itemBuilder: (BuildContext context, int index) => Category(
         onTap: () {
-          AppController.get(context).detailsModel = placesModel.data[index];
+          AppController.get(context).detailsModel = placesModel.data![index];
           AppController.get(context).detailsModels = placesModel.data;
           defaultNavigator(
             context,
             const DetailsScreen(),
           );
         },
-        detailsModel: placesModel.data[index],
+        detailsModel: placesModel.data![index],
       ),
     );
   }

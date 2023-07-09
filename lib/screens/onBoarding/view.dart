@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travita/Component/navigator.dart';
+import 'package:travita/Component/widgets/button/DefaultOutlindedButton.dart';
+import 'package:travita/core/app_constants/constants.dart';
+import 'package:travita/screens/REGISTERATION/SignUp/view.dart';
 
 import '../../Component/colors/colors.dart';
 import '../../Component/widgets/defaultText.dart';
@@ -26,6 +30,22 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ),
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: DefaultOutlinedButton(
+                    onPressed: () {
+                      defaultNavigator(context, const SignUpScreen());
+                    },
+                    width: 100.w,
+                    height: 50.h,
+                    backgroundColor: AppColors.darkOrange,
+                    text: "Next",
+                    textColor: AppColors.white,
+                  ),
+                ),
+              ),
               const Spacer(
                 flex: 4,
               ),

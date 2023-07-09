@@ -60,12 +60,12 @@ class FavouriteScreen extends StatelessWidget {
                 enableFeedback: true,
                 // indicatorWeight: 4,
                 tabs: [
-                  DefaultText(
+                  /*DefaultText(
                     text: 'Plans',
                     fontSize: 24.sp,
                     fontWeight: FontWeight.w700,
                     // textColor: AppColors.darkBlue,
-                  ),
+                  ),*/
                   DefaultText(
                     text: 'Places',
                     fontSize: 24.sp,
@@ -80,7 +80,7 @@ class FavouriteScreen extends StatelessWidget {
               Expanded(
                 child: TabBarView(
                   children: [
-                    BlocConsumer<AppController, AppStates>(
+                    /*BlocConsumer<AppController, AppStates>(
                       buildWhen: (previousState, currentState) =>
                           currentState is GetFavoritesSuccess,
                       listener: (context, state) {},
@@ -126,9 +126,9 @@ class FavouriteScreen extends StatelessWidget {
                                   .favoritesModel!
                                   .data
                                   .allFavorites[index],
-                              /*onTap: () {
+                              *//*onTap: () {
                               defaultNavigator(context, Details());
-                            },*/
+                            },*//*
                             ),
                             itemCount: AppController.get(context)
                                 .favoritesModel!
@@ -138,7 +138,7 @@ class FavouriteScreen extends StatelessWidget {
                           );
                         }
                       },
-                    ),
+                    ),*/
                     BlocConsumer<AppController, AppStates>(
                       buildWhen: (previousState, currentState) =>
                           currentState is GetFavoritesSuccess,

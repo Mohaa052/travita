@@ -22,59 +22,46 @@ class AttractionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MakeYourPlanController, MakeYourPlanStates>(
-      buildWhen: (previous, current) => current is DataSuccess,
-      listener: (context, state) {},
-      builder: (context, state) {
-        if (MakeYourPlanController.get(context).attractions != null) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DefaultText(
-                text: placeType,
-                fontSize: 25.sp,
-                fontWeight: FontWeight.w600,
-                textColor: AppColors.darkBlue,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        DefaultText(
+          text: placeType,
+          fontSize: 25.sp,
+          fontWeight: FontWeight.w600,
+          textColor: AppColors.darkBlue,
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+        SizedBox(
+          height: 185.h,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            separatorBuilder: (context, index) => const SizedBox(width: 20),
+            itemCount: 4,
+            itemBuilder: (context, index) => OnePlaceMakeYourPlanWidget(
+              detailsModel:
+                  MakeYourPlanController.get(context).attractions!.data![index],
+            ),
+          ),
+        ),
+        ViewMoreButtonWidget(
+          onTap: () {
+            /////////////////////////////// making the DetailsModelsssssssssss in the appController
+            AppController.get(context).detailsModels =
+                MakeYourPlanController.get(context).attractions!.data;
+            //////////////////////////////
+            defaultNavigator(
+              context,
+              MorePlacesScreen(
+                placeType: "Attractions",
+                places: MakeYourPlanController.get(context).attractions!.data!,
               ),
-              SizedBox(
-                height: 10.h,
-              ),
-              SizedBox(
-                height: 185.h,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(width: 20),
-                  itemCount: 4,
-                  itemBuilder: (context, index) => OnePlaceMakeYourPlanWidget(
-                    detailsModel: MakeYourPlanController.get(context)
-                        .attractions!
-                        .data[index],
-                  ),
-                ),
-              ),
-              ViewMoreButtonWidget(
-                onTap: () {
-                  /////////////////////////////// making the DetailsModelsssssssssss in the appController
-                  AppController.get(context).detailsModels =
-                      MakeYourPlanController.get(context).attractions!.data;
-                  //////////////////////////////
-                  defaultNavigator(
-                    context,
-                    MorePlacesScreen(
-                      placeType: "Attractions",
-                      places:
-                          MakeYourPlanController.get(context).attractions!.data,
-                    ),
-                  );
-                },
-              ),
-            ],
-          );
-        } else {
-          return const Center(child: CircularProgressIndicator());
-        }
-      },
+            );
+          },
+        ),
+      ],
     );
   }
 }
@@ -89,57 +76,44 @@ class HotelsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MakeYourPlanController, MakeYourPlanStates>(
-      buildWhen: (previous, current) => current is DataSuccess,
-      listener: (context, state) {},
-      builder: (context, state) {
-        if (MakeYourPlanController.get(context).hotels != null) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DefaultText(
-                text: placeType,
-                fontSize: 25.sp,
-                fontWeight: FontWeight.w600,
-                textColor: AppColors.darkBlue,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              SizedBox(
-                height: 185.h,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(width: 20),
-                  itemCount: 4,
-                  itemBuilder: (context, index) => OnePlaceMakeYourPlanWidget(
-                      detailsModel: MakeYourPlanController.get(context)
-                          .hotels!
-                          .data[index]),
-                ),
-              ),
-              ViewMoreButtonWidget(
-                onTap: () {
-                  /////////////////////////////// making the DetailsModelsssssssssss in the appController
-                  AppController.get(context).detailsModels =
-                      MakeYourPlanController.get(context).hotels!.data;
-                  //////////////////////////////
-                  defaultNavigator(
-                      context,
-                      MorePlacesScreen(
-                        placeType: "Hotels",
-                        places:
-                            MakeYourPlanController.get(context).hotels!.data,
-                      ));
-                },
-              ),
-            ],
-          );
-        } else {
-          return const Center(child: CircularProgressIndicator());
-        }
-      },
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        DefaultText(
+          text: placeType,
+          fontSize: 25.sp,
+          fontWeight: FontWeight.w600,
+          textColor: AppColors.darkBlue,
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+        SizedBox(
+          height: 185.h,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            separatorBuilder: (context, index) => const SizedBox(width: 20),
+            itemCount: 4,
+            itemBuilder: (context, index) => OnePlaceMakeYourPlanWidget(
+                detailsModel:
+                    MakeYourPlanController.get(context).hotels!.data![index]),
+          ),
+        ),
+        ViewMoreButtonWidget(
+          onTap: () {
+            /////////////////////////////// making the DetailsModelsssssssssss in the appController
+            AppController.get(context).detailsModels =
+                MakeYourPlanController.get(context).hotels!.data;
+            //////////////////////////////
+            defaultNavigator(
+                context,
+                MorePlacesScreen(
+                  placeType: "Hotels",
+                  places: MakeYourPlanController.get(context).hotels!.data!,
+                ));
+          },
+        ),
+      ],
     );
   }
 }
@@ -166,29 +140,17 @@ class RestaurantsWidget extends StatelessWidget {
         SizedBox(
           height: 10.h,
         ),
-        BlocConsumer<MakeYourPlanController, MakeYourPlanStates>(
-          buildWhen: (previous, current) => current is DataSuccess,
-          listener: (context, state) {},
-          builder: (context, state) {
-            if (MakeYourPlanController.get(context).restaurant != null) {
-              return SizedBox(
-                height: 185.h,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(width: 20),
-                  itemCount: 4,
-                  itemBuilder: (context, index) => OnePlaceMakeYourPlanWidget(
-                    detailsModel: MakeYourPlanController.get(context)
-                        .restaurant!
-                        .data[index],
-                  ),
-                ),
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
+        SizedBox(
+          height: 185.h,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            separatorBuilder: (context, index) => const SizedBox(width: 20),
+            itemCount: 4,
+            itemBuilder: (context, index) => OnePlaceMakeYourPlanWidget(
+              detailsModel:
+                  MakeYourPlanController.get(context).restaurant!.data![index],
+            ),
+          ),
         ),
         ViewMoreButtonWidget(
           onTap: () {
@@ -200,7 +162,7 @@ class RestaurantsWidget extends StatelessWidget {
                 context,
                 MorePlacesScreen(
                   placeType: "Restaurants",
-                  places: MakeYourPlanController.get(context).restaurant!.data,
+                  places: MakeYourPlanController.get(context).restaurant!.data!,
                 ));
           },
         ),
