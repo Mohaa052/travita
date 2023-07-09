@@ -16,11 +16,11 @@ class DetailsCategory extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: SizedBox(
-        width: 125.w,
+        width: 140.w,
         child: Column(
           children: [
             Container(
-              height: 141.h,
+              height: 150.h,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.r),

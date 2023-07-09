@@ -7,12 +7,101 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
+        connectTimeout: const Duration(
+          milliseconds: 30000,
+        ),
+        receiveTimeout: const Duration(
+          milliseconds: 30000,
+        ),
         baseUrl: AppConstants.baseUrl,
         receiveDataWhenStatusError: true,
+        validateStatus: (status) => true,
+        followRedirects: false,
       ),
     );
   }
+  ////////////////////////////////////////////
 
+  static Future<Response> getAIPlan({
+    required String endpoint,
+  }) async {
+    /*dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';*/
+    dio!.options.baseUrl = AppConstants.baseUrl;
+    dio!.options = BaseOptions(
+      headers: {'Authorization': 'Bearer ${AppConstants.accessToken}'},
+      connectTimeout: const Duration(
+        milliseconds: 30000,
+      ),
+      receiveTimeout: const Duration(
+        milliseconds: 30000,
+      ),
+      baseUrl: AppConstants.baseUrl,
+      receiveDataWhenStatusError: true,
+      validateStatus: (status) => true,
+      followRedirects: true,
+    );
+    return await dio!.get(
+      endpoint,
+    );
+  }
+
+  static Future<Response> getNearestRestaurants({
+    required String endpoint,
+    required int placeId,
+  }) async {
+    /*dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';*/
+    dio!.options.baseUrl = AppConstants.baseUrl;
+    dio!.options = BaseOptions(
+      headers: {'Authorization': 'Bearer ${AppConstants.accessToken}'},
+      connectTimeout: const Duration(
+        milliseconds: 30000,
+      ),
+      receiveTimeout: const Duration(
+        milliseconds: 30000,
+      ),
+      baseUrl: AppConstants.baseUrl,
+      receiveDataWhenStatusError: true,
+      validateStatus: (status) => true,
+      followRedirects: true,
+    );
+    return await dio!.post(
+      data: {
+        "place_id": placeId,
+      },
+      endpoint,
+    );
+  }
+
+  /////////////////////////////////////////////
+  static Future<Response> getManualPlan({
+    required String endpoint,
+    required int tripId,
+  }) async {
+    /*dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';*/
+    dio!.options.baseUrl = AppConstants.baseUrl;
+    dio!.options = BaseOptions(
+      headers: {'Authorization': 'Bearer ${AppConstants.accessToken}'},
+      connectTimeout: const Duration(
+        milliseconds: 30000,
+      ),
+      receiveTimeout: const Duration(
+        milliseconds: 30000,
+      ),
+      baseUrl: AppConstants.baseUrl,
+      receiveDataWhenStatusError: true,
+      validateStatus: (status) => true,
+      followRedirects: true,
+    );
+    return await dio!.post(
+      data: {
+        "trip_id": tripId,
+      },
+      endpoint,
+    );
+  }
   /////////////////////////////////////////////
 
   static Future<Response> getFavoriteData() async {
@@ -146,8 +235,21 @@ class DioHelper {
   static Future<Response?> getSearchResult({
     required String endpoint,
   }) async {
-    dio!.options.headers['Authorization'] =
-        'Bearer ${AppConstants.accessToken}';
+    dio!.options = BaseOptions(
+      headers: {'Authorization': 'Bearer ${AppConstants.accessToken}'},
+      connectTimeout: const Duration(
+        milliseconds: 30000,
+      ),
+      receiveTimeout: const Duration(
+        milliseconds: 30000,
+      ),
+      baseUrl: AppConstants.baseUrl,
+      receiveDataWhenStatusError: true,
+      validateStatus: (status) => true,
+      followRedirects: true,
+    );
+    /*dio!.options.headers['Authorization'] =
+        'Bearer ${AppConstants.accessToken}';*/
     dio!.options.baseUrl = AppConstants.baseUrl;
 
     return await dio!.get(

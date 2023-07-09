@@ -135,11 +135,10 @@ class DetailsScreen extends StatelessWidget {
                                                         AppController.get(
                                                                 context)
                                                             .putInFavorite(
-                                                          type:
-                                                              AppController.get(
-                                                                      context)
-                                                                  .detailsModel!
-                                                                  .favoriteType,
+                                                          type: AppController
+                                                                  .get(context)
+                                                              .detailsModel!
+                                                              .favoriteType!,
                                                           id: AppController.get(
                                                                   context)
                                                               .detailsModel!
@@ -171,7 +170,7 @@ class DetailsScreen extends StatelessWidget {
                                                               AppController.get(
                                                                       context)
                                                                   .detailsModel!
-                                                                  .favoriteType,
+                                                                  .favoriteType!,
                                                           id: AppController.get(
                                                                   context)
                                                               .detailsModel!
@@ -210,18 +209,21 @@ class DetailsScreen extends StatelessWidget {
                             SizedBox(
                               height: 10.h,
                             ),
-                            Text(
-                              "Just for you",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp,
+                            Padding(
+                              padding: EdgeInsets.all(8.0.r),
+                              child: Text(
+                                "Just for you",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.sp,
+                                ),
                               ),
                             ),
                             SizedBox(
                               height: 10.h,
                             ),
                             SizedBox(
-                              height: 210.h,
+                              height: 230.h,
                               child: ListView.separated(
                                 scrollDirection: Axis.horizontal,
                                 separatorBuilder: (context, index) => SizedBox(
@@ -246,14 +248,14 @@ class DetailsScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Text(
+                            /*Text(
                               "Comments ",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 18.sp),
                             ),
                             SizedBox(
                               height: 10.h,
-                            ),
+                            ),*/
                             /*ListView.separated(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,

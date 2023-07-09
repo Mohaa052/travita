@@ -57,6 +57,7 @@ class LocationButtonWidget extends StatelessWidget {
             text: text,
             fontWeight: FontWeight.w600,
             fontSize: fontSize!,
+            textOverflow: TextOverflow.ellipsis,
           ),
         ],
       ),

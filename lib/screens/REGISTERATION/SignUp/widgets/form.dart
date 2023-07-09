@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travita/Component/navigate_and_finish.dart';
+import 'package:travita/screens/survey/view.dart';
 import '../../../../Component/colors/colors.dart';
 import '../../../../Component/navigator.dart';
 import '../../../../Component/widgets/button/defaultTextButton.dart';
@@ -25,7 +27,8 @@ class SignUpFormWithCurve extends StatelessWidget {
       listener: (context, state) {
         if (state is LoginSuccessState) {
           AppController.get(context).getFavorite();
-          defaultNavigator(context, LayOutScreen());
+          navigateAndFinish(context: context, newScreen: const SurveyScreen());
+          //defaultNavigator(context, LayOutScreen());
         }
       },
       builder: (context, state) => SizedBox(

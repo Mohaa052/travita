@@ -11,7 +11,7 @@ class SignUpImage extends StatelessWidget {
         top: 30.h,
       ),
       child: Image.asset(
-        "image/signUp.png",
+        "image/login.PNG",
         fit: BoxFit.contain,
         width: 260.w,
         height: 235.h,

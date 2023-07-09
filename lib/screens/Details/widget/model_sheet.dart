@@ -30,7 +30,6 @@ class DetailsModelSheetWidget extends StatelessWidget {
               ),
               SizedBox(
                 height: 100.h,
-
                 child: Column(
                   children: [
                     DefaultText(
@@ -57,14 +56,14 @@ class DetailsModelSheetWidget extends StatelessWidget {
               ),
               SizedBox(
                 height: 100.h,
-
                 child: Column(
                   children: [
                     DefaultText(
                       textOverflow: TextOverflow.fade,
-                      text:
-                          AppController.get(context).detailsModel?.description ??
-                              "UnKnown",
+                      text: AppController.get(context)
+                              .detailsModel
+                              ?.description ??
+                          "UnKnown",
                       fontSize: 25.sp,
                       textColor: AppColors.darkBlue,
                       fontWeight: FontWeight.bold,
@@ -86,7 +85,6 @@ class DetailsModelSheetWidget extends StatelessWidget {
               ),
               SizedBox(
                 height: 100.h,
-
                 child: Column(
                   children: [
                     DefaultText(
@@ -114,7 +112,6 @@ class DetailsModelSheetWidget extends StatelessWidget {
               ),
               SizedBox(
                 height: 100.h,
-
                 child: Column(
                   children: [
                     DefaultText(
@@ -142,7 +139,6 @@ class DetailsModelSheetWidget extends StatelessWidget {
               ),
               SizedBox(
                 height: 100.h,
-
                 child: Column(
                   children: [
                     DefaultText(

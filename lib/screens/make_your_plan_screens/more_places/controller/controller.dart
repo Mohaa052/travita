@@ -95,6 +95,12 @@ class MorePlacesController extends Cubit<MorePlaces> {
   }
 
   void ensureAllIsAdded() {
+    for (bool isChecked in isCheckedItems!) {
+      if (isChecked == true) {
+        numOfErrors++;
+      }
+    }
+
     print("ensure ------------------> ensure");
 
 /*    for (int i = 0; i < isCheckedItems!.length; i++) {
@@ -135,7 +141,9 @@ class MorePlacesController extends Cubit<MorePlaces> {
       }*/
       print("Then ------------------> Then");
       isCheckedItems![tripIndex] = false;
+      numOfErrors--;
       print(isCheckedItems);
+      ensureAllIsAdded();
     }).catchError((error) {
       numOfErrors++;
       print(

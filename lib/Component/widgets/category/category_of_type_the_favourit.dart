@@ -73,11 +73,11 @@ class CategoryOfTypeTheFavourite extends StatelessWidget {
                             isHurtShown = false;
                             AppController.get(context).changeFavoriteIcon();
                             AppController.get(context).deleteFromFavorite(
-                                favoriteType: favoriteItem.favoriteType,
+                                favoriteType: favoriteItem.favoriteType!,
                                 id: favoriteItem.id.toString());
                           },
                           icon: Icon(
-                            favoriteItem.isFavorite
+                            favoriteItem.isFavorite!
                                 ? Icons.favorite
                                 : Icons.favorite_outline_outlined,
                             color: Colors.red,

@@ -32,7 +32,7 @@ class CheckBoxItemWidget extends StatelessWidget {
             ),
           ),
           secondary: Image.asset(
-            "image/fav.jpg",
+            "image/plan.png",
             width: 40.w,
             height: 50.h,
           ),
@@ -43,11 +43,11 @@ class CheckBoxItemWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
             textAlign: TextAlign.start,
           ),
-          subtitle: DefaultText(
+          /*subtitle: DefaultText(
             text: '3 Saved',
             textColor: AppColors.darkBlue,
             textAlign: TextAlign.start,
-          ),
+          ),*/
         ),
         const Divider(
           height: 0,

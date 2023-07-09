@@ -61,8 +61,8 @@ class MapSampleState extends State<DetermineTheStartPositionScreen> {
             ),
             DefaultOutlinedButton(
               onPressed: () {
-                AppController.get(context).longitude = longitude!;
-                AppController.get(context).latitude = latitude!;
+                AIPlanSurveyController.get(context).longitude = longitude!;
+                AIPlanSurveyController.get(context).latitude = latitude!;
                 print("the latitude =$latitude");
                 print("the longitude =$longitude");
                 AIPlanSurveyController.get(context)

@@ -196,14 +196,14 @@ class AppController extends Cubit<AppStates> {
 
   void check() {
     isFavorite = checkIfExisted(
-      type: detailsModel!.favoriteType,
+      type: detailsModel!.favoriteType!,
       id: detailsModel!.id.toString(),
     );
   }
 
   Future<void> checkIfDetailsExisted() async {
     isFavorite = checkIfExisted(
-      type: detailsModel!.favoriteType,
+      type: detailsModel!.favoriteType!,
       id: detailsModel!.id.toString(),
     );
   }

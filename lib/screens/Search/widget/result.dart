@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travita/screens/Places_of_type/Models/restaurantsModel.dart';
 import 'package:travita/screens/Search/controller/controller.dart';
 import 'package:travita/screens/Search/widget/search_result_place.dart';
 
@@ -15,29 +16,35 @@ class SearchResultWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
+    return SizedBox(
+      width: double.infinity,
+      child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        itemCount: SearchImageController.get(context).searchResult!.data.length,
-        /*gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 10.h,
-          crossAxisSpacing: 10.w,
-          childAspectRatio: 2.w / 2.6.h,
-        ),*/
-        itemBuilder: (BuildContext context, int index) =>
-            SearchResultPlaceWidget(
-          /*onPressed: () {
-            AppController.get(context).detailsModel =
-                SearchImageController.get(context).searchResult!.data[index];
-            AppController.get(context).detailsModels =
-                SearchImageController.get(context).searchResult!.data;
-            defaultNavigator(
-              context,
-              const DetailsScreen(),
-            );
-          },*/
-          place: SearchImageController.get(context).searchResult!.data[index],
+        child: Column(
+          children: List.generate(
+            SearchImageController.get(context).searchResult!.data.length,
+            (index) => SearchResultPlaceWidget(
+              /*onPressed: () {
+              AppController.get(context).detailsModel =
+                  SearchImageController.get(context).searchResult!.data[index];
+              AppController.get(context).detailsModels =
+                  SearchImageController.get(context).searchResult!.data;
+              defaultNavigator(
+                context,
+                const DetailsScreen(),
+              );
+            },*/
+              place:
+                  SearchImageController.get(context).searchResult!.data[index],
+              //SearchImageController.get(context).searchResult!.data![index],
+            ),
+          ),
+          /*gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10.h,
+            crossAxisSpacing: 10.w,
+            childAspectRatio: 2.w / 2.6.h,
+          ),*/
         ),
       ),
     );

@@ -36,17 +36,19 @@ class AIPlanSurveyController extends Cubit<AIPlanSurveyStates> {
   ];
   late final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  late final double longitude;
-  late final double latitude;
+  double? longitude;
+  double? latitude;
 
   void createAiPlan({
     required BuildContext context,
-    required double longitude,
-    required double latitude,
+    double? longitude,
+    double? latitude,
   }) {
     if (daysController.text.isNotEmpty &&
         budgetController.text.isNotEmpty &&
-        cityController.text.isNotEmpty) {
+        cityController.text.isNotEmpty &&
+        longitude != null &&
+        latitude != null) {
       emit(CreateAIPlanLoading());
       DioHelper.postData(
         url: "plan",
